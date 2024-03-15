@@ -1,0 +1,23 @@
+# ninja log v5
+12322	12331	1710226620113156030	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-test	d3bb01950ec3faf8
+12295	12304	1710226620085913805	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-configure	1197edd4fee6e1cc
+12277	12287	1710226620069094009	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-update	6168930d670b19a3
+12304	12313	1710226620095106161	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-build	3749eac907b4f773
+12287	12295	1710226620077529595	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-patch	dc7e7bf789c9794b
+12331	12343	1710226620125365544	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/CMakeFiles/sdl2-populate-complete	21cad53e2e1ac1d
+0	9	1710226607790942791	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-mkdir	9ce88d1c1cec67e2
+9	12277	1710226620059237554	sdl2-populate-prefix/src/SDL2-2.26.5.zip	a3587797c2a06770
+12331	12343	1710226620125365544	CMakeFiles/sdl2-populate-complete	21cad53e2e1ac1d
+9	12277	1710226620059237554	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-download	a3587797c2a06770
+12313	12322	1710226620104225181	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-install	3696b7830499b8c7
+9	12277	1710226620059237554	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-download	a3587797c2a06770
+0	9	1710226607790942791	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-mkdir	9ce88d1c1cec67e2
+9	12277	1710226620059237554	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip	a3587797c2a06770
+12313	12322	1710226620104225181	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-install	3696b7830499b8c7
+12295	12304	1710226620085913805	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-configure	1197edd4fee6e1cc
+12277	12287	1710226620069094009	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-update	6168930d670b19a3
+12287	12295	1710226620077529595	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-patch	dc7e7bf789c9794b
+12304	12313	1710226620095106161	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-build	3749eac907b4f773
+12331	12343	1710226620125365544	sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-done	21cad53e2e1ac1d
+12322	12331	1710226620113156030	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-test	d3bb01950ec3faf8
+12331	12343	1710226620125365544	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-done	21cad53e2e1ac1d

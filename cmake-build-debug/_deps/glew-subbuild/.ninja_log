@@ -1,0 +1,23 @@
+# ninja log v5
+10	2664	1710226653643572275	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-2.2.0.zip	75c375384eb99bac
+2665	2673	1710226653652433122	glew-populate-prefix/src/glew-populate-stamp/glew-populate-update	32df28c0cf903e73
+2702	2710	1710226653689595012	glew-populate-prefix/src/glew-populate-stamp/glew-populate-install	f3d81a7c5c876642
+2710	2719	1710226653697794759	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-test	ce6f681d93583b49
+0	9	1710226650988667339	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-mkdir	658d9623e749072a
+2665	2673	1710226653652433122	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-update	32df28c0cf903e73
+2682	2691	1710226653670325238	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-configure	9b3c82311b60d70c
+0	9	1710226650988667339	glew-populate-prefix/src/glew-populate-stamp/glew-populate-mkdir	658d9623e749072a
+2719	2731	1710226653710257071	glew-populate-prefix/src/glew-populate-stamp/glew-populate-done	427313491ba9ea7a
+10	2664	1710226653643572275	glew-populate-prefix/src/glew-populate-stamp/glew-populate-download	75c375384eb99bac
+2682	2691	1710226653670325238	glew-populate-prefix/src/glew-populate-stamp/glew-populate-configure	9b3c82311b60d70c
+10	2664	1710226653643572275	glew-populate-prefix/src/glew-2.2.0.zip	75c375384eb99bac
+2673	2682	1710226653661535059	glew-populate-prefix/src/glew-populate-stamp/glew-populate-patch	3d45803a931ef02e
+10	2664	1710226653643572275	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-download	75c375384eb99bac
+2691	2702	1710226653681365431	glew-populate-prefix/src/glew-populate-stamp/glew-populate-build	c6c208214203b4e3
+2710	2719	1710226653697794759	glew-populate-prefix/src/glew-populate-stamp/glew-populate-test	ce6f681d93583b49
+2719	2731	1710226653710257071	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/CMakeFiles/glew-populate-complete	427313491ba9ea7a
+2691	2702	1710226653681365431	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-build	c6c208214203b4e3
+2673	2682	1710226653661535059	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-patch	3d45803a931ef02e
+2702	2710	1710226653689595012	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-install	f3d81a7c5c876642
+2719	2731	1710226653710257071	CMakeFiles/glew-populate-complete	427313491ba9ea7a
+2719	2731	1710226653710257071	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/glew-populate-done	427313491ba9ea7a

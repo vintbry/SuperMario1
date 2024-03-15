@@ -1,0 +1,23 @@
+# ninja log v5
+12	3279	1710226644733207564	sdl2_mixer-populate-prefix/src/SDL2_mixer-2.6.3.zip	f75cc23d9e034636
+1	11	1710226641465428021	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-mkdir	2f6dedcb98524921
+1	11	1710226641465428021	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-mkdir	2f6dedcb98524921
+3288	3296	1710226644750048152	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-patch	9ce907b18c856065
+12	3279	1710226644733207564	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-download	f75cc23d9e034636
+12	3279	1710226644733207564	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/SDL2_mixer-2.6.3.zip	f75cc23d9e034636
+3305	3313	1710226644767086204	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-build	36345752f43b8726
+12	3279	1710226644733207564	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-download	f75cc23d9e034636
+3329	3341	1710226644795546792	CMakeFiles/sdl2_mixer-populate-complete	956e98d0df5d52f9
+3279	3288	1710226644741751611	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-update	fb54435bd65f2a5c
+3279	3288	1710226644741751611	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-update	fb54435bd65f2a5c
+3296	3304	1710226644758663618	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-configure	7a0bfccf1f8bd612
+3288	3296	1710226644750048152	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-patch	9ce907b18c856065
+3296	3304	1710226644758663618	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-configure	7a0bfccf1f8bd612
+3313	3321	1710226644775509874	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-install	986e53ac9d8eb7b3
+3305	3313	1710226644767086204	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-build	36345752f43b8726
+3329	3341	1710226644795546792	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-done	956e98d0df5d52f9
+3321	3329	1710226644783650536	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-test	86afb7b2f988de94
+3329	3341	1710226644795546792	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/CMakeFiles/sdl2_mixer-populate-complete	956e98d0df5d52f9
+3321	3329	1710226644783650536	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-test	86afb7b2f988de94
+3313	3321	1710226644775509874	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-install	986e53ac9d8eb7b3
+3329	3341	1710226644795546792	sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/sdl2_mixer-populate-done	956e98d0df5d52f9

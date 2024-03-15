@@ -1,0 +1,3 @@
+/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/CMakeFiles/sdl2-populate.dir
+/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/CMakeFiles/edit_cache.dir
+/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/CMakeFiles/rebuild_cache.dir

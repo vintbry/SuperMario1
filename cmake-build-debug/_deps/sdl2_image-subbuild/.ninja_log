@@ -1,0 +1,23 @@
+# ninja log v5
+1	10	1710226632999322399	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-mkdir	665f0cfa639cdcd4
+3420	3429	1710226636417733632	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-test	160068c8c7ac864d
+1	10	1710226632999322399	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-mkdir	665f0cfa639cdcd4
+3395	3403	1710226636392628920	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-configure	f972507978b3bc64
+3429	3440	1710226636429521511	CMakeFiles/sdl2_image-populate-complete	40cfb04243f7c47a
+10	3377	1710226636366257509	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-download	f26783fec0d9cf63
+10	3377	1710226636366257509	sdl2_image-populate-prefix/src/SDL2_image-2.6.3.zip	f26783fec0d9cf63
+3403	3412	1710226636400926169	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-build	34a9fd94d3442cf4
+10	3377	1710226636366257509	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/SDL2_image-2.6.3.zip	f26783fec0d9cf63
+3377	3386	1710226636375458031	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-update	d8392e2f5af37ef4
+3412	3420	1710226636409347506	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-install	11654b17e2d0aa5b
+3429	3440	1710226636429521511	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-done	40cfb04243f7c47a
+10	3377	1710226636366257509	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-download	f26783fec0d9cf63
+3377	3386	1710226636375458031	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-update	d8392e2f5af37ef4
+3386	3395	1710226636384316212	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-patch	60c8c0cc5642078a
+3429	3440	1710226636429521511	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-done	40cfb04243f7c47a
+3395	3403	1710226636392628920	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-configure	f972507978b3bc64
+3403	3412	1710226636400926169	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-build	34a9fd94d3442cf4
+3429	3440	1710226636429521511	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/CMakeFiles/sdl2_image-populate-complete	40cfb04243f7c47a
+3386	3395	1710226636384316212	/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-patch	60c8c0cc5642078a
+3420	3429	1710226636417733632	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-test	160068c8c7ac864d
+3412	3420	1710226636409347506	sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-install	11654b17e2d0aa5b
