@@ -9,26 +9,30 @@
 #include "Util/Logger.hpp"
 #include "PhaseResourcesManager.h"
 
+
 void App::Start(){
     LOG_TRACE("Start!");
 
-    m_Mario = std::make_shared<Character>(GA_RESOURCE_DIR"/Mario/mario.png");
-    m_Mario->SetPosition({-400.0f, -200.5f});
-    m_Mario->SetZIndex(50);
-    m_Root.AddChild(m_Mario);
 
-    /*
-    std::vector<std::string> MarioRun;
-    MarioRun.reserve(3);
+    m_Mario1 = std::make_shared<Character>(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+    m_Mario1->SetZIndex(50);
+    m_Mario1->SetVisible(false);
+    m_Root.AddChild(m_Mario1);
+
+
+    std::vector<std::string> MarioJump;
+    MarioJump.reserve(3);
     for(int i = 0; i < 3; i++){
-        MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario_move"+ std::to_string(i)+ ".png");
+        MarioJump.emplace_back(GA_RESOURCE_DIR"/Mario/mario_move"+ std::to_string(i)+ ".png");
     }
 
-    m_Mario= std::make_shared<AnimatedCharacter>(MarioRun);
+    m_Mario= std::make_shared<AnimatedCharacter>(MarioJump);
+    m_Mario->SetPosition({-400.0f, -200.5f});
+    m_Mario->SetInterval(100);
     m_Mario->SetZIndex(5);
     m_Mario->SetVisible(true);
     m_Root.AddChild(m_Mario);
-    */
+
     m_PRM = std::make_shared<PhaseResourcesManager>();
     m_Root.AddChildren(m_PRM->GetChildren());
 

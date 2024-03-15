@@ -8,8 +8,9 @@
 #include <string>
 
 #include "Util/GameObject.hpp"
+#include "Util/Time.hpp"
 
-class Character : public Util::GameObject{
+class Character : public Util::GameObject, public Util::Time {
 public:
     explicit Character(const std::string& ImagePath);
 
@@ -31,12 +32,23 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
-    void Jump() const{
-        float x1=GetPosition().x;
-        float y1=GetPosition().y;
+    //from Animated Character
+    void Update(unsigned long BaseTime);
 
-        
+    bool IsJumping() const{
+        return m_Jump;
     }
+
+    glm::vec2 GetLandPosition(){return {-400.0f, -200.5f};}
+
+    void Jump(unsigned long BaseTime){
+        m_Jump=true;
+        Update(BaseTime);
+    }
+
+    bool m_Jump=false;
+    bool m_HasEnded=true;
+
 
     // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {

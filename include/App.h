@@ -41,13 +41,15 @@ private:
 
     Util::Root m_Root;
 
-    //std::shared_ptr<Character> m_Mario;
+    std::shared_ptr<Character> m_Mario1;
     //std::shared_ptr<Character> m_Mushroom;
     //std::vector<std::shared_ptr<Character>> m_Doors;
 
-    std::shared_ptr<Character> m_Mario;
+    std::shared_ptr<AnimatedCharacter> m_Mario;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
+
+    unsigned long m_JumpBaseTime = 0;
 
     bool m_EnterDown = false;
 };
