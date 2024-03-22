@@ -43,6 +43,7 @@ private:
 
     std::shared_ptr<Character> m_Mario1;
     std::shared_ptr<Character> m_Mushroom;
+    std::vector<std::shared_ptr<Character>> m_Land;
     //std::vector<std::shared_ptr<Character>> m_Doors;
 
     std::shared_ptr<AnimatedCharacter> m_Mario;
@@ -51,6 +52,7 @@ private:
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
     unsigned long m_JumpBaseTime = 0;
+    unsigned long timeNow = 0;
 
     bool m_EnterDown = false;
 

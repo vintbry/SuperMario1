@@ -3,20 +3,21 @@
 #include "Map.h"
 
 int main(int, char**) {
-    auto context = Core::Context::GetInstance();
-    Map map;
-    map.RenderMap();
+    Core::Context context1;
+
+    unsigned int newWidth = 256;
+    unsigned int newHeight = 240;
+
+    context1.SetWindowWidth(newWidth);
+    context1.SetWindowHeight(newHeight);
+
+    auto context = context1.GetInstance();
+    //auto context = Core::Context::GetInstance();
+    //Map map;
+    //map.RenderMap();
     App app;
 
     if(context){
-        /*
-        unsigned int newWidth = 256;
-        unsigned int newHeight = 240;
-
-        context->SetWindowWidth(newWidth);
-        context->SetWindowHeight(newHeight);
-        */
-
         while (!context->GetExit()) {
             switch (app.GetCurrentState()) {
                 case App::State::START:

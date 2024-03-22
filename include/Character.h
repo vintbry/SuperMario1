@@ -48,6 +48,7 @@ public:
 
     bool m_Jump=false;
     bool m_HasEnded=true;
+    bool m_maxJump=false;
 
 
     // TODO: Implement the collision detection
