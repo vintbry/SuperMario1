@@ -1,0 +1,249 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "libFramework.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 44,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "PracticalToolsForSimpleDesign::@aa21574dd3e4ea296610"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "SDL2-static::@45bd952f1071c035638d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "SDL2_image::@de341d98faad78faee90"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "SDL2_ttf::@bbdb2daa5afc341778ea"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "freetype::@1caf39cd73602fb8f135"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "SDL2_mixer::@82d5866ba632f3b21364"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "spdlog::@eb35cfce7893ccfeff1e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glew_s::@47d5808a15de270dd2f9"
+		}
+	],
+	"id" : "Framework::@6890427a1f51a3e7e1df",
+	"name" : "Framework",
+	"nameOnDisk" : "libFramework.a",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/Context.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/DebugMessageCallback.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/VertexArray.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/VertexBuffer.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/IndexBuffer.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/Shader.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/Program.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/Texture.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Core/TextureUtils.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/LoadTextFile.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Logger.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Time.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Input.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/SFX.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/BGM.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Image.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Text.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/TransformUtils.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/GameObject.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Root.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Color.cpp.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/src/Util/Animation.cpp.o",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

@@ -35,23 +35,28 @@ private:
         FIRST_WORLD,
     };
 
-
+    unsigned long m_Time=0.f;
     State m_CurrentState = State::START;
     Phase m_Phase = Phase::FIRST_WORLD;
 
     Util::Root m_Root;
 
     std::shared_ptr<Character> m_Mario1;
-    //std::shared_ptr<Character> m_Mushroom;
+    std::shared_ptr<Character> m_Mushroom;
     //std::vector<std::shared_ptr<Character>> m_Doors;
 
     std::shared_ptr<AnimatedCharacter> m_Mario;
+    std::shared_ptr<AnimatedCharacter> m_MarioBack;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
     unsigned long m_JumpBaseTime = 0;
 
     bool m_EnterDown = false;
+
+    void callMarioForward();
+
+    void callMarioBackward();
 };
 
 #endif //SUPERMARIO1_APP_H

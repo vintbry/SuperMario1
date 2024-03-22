@@ -20,7 +20,10 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/AppUpdate.cpp
         src/AppEnd.cpp
         include/PhaseResourcesManager.h
-        src/PhaseManager.cpp)
+        src/PhaseManager.cpp
+        include/Map.h
+        src/Map.cpp
+        include/tileset.h)
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)

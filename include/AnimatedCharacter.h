@@ -46,6 +46,7 @@ public:
         Update(BaseTime);
     };
     */
+    [[nodiscard]] bool GetVisibility() const { return m_Visible; }
     void SetPlaying(){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         temp->Play();
