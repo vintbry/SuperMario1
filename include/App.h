@@ -43,22 +43,33 @@ private:
 
     std::shared_ptr<Character> m_Mario1;
     std::shared_ptr<Character> m_Mushroom;
+
     std::vector<std::shared_ptr<Character>> m_Land;
-    //std::vector<std::shared_ptr<Character>> m_Doors;
+    std::vector<std::vector<std::shared_ptr<Character>>> saveTilesChar;
+
+    std::vector<std::shared_ptr<AnimatedCharacter>> m_QuesVector;
+    std::vector<std::vector<std::shared_ptr<AnimatedCharacter>>> saveTilesAnimated;
 
     std::shared_ptr<AnimatedCharacter> m_Mario;
     std::shared_ptr<AnimatedCharacter> m_MarioBack;
+    std::shared_ptr<AnimatedCharacter> m_Question;
+
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
     unsigned long m_JumpBaseTime = 0;
     unsigned long timeNow = 0;
 
+
     bool m_EnterDown = false;
 
     void callMarioForward();
 
     void callMarioBackward();
+
+    void moveQuestionBox();
+
+    std::tuple<bool,glm::vec2> IsOnLand();
 };
 
 #endif //SUPERMARIO1_APP_H

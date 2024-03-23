@@ -39,7 +39,7 @@ public:
         return m_Jump;
     }
 
-    glm::vec2 GetLandPosition(){return {-400.0f, -200.5f};}
+    glm::vec2 GetLandPosition(){return {-400.0f, -172.0f};}
 
     void Jump(unsigned long BaseTime){
         m_Jump=true;
