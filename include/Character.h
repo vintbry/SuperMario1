@@ -39,7 +39,8 @@ public:
         return m_Jump;
     }
 
-    glm::vec2 GetLandPosition(){return {-400.0f, -172.0f};}
+    //need to change to the current mario's land position
+    glm::vec2 GetLandPosition(){return {-400.0f, -170.0f};}
 
     void Jump(unsigned long BaseTime){
         m_Jump=true;

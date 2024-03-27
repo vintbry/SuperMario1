@@ -19,13 +19,6 @@ void App::Start(){
     m_Mario1->SetVisible(false);
     m_Root.AddChild(m_Mario1);
 
-    //Mario Jump Backward
-    /*
-    m_Mario2 = std::make_shared<Character>(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
-    m_Mario2->SetZIndex(50);
-    m_Mario2->SetVisible(false);
-    m_Root.AddChild(m_Mario2);
-    */
     //Mario run forward
     std::vector<std::string> MarioRun;
     MarioRun.reserve(4);
@@ -36,9 +29,9 @@ void App::Start(){
 
 
     m_Mario= std::make_shared<AnimatedCharacter>(MarioRun);
-    m_Mario->SetPosition({-300.0f, -172.0f});
+    m_Mario->SetPosition({-300.0f, -170.0f});
     m_Mario->SetInterval(100);
-    m_Mario->SetZIndex(5);
+    m_Mario->SetZIndex(50);
     m_Mario->SetVisible(true);
     m_Root.AddChild(m_Mario);
 
@@ -52,21 +45,33 @@ void App::Start(){
 
     m_MarioBack = std::make_shared<AnimatedCharacter>(MarioRunBack);
     m_MarioBack->SetInterval(100);
-    m_MarioBack->SetZIndex(5);
+    m_MarioBack->SetZIndex(50);
     m_MarioBack->SetVisible(false);
     m_Root.AddChild(m_MarioBack);
 
     //try moving element
     m_Mushroom = std::make_shared<Character>(GA_RESOURCE_DIR"/images/goombas_0.png");
     m_Mushroom->SetPosition({200.0f,-200.5f});
-    m_Mushroom->SetZIndex(5);
+    m_Mushroom->SetZIndex(50);
     m_Mushroom->SetVisible(true);
     m_Root.AddChild(m_Mushroom);
 
     //Background tiles
-    //none in the 41,40
-    std::vector <int> vec = {45};
+    for(int i = 0; i < 4; i++){
+        m_Land.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tilesLong"+std::to_string(i)+".png"));
+        m_Land[i]->SetZIndex(5);
+        //m_Land[i]->SetPosition({-300.0f,-246.0f});
 
+        m_Land[i]->SetVisible(true);
+        m_Root.AddChild(m_Land[i]);
+    }
+    m_Land[0]->SetPosition({740.0f,-220.0f});
+    m_Land[1]->SetPosition({2150.0f,-220.0f});
+    m_Land[2]->SetPosition({3500.0f,-220.0f});
+    m_Land[3]->SetPosition({5730.0f,-220.0f});
+
+    /*
+     * std::vector <int> vec = {45};
     for(int i = 0;i < 300 ;i++){
         auto it = find(vec.begin(), vec.end(), i);
         m_Land.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tiles2.png"));
@@ -85,7 +90,7 @@ void App::Start(){
 
         m_Root.AddChild(m_Land[i]);
     }
-
+    */
     //In Air Tile
     //Question Mark
     std::vector<std::string> QuestionMark;
@@ -109,11 +114,9 @@ void App::Start(){
     }
 
     //defining question position
-    m_QuesVector[0]->SetPosition({160.0f,-100.0f});
+    m_QuesVector[0]->SetPosition({100.0f,-102.0f});
 
     //putting type of tiles into the vector
-    saveTilesChar.push_back(m_Land);
-
     saveTilesAnimated.push_back(m_QuesVector);
 
 
