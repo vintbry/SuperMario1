@@ -9,6 +9,7 @@
 
 #include "Util/GameObject.hpp"
 #include "Util/Time.hpp"
+#include "AnimatedCharacter.h"
 
 class Character : public Util::GameObject, public Util::Time {
 public:
@@ -53,6 +54,19 @@ public:
 
 
     // TODO: Implement the collision detection
+    [[nodiscard]] bool IfCollides(const std::shared_ptr<AnimatedCharacter>& other) const {
+        //(void) other;
+        float x1=GetPosition().x;
+        float x2=other->GetPosition().x;
+        float y1=GetPosition().y;
+        float y2=other->GetPosition().y;
+
+        bool x_overlap=((x1+GetScaledSize().x/2)>=(x2-other->GetScaledSize().x/2) && ((x1-GetScaledSize().x/2)<=(x2+other->GetScaledSize().x/2)));
+        bool y_overlap=((y1+GetScaledSize().y/2)>=(y2-other->GetScaledSize().y/2) && ((y1-GetScaledSize().x/2)<=(y2+other->GetScaledSize().y/2)-3.0f));
+
+        return x_overlap && y_overlap;
+    }
+
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
         //(void) other;
         float x1=GetPosition().x;
@@ -60,8 +74,12 @@ public:
         float y1=GetPosition().y;
         float y2=other->GetPosition().y;
 
-        bool x_overlap=(x1>=x2 && x1<=x2+other->GetScaledSize().x);
-        bool y_overlap=(y1>=y2 && y1<=y2+other->GetScaledSize().y);
+        bool x_overlap=((x1+GetScaledSize().x/2)>=(x2-other->GetScaledSize().x/2) && ((x1-GetScaledSize().x/2)<=(x2+other->GetScaledSize().x/2)));
+        bool y_overlap=((y1+GetScaledSize().y/2)>=(y2-other->GetScaledSize().y/2) && ((y1-GetScaledSize().x/2)<=(y2+other->GetScaledSize().y/2)-3.0f));
+
+        LOG_DEBUG("IfCollide");
+        LOG_DEBUG(x_overlap);
+        LOG_DEBUG(y_overlap);
 
         return x_overlap && y_overlap;
     }

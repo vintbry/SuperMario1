@@ -45,22 +45,29 @@ private:
     std::shared_ptr<Character> m_Mushroom;
 
     std::vector<std::shared_ptr<Character>> m_Land;
+    std::vector<std::shared_ptr<Character>> m_Brick;
+    std::vector<std::shared_ptr<Character>> m_Tube;
 
     std::vector<std::shared_ptr<AnimatedCharacter>> m_QuesVector;
-    std::vector<std::vector<std::shared_ptr<AnimatedCharacter>>> saveTilesAnimated;
 
     std::shared_ptr<AnimatedCharacter> m_Mario;
     std::shared_ptr<AnimatedCharacter> m_MarioBack;
     std::shared_ptr<AnimatedCharacter> m_Question;
-
+    glm::vec2 position;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
+    unsigned int cnt=0;
+
+    unsigned long timenow = 0;
     unsigned long m_JumpBaseTime = 0;
     unsigned long timeNow = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;
+    bool m_Collide = false;
+    bool m_CollideRight = false;
+    bool m_CollideLeft = false;
 
     void callMarioForward();
 
@@ -68,9 +75,11 @@ private:
 
     void moveQuestionBox();
 
+    void moveBrick();
+
     std::tuple<bool,glm::vec2> IsOnLand();
 
-
+    bool IsCollide();
 };
 
 #endif //SUPERMARIO1_APP_H
