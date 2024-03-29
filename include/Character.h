@@ -33,7 +33,7 @@ public:
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
     //from Animated Character
-    void Update(unsigned long BaseTime);
+    void Update(unsigned long BaseTime,unsigned int add);
 
     bool IsJumping() const{
         return m_Jump;
@@ -42,9 +42,9 @@ public:
     //need to change to the current mario's land position
     glm::vec2 GetLandPosition(){return {-400.0f, -170.0f};}
 
-    void Jump(unsigned long BaseTime){
+    void Jump(unsigned long BaseTime, unsigned int add){
         m_Jump=true;
-        Update(BaseTime);
+        Update(BaseTime,add);
     }
 
     bool m_Jump=false;

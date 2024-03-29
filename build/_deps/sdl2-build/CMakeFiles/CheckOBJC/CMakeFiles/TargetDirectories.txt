@@ -1,0 +1,2 @@
+/Users/bryant/super_mario_bros_20240328/build/_deps/sdl2-build/CMakeFiles/CheckOBJC/CMakeFiles/edit_cache.dir
+/Users/bryant/super_mario_bros_20240328/build/_deps/sdl2-build/CMakeFiles/CheckOBJC/CMakeFiles/rebuild_cache.dir

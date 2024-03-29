@@ -52,12 +52,13 @@ private:
     std::shared_ptr<AnimatedCharacter> m_Mario;
     std::shared_ptr<AnimatedCharacter> m_MarioBack;
     std::shared_ptr<AnimatedCharacter> m_Question;
-
+    glm::vec2 position ;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
     unsigned long m_JumpBaseTime = 0;
-    unsigned long timeNow = 0;
+    unsigned long timenow = 0;
+    unsigned int cnt = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;
