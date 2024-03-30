@@ -21,6 +21,7 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/AppEnd.cpp
         include/PhaseResourcesManager.h
         src/PhaseManager.cpp
+        include/Audio.h
 )
 
 if(MSVC)
