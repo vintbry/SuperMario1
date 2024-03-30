@@ -72,8 +72,8 @@ std::tuple<bool,glm::vec2 > App::IsOnLand(){
         auto tiles = m_QuesVector[i];
         //for(int j=0;j<tiles.size();j++){
         bool collideX = (m_Mario->GetPosition().x>=tiles->GetPosition().x-m_Mario->GetScaledSize().x+10.0f)&&(m_Mario->GetPosition().x<=tiles->GetPosition().x+tiles->GetScaledSize().x-5.0f);
-        bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y);
-        //bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 1.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2+1.0f);
+        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y);
+        bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 3.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
         /*
         LOG_DEBUG("tiles");
@@ -167,6 +167,7 @@ void App::Update(){
         m_MarioBack->SetPosition(position);
 
     }
+    
     else if(std::get<0>(IsOnLand()) && m_Mario1->m_Jump && m_Mario1->m_HasEnded){
         position = std::get<1>(IsOnLand());
         if(m_EnterRight){
@@ -185,6 +186,7 @@ void App::Update(){
 
 
     }
+
     else{
         //make mario always fall is not on land
         if(!m_Mario1->m_Jump){
