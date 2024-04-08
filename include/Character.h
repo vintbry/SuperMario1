@@ -11,6 +11,7 @@
 #include "Util/Time.hpp"
 #include "AnimatedCharacter.h"
 
+
 class Character : public Util::GameObject, public Util::Time {
 public:
     explicit Character(const std::string& ImagePath);

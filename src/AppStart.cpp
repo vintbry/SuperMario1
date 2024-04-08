@@ -4,19 +4,21 @@
 
 #include "AnimatedCharacter.h"
 #include "App.h"
-
 #include "Character.h"
+#include "Util/SFX.hpp"
 #include "Util/Logger.hpp"
 #include "PhaseResourcesManager.h"
 
 
 void App::Start(){
     LOG_TRACE("Start!");
-
-    //Mario Jump forward
+    //Mario Jump
     m_Mario1 = std::make_shared<Character>(GA_RESOURCE_DIR"/Mario/mario_jump.png");
     m_Mario1->SetZIndex(50);
     m_Mario1->SetVisible(false);
+   // m_audio_mario_small_jump.LoadMedia(GA_RESOURCE_DIR"/Audio/small_mario_jump.wav");
+
+
     m_Root.AddChild(m_Mario1);
 
     //Mario run forward
@@ -29,7 +31,7 @@ void App::Start(){
 
 
     m_Mario= std::make_shared<AnimatedCharacter>(MarioRun);
-    m_Mario->SetPosition({-300.0f, -170.0f});
+    m_Mario->SetPosition({-300.0f, -168.0f});
     m_Mario->SetInterval(100);
     m_Mario->SetZIndex(50);
     m_Mario->SetVisible(true);

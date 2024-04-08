@@ -10,6 +10,7 @@
 #include "Util/Text.hpp"
 #include "AnimatedCharacter.h"
 #include "PhaseResourcesManager.h"
+#include "Util/SFX.hpp"
 
 class App {
 public:
@@ -35,12 +36,12 @@ private:
         FIRST_WORLD,
     };
 
-    unsigned long m_Time=0.f;
+
     State m_CurrentState = State::START;
     Phase m_Phase = Phase::FIRST_WORLD;
 
     Util::Root m_Root;
-
+    Util::SFX m_audio_mario_small_jump = static_cast<Util::SFX>("/Audio/small_mario_jump.wav");  // Explicit casting
     std::shared_ptr<Character> m_Mario1;
     std::shared_ptr<Character> m_Mushroom;
 
@@ -54,6 +55,7 @@ private:
     std::shared_ptr<AnimatedCharacter> m_MarioBack;
     std::shared_ptr<AnimatedCharacter> m_Question;
     glm::vec2 position;
+    glm::vec2 positionLand;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
@@ -61,13 +63,12 @@ private:
 
     unsigned long timenow = 0;
     unsigned long m_JumpBaseTime = 0;
-    unsigned long timeNow = 0;
+    unsigned long m_Time=0.f;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;
+    bool m_EnterLeft = false;
     bool m_Collide = false;
-    bool m_CollideRight = false;
-    bool m_CollideLeft = false;
 
     void callMarioForward();
 
@@ -79,7 +80,9 @@ private:
 
     std::tuple<bool,glm::vec2> IsOnLand();
 
-    bool IsCollide();
+    bool IsCollideRight();
+
+    bool IsCollideLeft();
 };
 
 #endif //SUPERMARIO1_APP_H
