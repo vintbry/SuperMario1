@@ -779,5 +779,6 @@ CMakeFiles/SuperMario1.dir/src/main.cpp.o: \
   /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include/Util/Color.hpp \
   /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/include/PhaseResourcesManager.h \
   /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/include/BackgroundImage.h \
+  /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include/Util/SFX.hpp \
   /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include/Core/Context.hpp \
   /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include/config.hpp

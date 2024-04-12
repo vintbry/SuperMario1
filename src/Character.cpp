@@ -17,17 +17,6 @@ void Character::SetImage(const std::string& ImagePath) {
     m_Drawable = std::make_shared<Util::Image>(m_ImagePath);
 }
 
-void Character::Update(unsigned long BaseTime) {
-    if(m_Jump){
-        unsigned long jumpTime = 1000;
-        std::size_t timeNow = Util::Time::GetElapsedTimeMs();
-        if(timeNow < BaseTime + jumpTime){
-            m_HasEnded=false;
-        }
-        else{
-            m_HasEnded=true;
-        }
-    }
-}
+
 
 

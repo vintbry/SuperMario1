@@ -40,14 +40,17 @@ void App::callMarioBackward(){
     m_MarioBack->SetPlaying();
 }
 
-std::tuple<bool,glm::vec2 > App::IsOnLand(){
+std::tuple<bool,glm::vec2 > App::IsOnLand(std::shared_ptr<AnimatedCharacter> Object){
     for(int i=0;i<m_Land.size();i++){
         auto tiles = m_Land[i];
-        bool collideX = (m_Mario->GetPosition().x>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(m_Mario->GetPosition().x<=tiles->GetPosition().x+tiles->GetScaledSize().x-((tiles->GetScaledSize().x)/2));
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(m_Mario->GetScaledSize().y/2 + 3.0f));
-        bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
-        glm::vec2 landPos = {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+m_Mario->GetScaledSize().y/2};
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
 
         if((collideX) && (collideY)){
             return {true,landPos};
@@ -56,57 +59,74 @@ std::tuple<bool,glm::vec2 > App::IsOnLand(){
 
     for(int i=0;i<m_QuesVector.size();i++){
         auto tiles = m_QuesVector[i];
-        //for(int j=0;j<tiles.size();j++){
-        bool collideX = (m_Mario->GetPosition().x>=tiles->GetPosition().x-m_Mario->GetScaledSize().x/2)&&(m_Mario->GetPosition().x<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y);
-        bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 5.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(m_Mario->GetScaledSize().y/2 + 3.0f));
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
-        glm::vec2 landPos = {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+m_Mario->GetScaledSize().y/2};
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
 
         if((collideX) && (collideY)){
-            return {true, landPos};
+            return {true,landPos};
         }
-
     }
     for(int i=0;i<m_Brick.size();i++){
         auto tiles = m_Brick[i];
-        bool collideX = (m_Mario->GetPosition().x>=tiles->GetPosition().x-m_Mario->GetScaledSize().x/2)&&(m_Mario->GetPosition().x<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y);
-        bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 5.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
-        glm::vec2 landPos = {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+m_Mario->GetScaledSize().y/2};
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
 
         if((collideX) && (collideY)){
-            return {true, landPos};
-            //return {true, {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y-1.0f}};
+            return {true,landPos};
         }
-
     }
     for(int i=0;i<m_Tube.size();i++){
         auto tiles = m_Tube[i];
-        bool collideX = (m_Mario->GetPosition().x>=tiles->GetPosition().x-m_Mario->GetScaledSize().x/2)&&(m_Mario->GetPosition().x<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y);
-        bool collideY = ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 5.0f) && ((m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(m_Mario->GetScaledSize().y/2 + 3.0f));
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
         glm::vec2 landPos = {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+m_Mario->GetScaledSize().y/2};
 
-        if((collideX) && (collideY)){
-            return {true, landPos};
-            //return {true, {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y-1.0f}};
-        }
+        bool collideX = collideX1 || collideX2;
 
+        if((collideX) && (collideY)){
+            return {true,landPos};
+        }
+    }
+    for(int i=0;i<m_Wood.size();i++){
+        auto tiles = m_Wood[i];
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
+
+        if((collideX) && (collideY)){
+            return {true,landPos};
+        }
     }
 
-    return {false,m_Mario->GetPosition()};
+
+    return {false,Object->GetPosition()};
 }
 
-bool App::IsCollideRight(){
+bool App::IsCollideRight(std::shared_ptr<AnimatedCharacter> Object){
     for(int i=0;i<m_Brick.size();i++){
         //debugging
         auto tiles = m_Brick[i];
-        bool collideX = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x+m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -118,9 +138,9 @@ bool App::IsCollideRight(){
     for(int i=0;i<m_QuesVector.size();i++){
         //debugging
         auto tiles = m_QuesVector[i];
-        bool collideX = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x+m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -132,9 +152,9 @@ bool App::IsCollideRight(){
     for(int i=0;i<m_Land.size();i++){
         //debugging
         auto tiles = m_Land[i];
-        bool collideX = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x+m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -146,9 +166,23 @@ bool App::IsCollideRight(){
     for(int i=0;i<m_Tube.size();i++){
         //debugging
         auto tiles = m_Tube[i];
-        bool collideX = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x+m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+        bool collideY = collideY1 || collideY2;
+
+        if(collideX && collideY){
+            return true;
+        }
+
+    }
+    for(int i=0;i<m_Wood.size();i++){
+        //debugging
+        auto tiles = m_Wood[i];
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2-2.0f) && Object->GetPosition().y-Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -160,13 +194,13 @@ bool App::IsCollideRight(){
     return false;
 };
 
-bool App::IsCollideLeft(){
+bool App::IsCollideLeft(std::shared_ptr<AnimatedCharacter> Object){
     for(int i=0;i<m_Brick.size();i++){
         //debugging
         auto tiles = m_Brick[i];
-        bool collideX = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -178,9 +212,9 @@ bool App::IsCollideLeft(){
     for(int i=0;i<m_QuesVector.size();i++){
         //debugging
         auto tiles = m_QuesVector[i];
-        bool collideX = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -192,9 +226,9 @@ bool App::IsCollideLeft(){
     for(int i=0;i<m_Land.size();i++){
         //debugging
         auto tiles = m_Land[i];
-        bool collideX = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -206,9 +240,23 @@ bool App::IsCollideLeft(){
     for(int i=0;i<m_Tube.size();i++){
         //debugging
         auto tiles = m_Tube[i];
-        bool collideX = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (m_Mario->GetPosition().y - m_Mario->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y-m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+        bool collideY = collideY1 || collideY2;
+
+        if(collideX && collideY){
+            return true;
+        }
+
+    }
+    for(int i=0;i<m_Wood.size();i++){
+        //debugging
+        auto tiles = m_Wood[i];
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2-2.0f) && Object->GetPosition().y-Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
         bool collideY = collideY1 || collideY2;
 
@@ -219,17 +267,64 @@ bool App::IsCollideLeft(){
     }
     return false;
 };
+
+bool App::IsCollideUp(){
+    for(int i=0;i<m_Brick.size();i++){
+        //debugging
+        auto tiles = m_Brick[i];
+        bool collideX1 = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
+        bool collideX2 = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2+5.0f)&&(m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+
+        bool collideX = collideX1 || collideX2;
+
+        if(collideX && collideY){
+            LOG_DEBUG("msk sini");
+            return true;
+        }
+
+    }
+    for(int i=0;i<m_QuesVector.size();i++){
+        //debugging
+        auto tiles = m_QuesVector[i];
+        bool collideX1 = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
+        bool collideX2 = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2+5.0f)&&(m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+
+        bool collideX = collideX1 || collideX2;
+
+        if(collideX && collideY){
+            LOG_DEBUG("msk sini");
+            return true;
+        }
+
+    }
+    for(int i=0;i<m_Tube.size();i++){
+        //debugging
+        auto tiles = m_Tube[i];
+        bool collideX1 = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
+        bool collideX2 = (m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2+5.0f)&&(m_Mario->GetPosition().x + m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = (m_Mario->GetPosition().y + m_Mario->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && m_Mario->GetPosition().y+m_Mario->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+
+        bool collideX = collideX1 || collideX2;
+
+        if(collideX && collideY){
+            LOG_DEBUG("msk sini");
+            return true;
+        }
+
+    }
+    return false;
+}
 
 void App::Update(){
     timenow = Util::Time::GetElapsedTimeMs();
 
-    auto result = IsOnLand();
+    auto result = IsOnLand(m_Mario);
 
-    if( std::get<0>(result) && !m_Mario1->m_Jump){
+    if( std::get<0>(result) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
         //if on land then run
         position = std::get<1>(result);
-        LOG_DEBUG("Msk");
-        LOG_DEBUG(position.y);
 
         if(m_EnterRight){
             m_Mario->SetVisible(true);
@@ -245,9 +340,8 @@ void App::Update(){
 
     }
     ///*
-    else if(std::get<0>(IsOnLand()) && m_Mario1->m_Jump && m_Mario1->m_HasEnded){
-        LOG_DEBUG("ifkedua");
-        position = std::get<1>(IsOnLand());
+    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario1->m_Jump && m_Mario1->m_HasEnded && !m_Mario->MarioDie){
+        position = std::get<1>(IsOnLand(m_Mario));
         if(m_EnterRight){
             m_Mario1->SetVisible(false);
         }
@@ -265,7 +359,7 @@ void App::Update(){
 
     }
     //*/
-    else{
+    else if(!m_Mario->MarioDie && !m_Mario->MarioStep){
         //make mario always fall is not on land
         ///*
         if(!m_Mario1->m_Jump){
@@ -279,7 +373,7 @@ void App::Update(){
         //*/
     }
 
-    if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT)){
+    if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT) && !m_Mario->MarioDie){
         m_EnterRight = true;
         m_EnterLeft = false;
         //when mario jump he can also go to the right
@@ -287,7 +381,7 @@ void App::Update(){
         m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
         callMarioForward();
 
-        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand())){
+        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
             //change picture from running to jumping
             m_Mario->SetVisible(false);
             m_Mario1->SetVisible(true);
@@ -295,34 +389,31 @@ void App::Update(){
             //else is the elements that move
 
 
-            //if(!IsCollide()){
-                if(m_Mario1->GetPosition().x < 13.0f and !IsCollideRight()){
-                    m_Mario1->SetPosition({m_Mario1->GetPosition().x+1.5f,m_Mario1->GetPosition().y});
-                }
-                else{
-                    m_Mario1->SetPosition(m_Mario1->GetPosition());
-                }
-            //}
+            if(m_Mario1->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
+                m_Mario1->SetPosition({m_Mario1->GetPosition().x+3.0f,m_Mario1->GetPosition().y});
+            }
+            else{
+                m_Mario1->SetPosition(m_Mario1->GetPosition());
+            }
             
 
             m_Mario->SetPosition(m_Mario1->GetPosition());
             m_MarioBack->SetPosition(m_Mario1->GetPosition());
         }
-            //if not jumping than run
+        //if not jumping than run
         else{
             callMarioForward();
             m_Mario1->SetVisible(false);
             //mario only can run until the middle
             //else is the elements that move
-            //if(!IsCollide()){
-                if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight()){
-                    m_Mario->SetPosition({m_Mario->GetPosition().x+5.0f,m_Mario->GetPosition().y});
-                }
-                else{
-                    m_Mario->SetPosition(m_Mario->GetPosition());
-                }
 
-            //}
+            if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
+                m_Mario->SetPosition({m_Mario->GetPosition().x+5.0f,m_Mario->GetPosition().y});
+            }
+            else{
+                m_Mario->SetPosition(m_Mario->GetPosition());
+            }
+
             
 
             //renew the other's position
@@ -330,22 +421,32 @@ void App::Update(){
             m_MarioBack->SetPosition(m_Mario->GetPosition());
         }
         //if mario more than middle than the background move
-        if(m_Mario->GetPosition().x >= 13.0f and !IsCollideRight()){
+        if(m_Mario->GetPosition().x >= 13.0f and !IsCollideRight(m_Mario)){
             m_Mushroom->SetPosition({m_Mushroom->GetPosition().x-5.0f, m_Mushroom->GetPosition().y});
-            //NEED TO EDIT!
-            for(int i=0; i<m_Land.size(); i++){
-                m_Land[i]->SetPosition({m_Land[i]->GetPosition().x-5.0f,m_Land[i]->GetPosition().y});
+            m_Bg->SetPosition({m_Bg->GetPosition().x-5.0f,m_Bg->GetPosition().y});
+
+            for(const auto & i : m_Land){
+                i->SetPosition({i->GetPosition().x-5.0f,i->GetPosition().y});
             }
-            for(int j=0; j<m_Tube.size(); j++){
-                m_Tube[j]->SetPosition({m_Tube[j]->GetPosition().x-5.0f,m_Tube[j]->GetPosition().y});
+            for(const auto & j : m_Tube){
+                j->SetPosition({j->GetPosition().x-5.0f,j->GetPosition().y});
             }
+            for(const auto & j : m_Wood){
+                j->SetPosition({j->GetPosition().x-5.0f,j->GetPosition().y});
+            }
+
+            //m_MushVector[0]->SetPosition({m_MushVector[0]->GetPosition().x - 5.0f,m_MushVector[0]->GetPosition().y});
+            for(const auto & j : m_MushVector){
+                j->SetPosition({j->GetPosition().x-5.0f,j->GetPosition().y});
+            }
+
             moveQuestionBox();
             moveBrick();
         }
 
     }
 
-    if(Util::Input::IsKeyPressed(Util::Keycode::LEFT)){
+    if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie){
         m_EnterRight = false;
         m_EnterLeft = true;
         callMarioBackward();
@@ -355,9 +456,9 @@ void App::Update(){
         m_Mario->SetVisible(false);
 
         //when mario jump he can also go to the left
-        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand())){
-            if(m_MarioBack->GetPosition().x > -340.0f and !IsCollideLeft()){ // and IsCollide()
-                m_MarioBack->SetPosition({m_Mario1->GetPosition().x-1.5f, m_Mario1->GetPosition().y});
+        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
+            if(m_MarioBack->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){ // and IsCollide()
+                m_MarioBack->SetPosition({m_Mario1->GetPosition().x-3.0f, m_Mario1->GetPosition().y});
             }
             else{
                 m_MarioBack->SetPosition(m_Mario1->GetPosition());
@@ -371,7 +472,7 @@ void App::Update(){
         }
         else{ //if not jump
             callMarioBackward();
-            if(m_MarioBack->GetPosition().x > -340.0f and !IsCollideLeft()){
+            if(m_MarioBack->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){
                 m_MarioBack->SetPosition({m_Mario->GetPosition().x-5.0f, m_Mario->GetPosition().y});
             }
             else{
@@ -390,6 +491,8 @@ void App::Update(){
     ///*
     if(Util::Input::IsKeyUp(Util::Keycode::UP)){
         cnt=0;
+
+
     }
     if(Util::Input::IsKeyPressed(Util::Keycode::UP)){
         cnt++;
@@ -397,10 +500,14 @@ void App::Update(){
 
     unsigned int cnts= cnt/2.0;
     //*/
-    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump){
+    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
         glm::vec2 newPos = m_Mario->GetPosition();
-        m_audio_mario_small_jump.Play(1,1);
-        LOG_DEBUG(m_audio_mario_small_jump.GetVolume());
+
+        /*
+        m_Mario_jump_audio->LoadMedia(GA_RESOURCE_DIR"/Audio/sound_effects/small_mario_jump.wav");
+        m_Mario_jump_audio->SetVolume(50);
+        m_Mario_jump_audio->Play();
+        */
 
         m_JumpBaseTime=Util::Time::GetElapsedTimeMs();
         m_Mario1->SetPosition(newPos);
@@ -429,26 +536,26 @@ void App::Update(){
     LOG_DEBUG(m_Mario1->GetPosition().x);
     LOG_DEBUG(m_Mario1->GetPosition().y);
 
-    if(!m_Mario1->m_HasEnded && m_Mario1->m_Jump){
-        float powerjump = (timenow - m_JumpBaseTime)/100.0f;
-        if (powerjump>10) powerjump=10.0f;
-        LOG_INFO("cntcntcnt");
-        LOG_INFO(cnt);
-        LOG_DEBUG("powerjump" );
-        LOG_DEBUG(powerjump);
-        if (cnts>5)cnts =5.0;
-        m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y+((7.0+cnts)-powerjump)});
-        m_MarioBack->SetPosition(m_Mario1->GetPosition());
-        m_Mario->SetPosition(m_Mario1->GetPosition());
-        m_Mario1->Jump(m_JumpBaseTime);
+    if(!m_Mario1->m_HasEnded && m_Mario1->m_Jump ){
+        if(!IsCollideUp()){
+            float powerjump = (timenow - m_JumpBaseTime)/100.0f;
+            if (powerjump>10) powerjump=10.0f;
+            if (cnts>5)cnts =5.0;
+            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y+((7.0+cnts)-powerjump)});
+            m_MarioBack->SetPosition(m_Mario1->GetPosition());
+            m_Mario->SetPosition(m_Mario1->GetPosition());
+            m_Mario1->Jump(m_JumpBaseTime);
+        }
+        else{
+            m_Mario1->m_HasEnded = true;
+        }
+
     }
-    else if (m_Mario1->m_HasEnded && m_Mario1->m_Jump && !std::get<0>(IsOnLand())){
-        LOG_INFO("POSITION YYYYYYYY");
-        LOG_INFO(position.y);
+    else if (m_Mario1->m_HasEnded && m_Mario1->m_Jump && !std::get<0>(IsOnLand(m_Mario))){
         float gravity = (timenow - m_JumpBaseTime)/200.0f;
         if (gravity>10) gravity=10.0;
-        if(!std::get<0>(IsOnLand())) {
-            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y - (2.0+gravity)});
+        if(!std::get<0>(IsOnLand(m_Mario))) {
+            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y - (3.0+gravity)});
             m_MarioBack->SetPosition(m_Mario1->GetPosition());
             m_Mario->SetPosition(m_Mario1->GetPosition());
         }
@@ -468,10 +575,139 @@ void App::Update(){
             m_Mario->SetPosition(m_Mario1->GetPosition());
         }
     }
+
+    //enemy moving
+    for(const auto & i : m_MushVector){
+        if(!std::get<0> (IsOnLand(i)) && i->GetPosition().x<=355.0f){
+            i->SetPosition({i->GetPosition().x-1.0f,i->GetPosition().y-5.0f});
+        }
+        else if(i->GetPosition().x<=355.0f && !i->EnemyDie){
+            if(i->IsCollideLeft(m_Tube)){
+                i->direction = 1.0f;
+            }
+            else if(i->IsCollideRight(m_Tube)){
+                i->direction = -1.0f;
+            }
+            i->SetPosition({i->GetPosition().x+(2.0f* i->direction ),i->GetPosition().y});
+        }
+    }
+    auto stepOn = m_Mario->IsStepOn(m_MushVector);
+
+    //if mario kills enemy
+    if(std::get<0>(stepOn) && !m_Mario->MarioStep && !m_Mario->MarioDie){
+
+        m_Mario->MarioStep = true;
+        m_MarioStepTime = Util::Time::GetElapsedTimeMs();
+        index = std::get<1>(stepOn);
+        m_MushVector[index]->SetImage(GA_RESOURCE_DIR"/images/goombas_dead.png");
+
+        m_MushVector[index]->EnemyDie = true;
+        m_Mario1->SetPosition(m_Mario->GetPosition());
+        m_MarioBack->SetPosition(m_Mario->GetPosition());
+
+    }
+    if(m_Mario->MarioStep){
+        unsigned long now1 = Util::Time::GetElapsedTimeMs();
+        if(now1-m_MarioStepTime<=300){
+            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+12.0f});
+        }
+        else{
+            m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,m_MushVector[index]->GetPosition().y-2000});
+            m_Mario->MarioStep = false;
+        }
+
+        m_Mario1->SetPosition(m_Mario->GetPosition());
+        m_MarioBack->SetPosition(m_Mario->GetPosition());
+    }
+    //if mario collide enemy
+    if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
+        m_MarioDiesTime = Util::Time::GetElapsedTimeMs();
+        m_Mario->MarioDie = true;
+        //m_BGMusic.reset();
+        m_Mario_dead_audio->LoadMedia(GA_RESOURCE_DIR"/Audio/sound_effects/mario-death.wav");
+        m_Mario_dead_audio->Play();
+    }
+    if(m_Mario->MarioDie){
+        unsigned long now = Util::Time::GetElapsedTimeMs();
+        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
+
+        m_Mario1->SetVisible(true);
+        m_Mario->SetVisible(false);
+        m_MarioBack->SetVisible(false);
+        if(now-m_MarioDiesTime<=300){
+            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+5.0f});
+            m_Mario1->SetPosition(m_Mario->GetPosition());
+            m_MarioBack->SetPosition(m_Mario->GetPosition());
+        }
+        else{
+            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
+            m_Mario1->SetPosition(m_Mario->GetPosition());
+            m_MarioBack->SetPosition(m_Mario->GetPosition());
+        }
+
+    }
+
+    //if mario heading tiles
+    auto headOnBrick = m_Mario->IsHeading(m_Brick);
+    auto headOnQues = m_Mario->IsHeading(m_QuesVector);
+    if(std::get<0>(headOnBrick)){
+        m_Mario->MarioHead = true;
+        m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
+        indexTiles = std::get<1>(headOnBrick);
+        m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
+        isBrick = true;
+    }
+    else if(std::get<0>(headOnQues)){
+        m_Mario->MarioHead = true;
+        m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
+        indexTiles = std::get<1>(headOnQues);
+        m_QuesVector[14]->SetPosition(m_QuesVector[indexTiles]->GetPosition());
+        isBrick = false;
+
+    }
+    if(m_Mario->MarioHead){
+        unsigned long now2 = Util::Time::GetElapsedTimeMs();
+        if(isBrick){
+            glm::vec2 tilePos = m_Brick[indexTiles]->GetPosition();
+            m_Brick[30]->SetVisible(true);
+            m_Brick[indexTiles]->SetVisible(false);
+            if(now2-m_MarioHeadTime<=100){
+                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y+5.0f});
+            }
+            else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
+                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y-5.0f});
+            }
+            else{
+                m_Brick[indexTiles]->SetVisible(true);
+                m_Brick[30]->SetVisible(false);
+                m_Mario->MarioHead = false;
+                m_Brick[30]->SetPosition(tilePos);
+            }
+        }
+        else if(!isBrick){
+            glm::vec2 tilePos = m_QuesVector[indexTiles]->GetPosition();
+            m_QuesVector[14]->SetVisible(true);
+            m_QuesVector[indexTiles]->SetVisible(false);
+            if(now2-m_MarioHeadTime<=100){
+                m_QuesVector[14]->SetPosition({m_QuesVector[14]->GetPosition().x,m_QuesVector[14]->GetPosition().y+5.0f});
+            }
+            else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
+                m_QuesVector[14]->SetPosition({m_QuesVector[14]->GetPosition().x,m_QuesVector[14]->GetPosition().y-5.0f});
+            }
+            else{
+                m_QuesVector[indexTiles]->SetVisible(true);
+                m_QuesVector[14]->SetVisible(false);
+                m_Mario->MarioHead = false;
+                m_QuesVector[14]->SetPosition(tilePos);
+            }
+        }
+
+    }
+
     //*/
     LOG_INFO("Mario POs");
-    LOG_INFO(m_Mario1->GetPosition().x);
-    LOG_INFO(m_Mario1->GetPosition().y);
+    LOG_INFO(m_Mario->GetPosition().x);
+    LOG_INFO(m_Mario->GetPosition().y);
 
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
 
