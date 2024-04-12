@@ -503,11 +503,11 @@ void App::Update(){
     if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
         glm::vec2 newPos = m_Mario->GetPosition();
 
-        /*
-        m_Mario_jump_audio->LoadMedia(GA_RESOURCE_DIR"/Audio/sound_effects/small_mario_jump.wav");
-        m_Mario_jump_audio->SetVolume(50);
+
+
+        m_Mario_jump_audio->SetVolume(75);
         m_Mario_jump_audio->Play();
-        */
+
 
         m_JumpBaseTime=Util::Time::GetElapsedTimeMs();
         m_Mario1->SetPosition(newPos);
@@ -595,7 +595,8 @@ void App::Update(){
 
     //if mario kills enemy
     if(std::get<0>(stepOn) && !m_Mario->MarioStep && !m_Mario->MarioDie){
-
+        m_Mario_stomp_audio->SetVolume(75);
+        m_Mario_stomp_audio->Play();
         m_Mario->MarioStep = true;
         m_MarioStepTime = Util::Time::GetElapsedTimeMs();
         index = std::get<1>(stepOn);
@@ -607,9 +608,15 @@ void App::Update(){
 
     }
     if(m_Mario->MarioStep){
+
         unsigned long now1 = Util::Time::GetElapsedTimeMs();
         if(now1-m_MarioStepTime<=300){
-            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+12.0f});
+            if(m_Mario1->m_Jump) {
+                m_Mario->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y + 12.0f});
+            }
+            else{
+                m_Mario->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y + 4.0f});
+            }
         }
         else{
             m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,m_MushVector[index]->GetPosition().y-2000});
@@ -621,11 +628,12 @@ void App::Update(){
     }
     //if mario collide enemy
     if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
+        m_Mario_dead_audio->SetVolume(50);
+        m_Mario_dead_audio->Play();
         m_MarioDiesTime = Util::Time::GetElapsedTimeMs();
         m_Mario->MarioDie = true;
-        //m_BGMusic.reset();
-        m_Mario_dead_audio->LoadMedia(GA_RESOURCE_DIR"/Audio/sound_effects/mario-death.wav");
-        m_Mario_dead_audio->Play();
+        m_BGMusic->Pause();
+
     }
     if(m_Mario->MarioDie){
         unsigned long now = Util::Time::GetElapsedTimeMs();
@@ -656,6 +664,8 @@ void App::Update(){
         indexTiles = std::get<1>(headOnBrick);
         m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
         isBrick = true;
+        m_Mario_bump_audio->SetVolume(75);
+        m_Mario_bump_audio->Play();
     }
     else if(std::get<0>(headOnQues)){
         m_Mario->MarioHead = true;
@@ -663,6 +673,8 @@ void App::Update(){
         indexTiles = std::get<1>(headOnQues);
         m_QuesVector[14]->SetPosition(m_QuesVector[indexTiles]->GetPosition());
         isBrick = false;
+        m_Mario_bump_audio->SetVolume(75);
+        m_Mario_bump_audio->Play();
 
     }
     if(m_Mario->MarioHead){

@@ -46,6 +46,9 @@ private:
     std::shared_ptr<Util::BGM> m_BGMusic;
     std::shared_ptr<Util::SFX> m_Mario_jump_audio;
     std::shared_ptr<Util::SFX> m_Mario_dead_audio;
+    std::shared_ptr<Util::SFX> m_Mario_coin_audio;
+    std::shared_ptr<Util::SFX> m_Mario_stomp_audio;
+    std::shared_ptr<Util::SFX> m_Mario_bump_audio;
     Util::Root m_Root;
     //Util::SFX m_audio_mario_small_jump = static_cast<Util::SFX>("/Audio/small_mario_jump.wav");  // Explicit casting
     std::shared_ptr<MarioJump> m_Mario1;
