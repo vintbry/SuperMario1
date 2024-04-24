@@ -193,6 +193,6 @@ CMake Deprecation Warning at PTSD/lib/glew/build/cmake/CMakeLists.txt:7 (cmake_m
   CMake that the project does not need compatibility with older versions.
 
 
--- Configuring done (0.8s)
--- Generating done (0.0s)
+-- Configuring done (1.3s)
+-- Generating done (0.1s)
 -- Build files have been written to: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug

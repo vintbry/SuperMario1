@@ -83,6 +83,20 @@ public:
         }
         return false;
     }
+    bool IsCollideRight(std::shared_ptr<Character> Object ){
+        bool collideX = (GetPosition().x + GetScaledSize().x/2>=Object->GetPosition().x-Object->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=Object->GetPosition().x+Object->GetScaledSize().x/2);
+        bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2);
+        bool collideY2 = (GetPosition().y - GetScaledSize().y/2<Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2;
+
+        bool collideY = collideY1 || collideY2;
+
+        if(collideX && collideY){
+            return true;
+        }
+
+
+        return false;
+    }
 
     bool IsCollideLeft(std::vector<std::shared_ptr<Character>> Object){
         for(int i=0;i<Object.size();i++){
@@ -177,6 +191,8 @@ public:
     bool MarioStep = false;
     bool EnemyDie = false;
     bool MarioHead = false;
+    bool MarioFinish = false;
+    bool MarioEnd = false;
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }

@@ -44,17 +44,18 @@ private:
     Phase m_Phase = Phase::FIRST_WORLD;
 
     std::shared_ptr<Util::BGM> m_BGMusic;
+
     std::shared_ptr<Util::SFX> m_Mario_jump_audio;
     std::shared_ptr<Util::SFX> m_Mario_dead_audio;
     std::shared_ptr<Util::SFX> m_Mario_coin_audio;
     std::shared_ptr<Util::SFX> m_Mario_stomp_audio;
     std::shared_ptr<Util::SFX> m_Mario_bump_audio;
     Util::Root m_Root;
-    //Util::SFX m_audio_mario_small_jump = static_cast<Util::SFX>("/Audio/small_mario_jump.wav");  // Explicit casting
+
     std::shared_ptr<MarioJump> m_Mario1;
     std::shared_ptr<Character> m_Bg;
-
-
+    std::shared_ptr<Character> m_Pillar;
+    std::shared_ptr<Character> m_Flag;
 
     std::vector<std::shared_ptr<Character>> m_Land;
     std::vector<std::shared_ptr<Character>> m_Brick;
@@ -68,6 +69,7 @@ private:
     std::vector<std::shared_ptr<AnimatedCharacter>> m_MushVector;
 
     std::shared_ptr<AnimatedCharacter> m_Mario;
+    std::shared_ptr<AnimatedCharacter> m_MarioPillar;
     std::shared_ptr<AnimatedCharacter> m_MarioBack;
     std::shared_ptr<AnimatedCharacter> m_Mushroom;
 
@@ -94,13 +96,11 @@ private:
     bool m_Collide = false;
     bool isBrick = true;
 
+    void moveBackground(float position);
+
     void callMarioForward();
 
     void callMarioBackward();
-
-    void moveQuestionBox();
-
-    void moveBrick();
 
     std::tuple<bool,glm::vec2> IsOnLand(std::shared_ptr<AnimatedCharacter>);
 
