@@ -35,9 +35,12 @@ void App::moveBackground(float position) {
     for(const auto & j : m_Castle){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
     }
+    for(const auto & j : m_DeadQues){
+        j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+    }
     m_Pillar->SetPosition({m_Pillar->GetPosition().x-position,m_Pillar->GetPosition().y});
     m_Flag->SetPosition({m_Flag->GetPosition().x-position,m_Flag->GetPosition().y});
-
+    m_Coins->SetPosition({m_Coins->GetPosition().x-position,m_Coins->GetPosition().y});
 }
 
 void App::callMarioForward(){
@@ -336,9 +339,6 @@ void App::Update(){
 
     if( std::get<0>(result) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
         //if on land then run
-        if(m_Mario->MarioEnd){
-            LOG_DEBUG("masukyay");
-        }
         position = std::get<1>(result);
 
         if(m_EnterRight){
@@ -507,8 +507,8 @@ void App::Update(){
     if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd){
         glm::vec2 newPos = m_Mario->GetPosition();
 
-        //m_Mario_jump_audio->SetVolume(75);
-        m_Mario_jump_audio->SetVolume(0);
+        m_Mario_jump_audio->SetVolume(75);
+        //m_Mario_jump_audio->SetVolume(0);
         m_Mario_jump_audio->Play();
 
         m_JumpBaseTime=Util::Time::GetElapsedTimeMs();
@@ -577,10 +577,15 @@ void App::Update(){
 
     //enemy moving
     for(const auto & i : m_MushVector){
-        if(!std::get<0> (IsOnLand(i)) && i->GetPosition().x<=355.0f){
+        //gravity if fall
+        if(i->GetPosition().x<=370.0f){
+            i->isActive = true;
+        }
+
+        if(!std::get<0> (IsOnLand(i)) && i->isActive){
             i->SetPosition({i->GetPosition().x-1.0f,i->GetPosition().y-5.0f});
         }
-        else if(i->GetPosition().x<=355.0f && !i->EnemyDie){
+        else if(i->isActive && !i->EnemyDie){
             if(i->IsCollideLeft(m_Tube)){
                 i->direction = 1.0f;
             }
@@ -594,8 +599,8 @@ void App::Update(){
 
     //if mario kills enemy
     if(std::get<0>(stepOn) && !m_Mario->MarioStep && !m_Mario->MarioDie){
-        //m_Mario_stomp_audio->SetVolume(75);
-        m_Mario_stomp_audio->SetVolume(0);
+        m_Mario_stomp_audio->SetVolume(75);
+        //m_Mario_stomp_audio->SetVolume(0);
         m_Mario_stomp_audio->Play();
         m_Mario->MarioStep = true;
         m_MarioStepTime = Util::Time::GetElapsedTimeMs();
@@ -628,8 +633,8 @@ void App::Update(){
     }
     //if mario collide enemy
     if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
-        //m_Mario_dead_audio->SetVolume(50);
-        m_Mario_dead_audio->SetVolume(0);
+        m_Mario_dead_audio->SetVolume(50);
+        //m_Mario_dead_audio->SetVolume(0);
         m_Mario_dead_audio->Play();
         m_MarioDiesTime = Util::Time::GetElapsedTimeMs();
         m_Mario->MarioDie = true;
@@ -652,6 +657,11 @@ void App::Update(){
             m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
             m_Mario1->SetPosition(m_Mario->GetPosition());
             m_MarioBack->SetPosition(m_Mario->GetPosition());
+            /*
+            if(m_Mario->GetPosition().y<-400.0f){
+                Restart();
+            }
+             */
         }
 
     }
@@ -665,19 +675,26 @@ void App::Update(){
         indexTiles = std::get<1>(headOnBrick);
         m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
         isBrick = true;
-        //m_Mario_bump_audio->SetVolume(75);
-        m_Mario_bump_audio->SetVolume(0);
+        m_Mario_bump_audio->SetVolume(75);
+        //m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
     }
     else if(std::get<0>(headOnQues)){
         m_Mario->MarioHead = true;
         m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
         indexTiles = std::get<1>(headOnQues);
-        m_QuesVector[14]->SetPosition(m_QuesVector[indexTiles]->GetPosition());
+        m_DeadQues[indexTiles]->SetPosition(m_QuesVector[indexTiles]->GetPosition());
         isBrick = false;
-        //m_Mario_bump_audio->SetVolume(75);
-        m_Mario_bump_audio->SetVolume(0);
+        m_Mario_bump_audio->SetVolume(75);
+        //m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
+
+        //coins came out
+        //need to initiate which ques come out coins or other!
+        if(m_QuesVector[indexTiles]->isActive) {
+            m_Coins->isActive = true;
+            m_Coins->SetPosition(m_QuesVector[indexTiles]->GetPosition());
+        }
 
     }
     if(m_Mario->MarioHead){
@@ -699,25 +716,42 @@ void App::Update(){
                 m_Brick[30]->SetPosition(tilePos);
             }
         }
-        else if(!isBrick){
+        else if(!isBrick && m_QuesVector[indexTiles]->isActive){
             glm::vec2 tilePos = m_QuesVector[indexTiles]->GetPosition();
-            m_QuesVector[14]->SetVisible(true);
+            m_DeadQues[indexTiles]->SetVisible(true);
             m_QuesVector[indexTiles]->SetVisible(false);
             if(now2-m_MarioHeadTime<=100){
-                m_QuesVector[14]->SetPosition({m_QuesVector[14]->GetPosition().x,m_QuesVector[14]->GetPosition().y+5.0f});
+                m_DeadQues[indexTiles]->SetPosition({m_DeadQues[indexTiles]->GetPosition().x,m_DeadQues[indexTiles]->GetPosition().y+5.0f});
             }
             else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
-                m_QuesVector[14]->SetPosition({m_QuesVector[14]->GetPosition().x,m_QuesVector[14]->GetPosition().y-5.0f});
+                m_DeadQues[indexTiles]->SetPosition({m_DeadQues[indexTiles]->GetPosition().x,m_DeadQues[indexTiles]->GetPosition().y-5.0f});
             }
             else{
-                m_QuesVector[indexTiles]->SetVisible(true);
-                m_QuesVector[14]->SetVisible(false);
                 m_Mario->MarioHead = false;
-                m_QuesVector[14]->SetPosition(tilePos);
+                m_DeadQues[indexTiles]->SetPosition(tilePos);
+                m_QuesVector[indexTiles]->isActive = false;
             }
+
+
         }
 
     }
+    //coins
+    if(m_Coins->isActive){
+        auto now3 = Util::Time::GetElapsedTimeMs();
+        m_Coins->SetVisible(true);
+        if(now3-m_MarioHeadTime<=450){
+            m_Coins->SetPosition({m_Coins->GetPosition().x,m_Coins->GetPosition().y+8.0f});
+        }
+        else if (now3-m_MarioHeadTime<=900 && now3-m_MarioHeadTime>450){
+            m_Coins->SetPosition({m_Coins->GetPosition().x,m_Coins->GetPosition().y-8.0f});
+        }
+        else{
+            m_Coins->SetVisible(false);
+            m_Coins->isActive = false;
+        }
+    }
+
 
     //if touch pillar
     if(m_Mario->IsCollideRight(m_Pillar)){
@@ -784,7 +818,13 @@ void App::Update(){
     LOG_INFO(m_Mario->GetPosition().x);
     LOG_INFO(m_Mario->GetPosition().y);
 
+    //pos mushroom
+    LOG_DEBUG("mush");
+    LOG_DEBUG(m_MushVector[0]->GetPosition().x);
+
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
 
     m_Root.Update();
+
+
 }

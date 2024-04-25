@@ -47,7 +47,7 @@ public:
 
     [[nodiscard]] bool IfAnimationEnds() const;
 
-    bool active = true;
+    bool isActive = true;
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
 

@@ -194,6 +194,11 @@ public:
     bool MarioFinish = false;
     bool MarioEnd = false;
 
+    //mushroom, coins
+    bool isActive = false;
+
+
+
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
 

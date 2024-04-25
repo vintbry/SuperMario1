@@ -21,11 +21,9 @@ void App::Start(){
 
     //BGM
     m_BGMusic = std::make_unique<Util::BGM>(GA_RESOURCE_DIR"/Audio/BGMusic.mp3");
-    //m_BGMusic->SetVolume(35);
-    m_BGMusic->SetVolume(0);
+    m_BGMusic->SetVolume(35);
+    //m_BGMusic->SetVolume(0);
     m_BGMusic->Play();
-
-
 
     //Bg
     m_Bg = std::make_shared<Character>(GA_RESOURCE_DIR"/Background/bg2.png");
@@ -155,7 +153,7 @@ void App::Start(){
         QuestionMark.emplace_back(GA_RESOURCE_DIR"/images/question"+std::to_string(i)+".png");
     }
 
-    for(int i=0;i<15;i++){
+    for(int i=0;i<14;i++){
         m_Question = std::make_shared<QuestionTiles>(QuestionMark);
         m_Question->SetLooping(true);
         m_Question->SetPlaying();
@@ -186,10 +184,16 @@ void App::Start(){
     m_QuesVector[12]->SetPosition({3827.0f,40.0f});
     m_QuesVector[13]->SetPosition({5139.0f,-82.0f});
 
-    m_QuesVector[14]->SetVisible(false);
-
-    for(int i=0;i<15;i++){
+    for(int i=0;i<14;i++){
         m_Root.AddChild(m_QuesVector[i]);
+    }
+
+    //dead brick
+    for(int i=0;i<14;i++) {
+        m_DeadQues.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/deadQues.png"));
+        m_DeadQues[i]->SetZIndex(5);
+        m_DeadQues[i]->SetVisible(false);
+        m_Root.AddChild(m_DeadQues[i]);
     }
 
     //brick
@@ -377,6 +381,21 @@ void App::Start(){
 
     m_PRM = std::make_shared<PhaseResourcesManager>();
     m_Root.AddChildren(m_PRM->GetChildren());
+
+    //Coins
+    std::vector<std::string> Coins;
+    Coins.reserve(3);
+    for(int i = 0 ; i < 3 ; i++){
+        Coins.emplace_back(GA_RESOURCE_DIR"/images/coin_an"+std::to_string(i)+".png");
+    }
+
+    m_Coins = std::make_shared<AnimatedCharacter>(Coins);
+    m_Coins->SetInterval(100);
+    m_Coins->SetZIndex(3);
+    m_Coins->SetVisible(false);
+    m_Coins->SetLooping(true);
+    m_Coins->SetPlaying();
+    m_Root.AddChild(m_Coins);
 
     m_CurrentState=State::UPDATE;
 
