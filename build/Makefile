@@ -652,6 +652,30 @@ src/Character.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Character.cpp.s
 .PHONY : src/Character.cpp.s
 
+src/MarioJump.o: src/MarioJump.cpp.o
+.PHONY : src/MarioJump.o
+
+# target to build an object file
+src/MarioJump.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o
+.PHONY : src/MarioJump.cpp.o
+
+src/MarioJump.i: src/MarioJump.cpp.i
+.PHONY : src/MarioJump.i
+
+# target to preprocess a source file
+src/MarioJump.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.i
+.PHONY : src/MarioJump.cpp.i
+
+src/MarioJump.s: src/MarioJump.cpp.s
+.PHONY : src/MarioJump.s
+
+# target to generate assembly for a file
+src/MarioJump.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.s
+.PHONY : src/MarioJump.cpp.s
+
 src/PhaseManager.o: src/PhaseManager.cpp.o
 .PHONY : src/PhaseManager.o
 
@@ -675,6 +699,30 @@ src/PhaseManager.s: src/PhaseManager.cpp.s
 src/PhaseManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.s
 .PHONY : src/PhaseManager.cpp.s
+
+src/QuestionTiles.o: src/QuestionTiles.cpp.o
+.PHONY : src/QuestionTiles.o
+
+# target to build an object file
+src/QuestionTiles.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o
+.PHONY : src/QuestionTiles.cpp.o
+
+src/QuestionTiles.i: src/QuestionTiles.cpp.i
+.PHONY : src/QuestionTiles.i
+
+# target to preprocess a source file
+src/QuestionTiles.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.i
+.PHONY : src/QuestionTiles.cpp.i
+
+src/QuestionTiles.s: src/QuestionTiles.cpp.s
+.PHONY : src/QuestionTiles.s
+
+# target to generate assembly for a file
+src/QuestionTiles.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.s
+.PHONY : src/QuestionTiles.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -756,9 +804,15 @@ help:
 	@echo "... src/Character.o"
 	@echo "... src/Character.i"
 	@echo "... src/Character.s"
+	@echo "... src/MarioJump.o"
+	@echo "... src/MarioJump.i"
+	@echo "... src/MarioJump.s"
 	@echo "... src/PhaseManager.o"
 	@echo "... src/PhaseManager.i"
 	@echo "... src/PhaseManager.s"
+	@echo "... src/QuestionTiles.o"
+	@echo "... src/QuestionTiles.i"
+	@echo "... src/QuestionTiles.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -13,7 +13,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/AppStart.cpp" "CMakeFiles/SuperMario1.dir/src/AppStart.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/AppStart.cpp.o.d"
   "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/AppUpdate.cpp" "CMakeFiles/SuperMario1.dir/src/AppUpdate.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/AppUpdate.cpp.o.d"
   "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/Character.cpp" "CMakeFiles/SuperMario1.dir/src/Character.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/Character.cpp.o.d"
+  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/MarioJump.cpp" "CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o.d"
   "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/PhaseManager.cpp" "CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o.d"
+  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/QuestionTiles.cpp" "CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o.d"
   "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/main.cpp" "CMakeFiles/SuperMario1.dir/src/main.cpp.o" "gcc" "CMakeFiles/SuperMario1.dir/src/main.cpp.o.d"
   )
 

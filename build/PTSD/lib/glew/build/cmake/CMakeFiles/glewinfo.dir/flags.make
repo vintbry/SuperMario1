@@ -6,7 +6,7 @@ C_DEFINES = -DGLEW_NO_GLU -DGLEW_STATIC
 
 C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glew/build/cmake/../../include
 
-C_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGSarm64 = -g -arch arm64 -fPIE
 
-C_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGS = -g -arch arm64 -fPIE
 

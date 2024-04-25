@@ -32,6 +32,9 @@ void App::moveBackground(float position) {
     for(const auto & j : m_Brick){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
     }
+    for(const auto & j : m_Castle){
+        j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+    }
     m_Pillar->SetPosition({m_Pillar->GetPosition().x-position,m_Pillar->GetPosition().y});
     m_Flag->SetPosition({m_Flag->GetPosition().x-position,m_Flag->GetPosition().y});
 
@@ -761,16 +764,17 @@ void App::Update(){
     if(m_Mario->MarioEnd){
         m_Mario1->SetVisible(true);
         m_Mario->SetVisible(false);
-        LOG_DEBUG("timeend");
-        LOG_DEBUG(Util::Time::GetElapsedTimeMs()-timeEnd);
-        LOG_DEBUG(m_Mario1->GetVisibility());
-        if(Util::Time::GetElapsedTimeMs()-timeEnd >= 15000){
-            LOG_DEBUG("end");
+        if(Util::Time::GetElapsedTimeMs()-timeEnd >= 14500 && !isWinLevel){
             m_Mario->SetVisible(true);
             m_Mario1->SetVisible(false);
             m_Mario->SetLooping(true);
             m_Mario->SetPlaying();
             moveBackground(6.0f);
+        }
+        if(m_Castle[0]->GetPosition().x<=m_Mario->GetPosition().x){
+            m_Mario->SetVisible(false);
+            m_Mario1->SetVisible(false);
+            isWinLevel = true;
         }
 
     }

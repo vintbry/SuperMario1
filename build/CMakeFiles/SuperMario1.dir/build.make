@@ -139,10 +139,24 @@ CMakeFiles/SuperMario1.dir/src/Character.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SuperMario1.dir/src/Character.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/Character.cpp -o CMakeFiles/SuperMario1.dir/src/Character.cpp.s
 
+CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o: CMakeFiles/SuperMario1.dir/flags.make
+CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/MarioJump.cpp
+CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o: CMakeFiles/SuperMario1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o -MF CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o.d -o CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o -c /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/MarioJump.cpp
+
+CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/MarioJump.cpp > CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.i
+
+CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/MarioJump.cpp -o CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.s
+
 CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o: CMakeFiles/SuperMario1.dir/flags.make
 CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/PhaseManager.cpp
 CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o: CMakeFiles/SuperMario1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o -MF CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o.d -o CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o -c /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/PhaseManager.cpp
 
 CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.i: cmake_force
@@ -153,10 +167,24 @@ CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/PhaseManager.cpp -o CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.s
 
+CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o: CMakeFiles/SuperMario1.dir/flags.make
+CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/QuestionTiles.cpp
+CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o: CMakeFiles/SuperMario1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o -MF CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o.d -o CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o -c /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/QuestionTiles.cpp
+
+CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/QuestionTiles.cpp > CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.i
+
+CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/QuestionTiles.cpp -o CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.s
+
 CMakeFiles/SuperMario1.dir/src/main.cpp.o: CMakeFiles/SuperMario1.dir/flags.make
 CMakeFiles/SuperMario1.dir/src/main.cpp.o: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/main.cpp
 CMakeFiles/SuperMario1.dir/src/main.cpp.o: CMakeFiles/SuperMario1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SuperMario1.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SuperMario1.dir/src/main.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SuperMario1.dir/src/main.cpp.o -MF CMakeFiles/SuperMario1.dir/src/main.cpp.o.d -o CMakeFiles/SuperMario1.dir/src/main.cpp.o -c /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/src/main.cpp
 
 CMakeFiles/SuperMario1.dir/src/main.cpp.i: cmake_force
@@ -174,7 +202,9 @@ SuperMario1_OBJECTS = \
 "CMakeFiles/SuperMario1.dir/src/AppStart.cpp.o" \
 "CMakeFiles/SuperMario1.dir/src/AppUpdate.cpp.o" \
 "CMakeFiles/SuperMario1.dir/src/Character.cpp.o" \
+"CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o" \
 "CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o" \
+"CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o" \
 "CMakeFiles/SuperMario1.dir/src/main.cpp.o"
 
 # External object files for target SuperMario1
@@ -185,7 +215,9 @@ SuperMario1: CMakeFiles/SuperMario1.dir/src/AppEnd.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/src/AppStart.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/src/AppUpdate.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/src/Character.cpp.o
+SuperMario1: CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/src/PhaseManager.cpp.o
+SuperMario1: CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/src/main.cpp.o
 SuperMario1: CMakeFiles/SuperMario1.dir/build.make
 SuperMario1: _deps/sdl2-build/libSDL2maind.a
@@ -198,7 +230,7 @@ SuperMario1: _deps/sdl2_mixer-build/libSDL2_mixerd.a
 SuperMario1: _deps/sdl2-build/libSDL2d.a
 SuperMario1: _deps/spdlog-build/libspdlogd.a
 SuperMario1: CMakeFiles/SuperMario1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SuperMario1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable SuperMario1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SuperMario1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

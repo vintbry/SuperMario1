@@ -6,7 +6,7 @@ C_DEFINES = -DFT2_BUILD_LIBRARY
 
 C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2_ttf-build/external/freetype/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_ttf/external/freetype/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2_ttf-build/external/freetype/include/freetype/config
 
-C_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -fvisibility=hidden
+C_FLAGSarm64 = -g -arch arm64 -fPIC -fvisibility=hidden
 
-C_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -fvisibility=hidden
+C_FLAGS = -g -arch arm64 -fPIC -fvisibility=hidden
 

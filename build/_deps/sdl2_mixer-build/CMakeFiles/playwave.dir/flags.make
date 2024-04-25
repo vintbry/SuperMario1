@@ -6,7 +6,7 @@ C_DEFINES =
 
 C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug
 
-C_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGSarm64 = -g -arch arm64 -fPIE
 
-C_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGS = -g -arch arm64 -fPIE
 

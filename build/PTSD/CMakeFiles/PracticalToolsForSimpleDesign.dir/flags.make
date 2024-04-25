@@ -6,7 +6,7 @@ CXX_DEFINES = -DGLEW_NO_GLU -DGLEW_STATIC -DPTSD_DIR=\"/Users/feliciarulita/Docu
 
 CXX_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_image -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_ttf -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glew/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/spdlog/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glm
 
-CXX_FLAGSarm64 = -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -Wall -Wextra -pedantic
+CXX_FLAGSarm64 = -g -std=c++17 -arch arm64 -fPIC -Wall -Wextra -pedantic
 
-CXX_FLAGS = -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -Wall -Wextra -pedantic
+CXX_FLAGS = -g -std=c++17 -arch arm64 -fPIC -Wall -Wextra -pedantic
 

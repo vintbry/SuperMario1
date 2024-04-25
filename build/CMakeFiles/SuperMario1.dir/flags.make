@@ -6,7 +6,7 @@ CXX_DEFINES = -DGA_RESOURCE_DIR=\"/Users/feliciarulita/Documents/sem4/oop_game/S
 
 CXX_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_image -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_ttf -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glew/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/spdlog/include -isystem /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glm
 
-CXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE -Wall -Wextra -pedantic
+CXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64 -fPIE -Wall -Wextra -pedantic
 
-CXX_FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE -Wall -Wextra -pedantic
+CXX_FLAGS = -g -std=gnu++17 -arch arm64 -fPIE -Wall -Wextra -pedantic
 

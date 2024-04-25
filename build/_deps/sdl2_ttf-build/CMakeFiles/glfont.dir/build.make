@@ -92,7 +92,7 @@ glfont_EXTERNAL_OBJECTS =
 
 _deps/sdl2_ttf-build/glfont: _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/glfont.c.o
 _deps/sdl2_ttf-build/glfont: _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/build.make
-_deps/sdl2_ttf-build/glfont: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
+_deps/sdl2_ttf-build/glfont: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL
 _deps/sdl2_ttf-build/glfont: _deps/sdl2_ttf-build/libSDL2_ttfd.a
 _deps/sdl2_ttf-build/glfont: _deps/sdl2-build/libSDL2maind.a
 _deps/sdl2_ttf-build/glfont: _deps/sdl2-build/libSDL2d.a

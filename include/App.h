@@ -61,6 +61,7 @@ private:
     std::vector<std::shared_ptr<Character>> m_Brick;
     std::vector<std::shared_ptr<Character>> m_Tube;
     std::vector<std::shared_ptr<Character>> m_Wood;
+    std::vector<std::shared_ptr<Character>> m_Castle;
 
     std::vector<std::shared_ptr<QuestionTiles>> m_QuesVector;
 
@@ -95,6 +96,7 @@ private:
     bool m_EnterLeft = false;
     bool m_Collide = false;
     bool isBrick = true;
+    bool isWinLevel = false;
 
     void moveBackground(float position);
 

@@ -4,9 +4,9 @@
 # compile C with /usr/bin/clang
 C_DEFINES = -DHAVE_OPENGL
 
-C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_ttf -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks
+C_INCLUDES = 
 
-C_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGSarm64 = -g -arch arm64 -fPIE
 
-C_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIE
+C_FLAGS = -g -arch arm64 -fPIE
 

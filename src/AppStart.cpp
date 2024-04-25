@@ -365,6 +365,16 @@ void App::Start(){
     m_Flag->SetPosition({6019.0f,120.0f});
     m_Root.AddChild(m_Flag);
 
+    //castle
+    for(int i = 0; i < 2; i++){
+        m_Castle.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/blackCastle.png"));
+        m_Castle[i]->SetZIndex(100);
+        m_Castle[i]->SetVisible(true);
+        m_Castle[i]->SetPosition({6547.0f,-172.0f + (i*32.0f)});
+        m_Root.AddChild(m_Castle[i]);
+    }
+
+
     m_PRM = std::make_shared<PhaseResourcesManager>();
     m_Root.AddChildren(m_PRM->GetChildren());
 

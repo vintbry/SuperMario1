@@ -6,7 +6,7 @@ C_DEFINES = -DBUILD_SDL -DMUSIC_MP3_DRMP3 -DMUSIC_WAV -DSDL_BUILD_MAJOR_VERSION=
 
 C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/src -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer/src/codecs -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug
 
-C_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -fvisibility=hidden
+C_FLAGSarm64 = -g -arch arm64 -fPIC -fvisibility=hidden
 
-C_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fPIC -fvisibility=hidden
+C_FLAGS = -g -arch arm64 -fPIC -fvisibility=hidden
 

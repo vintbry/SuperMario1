@@ -6,9 +6,9 @@ C_DEFINES = -DSDL_STATIC_LIB -DUSING_GENERATED_CONFIG_H
 
 C_INCLUDES = -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include -I/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/_deps/sdl2-build/include-config-debug
 
-C_FLAGSarm64 =  -idirafter "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/src/video/khronos"  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -D_THREAD_SAFE  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=5 -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wno-error=deprecated-declarations -fobjc-arc
+C_FLAGSarm64 =  -idirafter "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/src/video/khronos"  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -D_THREAD_SAFE  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=5 -g -arch arm64 -Wno-error=deprecated-declarations -fobjc-arc
 
-C_FLAGS =  -idirafter "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/src/video/khronos"  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -D_THREAD_SAFE  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=5 -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wno-error=deprecated-declarations -fobjc-arc
+C_FLAGS =  -idirafter "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2/src/video/khronos"  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -D_THREAD_SAFE  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=5 -g -arch arm64 -Wno-error=deprecated-declarations -fobjc-arc
 
 # Custom flags: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/src/file/cocoa/SDL_rwopsbundlesupport.m.o_FLAGS =  -x objective-c
 
