@@ -334,6 +334,11 @@ bool App::IsCollideUp(){
 
 void App::Update(){
     timenow = Util::Time::GetElapsedTimeMs();
+
+    if(m_Mario->GetPosition().y<-180.0f){
+        m_Mario->MarioDie = true;
+    }
+
     if (time >0) {
         time = 1000 - (static_cast<int>(timenow) / static_cast<int>(100));
     }
@@ -706,15 +711,16 @@ void App::Update(){
         //m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
 
-
-
+        m_Mario_coin_audio->SetVolume(75);
+        m_Mario_coin_audio->Play();
+        coin+=1;
         //coins came out
         //need to initiate which ques come out coins or other!
         if(m_QuesVector[indexTiles]->isActive) {
             LOG_DEBUG("msk10");
             m_Coins->isActive = true;
             m_Coins->SetPosition(m_QuesVector[indexTiles]->GetPosition());
-            coin+=100;
+
         }
 
     }
@@ -760,8 +766,7 @@ void App::Update(){
     //coins
     if(m_Coins->isActive){
         auto now3 = Util::Time::GetElapsedTimeMs();
-        m_Mario_coin_audio->SetVolume(75);
-        m_Mario_coin_audio->Play();
+
         m_Coins->SetVisible(true);
         if(now3-m_MarioHeadTime<=450){
             m_Coins->SetPosition({m_Coins->GetPosition().x,m_Coins->GetPosition().y+8.0f});
@@ -822,9 +827,10 @@ void App::Update(){
         m_Mario1->SetVisible(true);
         m_Mario->SetVisible(false);
         m_BGMusic->Pause();
-        if(!isWinLevel) {
+        if(!winSong) {
             m_Mario_levelFinish_audio->SetVolume(50);
             m_Mario_levelFinish_audio->Play();
+            winSong = true;
         }
         if(Util::Time::GetElapsedTimeMs()-timeEnd >= 15500 && !isWinLevel){
             m_Mario->SetVisible(true);
@@ -837,6 +843,7 @@ void App::Update(){
             m_Mario->SetVisible(false);
             m_Mario1->SetVisible(false);
             isWinLevel = true;
+
         }
 
     }

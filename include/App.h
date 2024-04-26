@@ -114,6 +114,7 @@ private:
     bool m_Collide = false;
     bool isBrick = true;
     bool isWinLevel = false;
+    bool winSong = false;
 
     void moveBackground(float position);
 
