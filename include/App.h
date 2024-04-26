@@ -50,6 +50,8 @@ private:
     std::shared_ptr<Util::SFX> m_Mario_coin_audio;
     std::shared_ptr<Util::SFX> m_Mario_stomp_audio;
     std::shared_ptr<Util::SFX> m_Mario_bump_audio;
+    std::shared_ptr<Util::SFX> m_Mario_levelFinish_audio;
+    std::shared_ptr<Util::SFX> m_Mario_flagpole_audio;
     Util::Root m_Root;
 
     std::shared_ptr<MarioJump> m_Mario1;

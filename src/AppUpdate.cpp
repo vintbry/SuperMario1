@@ -739,6 +739,8 @@ void App::Update(){
     //coins
     if(m_Coins->isActive){
         auto now3 = Util::Time::GetElapsedTimeMs();
+        m_Mario_coin_audio->SetVolume(75);
+        m_Mario_coin_audio->Play();
         m_Coins->SetVisible(true);
         if(now3-m_MarioHeadTime<=450){
             m_Coins->SetPosition({m_Coins->GetPosition().x,m_Coins->GetPosition().y+8.0f});
@@ -798,7 +800,12 @@ void App::Update(){
     if(m_Mario->MarioEnd){
         m_Mario1->SetVisible(true);
         m_Mario->SetVisible(false);
-        if(Util::Time::GetElapsedTimeMs()-timeEnd >= 14500 && !isWinLevel){
+        m_BGMusic->Pause();
+        if(!isWinLevel) {
+            m_Mario_levelFinish_audio->SetVolume(50);
+            m_Mario_levelFinish_audio->Play();
+        }
+        if(Util::Time::GetElapsedTimeMs()-timeEnd >= 15500 && !isWinLevel){
             m_Mario->SetVisible(true);
             m_Mario1->SetVisible(false);
             m_Mario->SetLooping(true);

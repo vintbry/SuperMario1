@@ -18,6 +18,9 @@ void App::Start(){
     m_Mario_coin_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/coin.wav");
     m_Mario_stomp_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/enemy-stomp.wav");
     m_Mario_bump_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/bump.wav");
+    m_Mario_levelFinish_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/level-clear.wav");
+    //not implemented yet
+    m_Mario_flagpole_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/flagpole.wav");
 
     //BGM
     m_BGMusic = std::make_unique<Util::BGM>(GA_RESOURCE_DIR"/Audio/BGMusic.mp3");
@@ -366,7 +369,7 @@ void App::Start(){
     m_Flag = std::make_shared<Character>(GA_RESOURCE_DIR"/images/flag.png");
     m_Flag->SetZIndex(4);
     m_Flag->SetVisible(true);
-    m_Flag->SetPosition({6019.0f,120.0f});
+    m_Flag->SetPosition({6019.0f,110.0f});
     m_Root.AddChild(m_Flag);
 
     //castle
