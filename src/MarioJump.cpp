@@ -11,7 +11,7 @@ MarioJump::MarioJump(const std::string &ImagePath) : Character(ImagePath) {
 
 void MarioJump::Update(unsigned long BaseTime) {
     if(m_Jump){
-        unsigned long jumpTime = 800;
+        unsigned long jumpTime = 500;
         std::size_t timeNow = Util::Time::GetElapsedTimeMs();
         if(timeNow < BaseTime + jumpTime){
             m_HasEnded=false;

@@ -95,7 +95,7 @@ private:
 
     int index=0;
     int indexTiles = 0;
-
+    float SpeedInAir=0;
     unsigned int cnt=0;
     unsigned int time=1000 ;
     unsigned int score=0 ;
@@ -103,7 +103,6 @@ private:
 
     unsigned long timenow = 0;
     unsigned long m_JumpBaseTime = 0;
-    unsigned long m_Time=0.f;
     unsigned long m_MarioDiesTime = 0;
     unsigned long m_MarioStepTime = 0;
     unsigned long m_MarioHeadTime = 0;
@@ -183,7 +182,7 @@ private:
         // Resetting timers
         timenow = 0;
         m_JumpBaseTime = 0;
-        m_Time = 0.f;
+
         m_MarioDiesTime = 0;
         m_MarioStepTime = 0;
         m_MarioHeadTime = 0;

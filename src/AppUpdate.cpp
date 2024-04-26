@@ -61,7 +61,7 @@ std::tuple<bool,glm::vec2 > App::IsOnLand(std::shared_ptr<AnimatedCharacter> Obj
         bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 100.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
         glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
 
@@ -335,7 +335,7 @@ bool App::IsCollideUp(){
 void App::Update(){
     timenow = Util::Time::GetElapsedTimeMs();
 
-    if(m_Mario->GetPosition().y<-180.0f){
+    if(m_Mario->GetPosition().y<-200.0f){
         m_Mario->MarioDie = true;
     }
 
@@ -553,10 +553,10 @@ void App::Update(){
 
     if(!m_Mario1->m_HasEnded && m_Mario1->m_Jump ){
         if(!IsCollideUp()){
-            float powerjump = (timenow - m_JumpBaseTime)/100.0f;
-            if (powerjump>10) powerjump=10.0f;
+            float powerjump = (timenow - m_JumpBaseTime)/200.0f;
+            if (powerjump>8) powerjump=8.0f;
             if (cnts>5)cnts =5.0;
-            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y+((7.0+cnts)-powerjump)});
+            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y+((10.0+cnts)-powerjump)});
             m_MarioBack->SetPosition(m_Mario1->GetPosition());
             m_Mario->SetPosition(m_Mario1->GetPosition());
             m_Mario1->Jump(m_JumpBaseTime);
@@ -567,10 +567,10 @@ void App::Update(){
 
     }
     else if (m_Mario1->m_HasEnded && m_Mario1->m_Jump && !std::get<0>(IsOnLand(m_Mario))){
-        float gravity = (timenow - m_JumpBaseTime)/200.0f;
-        if (gravity>10) gravity=10.0;
+        float gravity = (timenow - m_JumpBaseTime)/100.0f;
+        //if (gravity>30) gravity=30.0;
         if(!std::get<0>(IsOnLand(m_Mario))) {
-            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y - (3.0+gravity)});
+            m_Mario1->SetPosition({m_Mario1->GetPosition().x, m_Mario1->GetPosition().y - (gravity)});
             m_MarioBack->SetPosition(m_Mario1->GetPosition());
             m_Mario->SetPosition(m_Mario1->GetPosition());
         }
@@ -700,7 +700,7 @@ void App::Update(){
         //m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
     }
-    else if(std::get<0>(headOnQues)){
+    if(std::get<0>(headOnQues)){
 
         m_Mario->MarioHead = true;
         m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
