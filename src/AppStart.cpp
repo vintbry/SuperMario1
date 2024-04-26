@@ -22,6 +22,43 @@ void App::Start(){
     //not implemented yet
     m_Mario_flagpole_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/flagpole.wav");
 
+    //text
+    m_title =std::make_shared<TEXTS>( "SCORE                 COINS                 WORLD               TIME") ;
+    m_title->SetZIndex(100);
+    m_title ->SetVisible(true);
+    m_title->SetPosition({0.0f,230.0f});
+    m_Root.AddChild(m_title);
+
+    m_score =std::make_shared<TEXTS>( "0") ;
+    m_score->SetZIndex(100);
+    m_score ->SetVisible(true);
+    m_score->SetPosition({-250.0f,200.0f});
+    m_Root.AddChild(m_score);
+
+    m_coin =std::make_shared<TEXTS>( "0") ;
+    m_coin->SetZIndex(100);
+    m_coin ->SetVisible(true);
+    m_coin->SetPosition({-80.0f,200.0f});
+    m_Root.AddChild(m_coin);
+
+    m_world =std::make_shared<TEXTS>( "1-1") ;
+    m_world->SetZIndex(100);
+    m_world ->SetVisible(true);
+    m_world->SetPosition({110.0f,200.0f});
+    m_Root.AddChild(m_world);
+
+    m_time =std::make_shared<TEXTS>( "0") ;
+    m_time->SetZIndex(100)
+            ;   m_time ->SetVisible(true);
+    m_time->SetPosition({270.0f,200.0f});
+    m_Root.AddChild(m_time);
+
+    m_popup =std::make_shared<TEXTS>( "100") ;
+    m_popup->SetZIndex(100);
+    m_popup ->SetVisible(false);
+    m_popup->SetPosition({0.0f,0.0f});
+    m_Root.AddChild(m_popup);
+
     //BGM
     m_BGMusic = std::make_unique<Util::BGM>(GA_RESOURCE_DIR"/Audio/BGMusic.mp3");
     m_BGMusic->SetVolume(35);

@@ -334,12 +334,23 @@ bool App::IsCollideUp(){
 
 void App::Update(){
     timenow = Util::Time::GetElapsedTimeMs();
+    if (time >0) {
+        time = 1000 - (static_cast<int>(timenow) / static_cast<int>(100));
+    }
+    else {
+        time =0;
+    }
+    m_time->SetText(std::to_string(time));
+    m_score->SetText(std::to_string(score));
+    m_coin->SetText(std::to_string(coin));
+
 
     auto result = IsOnLand(m_Mario);
 
     if( std::get<0>(result) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
         //if on land then run
         position = std::get<1>(result);
+        m_popup->SetVisible(false);
 
         if(m_EnterRight){
             m_Mario->SetVisible(true);
@@ -599,6 +610,10 @@ void App::Update(){
 
     //if mario kills enemy
     if(std::get<0>(stepOn) && !m_Mario->MarioStep && !m_Mario->MarioDie){
+        //popup score need to fix!
+        score = score +100;
+        m_popup->SetVisible(true);
+        m_popup->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+50.0f});
         m_Mario_stomp_audio->SetVolume(75);
         //m_Mario_stomp_audio->SetVolume(0);
         m_Mario_stomp_audio->Play();
@@ -642,6 +657,7 @@ void App::Update(){
 
     }
     if(m_Mario->MarioDie){
+        m_popup->SetVisible(false);
         unsigned long now = Util::Time::GetElapsedTimeMs();
         m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
 
@@ -680,6 +696,7 @@ void App::Update(){
         m_Mario_bump_audio->Play();
     }
     else if(std::get<0>(headOnQues)){
+
         m_Mario->MarioHead = true;
         m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
         indexTiles = std::get<1>(headOnQues);
@@ -689,11 +706,15 @@ void App::Update(){
         //m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
 
+
+
         //coins came out
         //need to initiate which ques come out coins or other!
         if(m_QuesVector[indexTiles]->isActive) {
+            LOG_DEBUG("msk10");
             m_Coins->isActive = true;
             m_Coins->SetPosition(m_QuesVector[indexTiles]->GetPosition());
+            coin+=100;
         }
 
     }

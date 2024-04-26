@@ -14,6 +14,7 @@
 #include "Util/SFX.hpp"
 #include "Util/BGM.hpp"
 #include "QuestionTiles.h"
+#include "TEXTS.h"
 
 class App {
 public:
@@ -52,6 +53,15 @@ private:
     std::shared_ptr<Util::SFX> m_Mario_bump_audio;
     std::shared_ptr<Util::SFX> m_Mario_levelFinish_audio;
     std::shared_ptr<Util::SFX> m_Mario_flagpole_audio;
+
+    std::shared_ptr<TEXTS> m_title;
+
+    std::shared_ptr<TEXTS> m_score;
+    std::shared_ptr<TEXTS> m_coin;
+    std::shared_ptr<TEXTS> m_world;
+    std::shared_ptr<TEXTS> m_time;
+    std::shared_ptr<TEXTS> m_popup;
+
     Util::Root m_Root;
 
     std::shared_ptr<MarioJump> m_Mario1;
@@ -87,6 +97,9 @@ private:
     int indexTiles = 0;
 
     unsigned int cnt=0;
+    unsigned int time=1000 ;
+    unsigned int score=0 ;
+    unsigned int coin=0;
 
     unsigned long timenow = 0;
     unsigned long m_JumpBaseTime = 0;

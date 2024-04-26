@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/MarioJump.cpp
         include/QuestionTiles.h
         src/QuestionTiles.cpp
+        include/TEXTS.h
+        src/TEXTS.cpp
 )
 
 if(MSVC)
