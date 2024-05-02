@@ -15,6 +15,10 @@
 #include "Util/BGM.hpp"
 #include "QuestionTiles.h"
 #include "TEXTS.h"
+#include "Mario.h"
+#include "Mushroom.h"
+#include "Koopa.h"
+#include "YellowMush.h"
 
 class App {
 public:
@@ -39,8 +43,12 @@ private:
     enum class Phase {
         FIRST_WORLD,
     };
+    bool pressed1= false ;
+    bool pressed2=false;
 
-
+    float speed=2;
+    float powerjump =0.0f;
+    float t =0;
     State m_CurrentState = State::START;
     Phase m_Phase = Phase::FIRST_WORLD;
 
@@ -69,6 +77,8 @@ private:
     std::shared_ptr<Character> m_Pillar;
     std::shared_ptr<Character> m_Flag;
 
+    std::shared_ptr<YellowMush> m_YellowMush;
+
     std::vector<std::shared_ptr<Character>> m_DeadQues;
     std::vector<std::shared_ptr<Character>> m_Land;
     std::vector<std::shared_ptr<Character>> m_Brick;
@@ -76,36 +86,64 @@ private:
     std::vector<std::shared_ptr<Character>> m_Wood;
     std::vector<std::shared_ptr<Character>> m_Castle;
 
+    std::vector<std::shared_ptr<Koopa>> m_KoopaVec;
+
     std::vector<std::shared_ptr<QuestionTiles>> m_QuesVector;
 
     std::shared_ptr<QuestionTiles> m_Question;
 
-    std::vector<std::shared_ptr<AnimatedCharacter>> m_MushVector;
+    std::vector<std::shared_ptr<Mushroom>> m_MushVector;
 
-    std::shared_ptr<AnimatedCharacter> m_Mario;
-    std::shared_ptr<AnimatedCharacter> m_MarioPillar;
-    std::shared_ptr<AnimatedCharacter> m_MarioBack;
-    std::shared_ptr<AnimatedCharacter> m_Mushroom;
+    std::shared_ptr<Mario> m_Mario;
+    std::shared_ptr<Mario> m_MarioPillar;
+    std::shared_ptr<Mario> m_MarioBack;
+
+    std::shared_ptr<Mushroom> m_Mushroom;
+
     std::shared_ptr<AnimatedCharacter> m_Coins;
+
+    std::shared_ptr<Koopa> m_Koopa;
 
     glm::vec2 position;
     glm::vec2 positionLand;
 
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
+    std::vector<std::string> MarioRun;
+    std::vector<std::string> MarioRunBack;
+    std::vector<std::string> MarioPillar;
+    std::vector<std::string> Mushroom1;
+    std::vector<std::string> QuestionMark;
+    std::vector<std::string> Coins;
+    std::vector<std::string> KoopaPic;
+    std::vector<std::string> levelUp;
+    std::vector<std::string> MarioBigFront;
+    std::vector<std::string> MarioBigBack;
+
     int index=0;
+    int index2=0;
     int indexTiles = 0;
+    int indexTiles2 = 0;
+
+    float slideTime=0;
     float SpeedInAir=0;
+    float y0= -172.0f;
+    float h ;
+    float max_jump=0;
+
     unsigned int cnt=0;
+    unsigned int cnts=0;
     unsigned int time=1000 ;
     unsigned int score=0 ;
     unsigned int coin=0;
+
 
     unsigned long timenow = 0;
     unsigned long m_JumpBaseTime = 0;
     unsigned long m_MarioDiesTime = 0;
     unsigned long m_MarioStepTime = 0;
     unsigned long m_MarioHeadTime = 0;
+    unsigned long m_MarioHeadTime2 = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;
@@ -114,20 +152,31 @@ private:
     bool isBrick = true;
     bool isWinLevel = false;
     bool winSong = false;
+    bool leftSlide = false;
+    bool rightSlide = false;
+    bool pressUp = false;
 
     void moveBackground(float position);
 
-    void callMarioForward();
+    void callMario();
 
     void callMarioBackward();
 
-    std::tuple<bool,glm::vec2> IsOnLand(std::shared_ptr<AnimatedCharacter>);
+    float searchLand(std::shared_ptr<AnimatedCharacter>);
 
-    bool IsCollideRight(std::shared_ptr<AnimatedCharacter> Object);
+    std::tuple<bool,glm::vec2> IsOnLand(const std::shared_ptr<AnimatedCharacter>&);
 
-    bool IsCollideLeft(std::shared_ptr<AnimatedCharacter> Object);
+    std::tuple<bool,glm::vec2> IsOnLand(const std::shared_ptr<Character>&);
+
+    glm::vec2 jumpFormula(float xvalue, float x0, float y0, float v0, float t);
+
+    bool IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object);
+
+    bool IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object);
 
     bool IsCollideUp();
+
+
 
 
 private:

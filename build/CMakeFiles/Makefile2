@@ -346,7 +346,7 @@ CMakeFiles/Framework.dir/all: PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/al
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Framework.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 89
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 86
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Framework.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : CMakeFiles/Framework.dir/rule
@@ -375,12 +375,12 @@ CMakeFiles/SuperMario1.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 CMakeFiles/SuperMario1.dir/all: PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=63,64 "Built target SuperMario1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=62,63,64 "Built target SuperMario1"
 .PHONY : CMakeFiles/SuperMario1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SuperMario1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 91
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 89
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SuperMario1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : CMakeFiles/SuperMario1.dir/rule
@@ -413,7 +413,7 @@ PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/all: PTSD/lib/glew/build/cmake
 
 # Build rule for subdir invocation for target.
 PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 89
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 86
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/rule
@@ -434,12 +434,12 @@ PTSD/CMakeFiles/PracticalToolsForSimpleDesign.dir/clean:
 _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/build.make _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/build.make _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96 "Built target sdl_headers_copy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96 "Built target sdl_headers_copy"
 .PHONY : _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/rule
@@ -460,12 +460,12 @@ _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/clean:
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/all: _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=62 "Built target SDL2main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target SDL2main"
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2main.dir/rule
@@ -491,7 +491,7 @@ _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all: _deps/sdl2-build/CMakeFiles/sdl
 
 # Build rule for subdir invocation for target.
 _deps/sdl2-build/CMakeFiles/SDL2-static.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 59
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 58
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2-static.dir/rule
@@ -512,12 +512,12 @@ _deps/sdl2-build/CMakeFiles/SDL2-static.dir/clean:
 _deps/sdl2-build/CMakeFiles/SDL2_test.dir/all: _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=58,59,60,61 "Built target SDL2_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=57,58,59,60 "Built target SDL2_test"
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2_test.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2-build/CMakeFiles/SDL2_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2_test.dir/rule
@@ -564,12 +564,12 @@ _deps/sdl2-build/CMakeFiles/uninstall.dir/clean:
 _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=47,48,49,50,51,52 "Built target SDL2_image"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=47,48,49,50,51 "Built target SDL2_image"
 .PHONY : _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 65
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 63
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/rule
@@ -597,7 +597,7 @@ _deps/sdl2_image-build/CMakeFiles/showanim.dir/all: _deps/sdl2_image-build/CMake
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_image-build/CMakeFiles/showanim.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 63
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_image-build/CMakeFiles/showanim.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_image-build/CMakeFiles/showanim.dir/rule
@@ -625,7 +625,7 @@ _deps/sdl2_image-build/CMakeFiles/showimage.dir/all: _deps/sdl2_image-build/CMak
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_image-build/CMakeFiles/showimage.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 63
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_image-build/CMakeFiles/showimage.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_image-build/CMakeFiles/showimage.dir/rule
@@ -647,7 +647,7 @@ _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/all: _deps/sdl2-build/CMakeFiles/SD
 _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/all: _deps/sdl2_ttf-build/external/freetype/CMakeFiles/freetype.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/build.make _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/build.make _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target SDL2_ttf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=61 "Built target SDL2_ttf"
 .PHONY : _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/all
 
 # Build rule for subdir invocation for target.
@@ -681,7 +681,7 @@ _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/all: _deps/sdl2_ttf-build/external/fr
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 71
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 70
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_ttf-build/CMakeFiles/glfont.dir/rule
@@ -710,7 +710,7 @@ _deps/sdl2_ttf-build/CMakeFiles/showfont.dir/all: _deps/sdl2_ttf-build/external/
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_ttf-build/CMakeFiles/showfont.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 71
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 70
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_ttf-build/CMakeFiles/showfont.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_ttf-build/CMakeFiles/showfont.dir/rule
@@ -757,12 +757,12 @@ _deps/sdl2_ttf-build/external/freetype/CMakeFiles/freetype.dir/clean:
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=53,54,55,56,57 "Built target SDL2_mixer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=52,53,54,55,56 "Built target SDL2_mixer"
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 64
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 63
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/rule
@@ -785,12 +785,12 @@ _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/all: _deps/sdl2-build/CMakeFiles/S
 _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/all: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=78 "Built target playmus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target playmus"
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 63
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/playmus.dir/rule
@@ -813,12 +813,12 @@ _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/all: _deps/sdl2-build/CMakeFiles/
 _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/all: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target playwave"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=79 "Built target playwave"
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 65
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 64
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/playwave.dir/rule
@@ -944,12 +944,12 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=78 "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
@@ -970,12 +970,12 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/all:
 	$(MAKE) $(MAKESILENT) -f PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/build.make PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/depend
 	$(MAKE) $(MAKESILENT) -f PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/build.make PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target glew"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=75 "Built target glew"
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/all
 
 # Build rule for subdir invocation for target.
 PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/rule
@@ -996,12 +996,12 @@ PTSD/lib/glew/build/cmake/CMakeFiles/glew.dir/clean:
 PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/all:
 	$(MAKE) $(MAKESILENT) -f PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/build.make PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/depend
 	$(MAKE) $(MAKESILENT) -f PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/build.make PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num=75 "Built target glew_s"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles --progress-num= "Built target glew_s"
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/all
 
 # Build rule for subdir invocation for target.
 PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/glew_s.dir/rule
@@ -1027,7 +1027,7 @@ PTSD/lib/glew/build/cmake/CMakeFiles/glewinfo.dir/all: PTSD/lib/glew/build/cmake
 
 # Build rule for subdir invocation for target.
 PTSD/lib/glew/build/cmake/CMakeFiles/glewinfo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PTSD/lib/glew/build/cmake/CMakeFiles/glewinfo.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/glewinfo.dir/rule
@@ -1053,7 +1053,7 @@ PTSD/lib/glew/build/cmake/CMakeFiles/visualinfo.dir/all: PTSD/lib/glew/build/cma
 
 # Build rule for subdir invocation for target.
 PTSD/lib/glew/build/cmake/CMakeFiles/visualinfo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PTSD/lib/glew/build/cmake/CMakeFiles/visualinfo.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/build/CMakeFiles 0
 .PHONY : PTSD/lib/glew/build/cmake/CMakeFiles/visualinfo.dir/rule

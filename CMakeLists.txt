@@ -27,6 +27,14 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/QuestionTiles.cpp
         include/TEXTS.h
         src/TEXTS.cpp
+        include/Mario.h
+        src/Mario.cpp
+        include/Mushroom.h
+        src/Mushroom.cpp
+        include/Koopa.h
+        src/Koopa.cpp
+        include/YellowMush.h
+        src/YellowMush.cpp
 )
 
 if(MSVC)

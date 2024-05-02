@@ -652,6 +652,54 @@ src/Character.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Character.cpp.s
 .PHONY : src/Character.cpp.s
 
+src/Koopa.o: src/Koopa.cpp.o
+.PHONY : src/Koopa.o
+
+# target to build an object file
+src/Koopa.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Koopa.cpp.o
+.PHONY : src/Koopa.cpp.o
+
+src/Koopa.i: src/Koopa.cpp.i
+.PHONY : src/Koopa.i
+
+# target to preprocess a source file
+src/Koopa.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Koopa.cpp.i
+.PHONY : src/Koopa.cpp.i
+
+src/Koopa.s: src/Koopa.cpp.s
+.PHONY : src/Koopa.s
+
+# target to generate assembly for a file
+src/Koopa.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Koopa.cpp.s
+.PHONY : src/Koopa.cpp.s
+
+src/Mario.o: src/Mario.cpp.o
+.PHONY : src/Mario.o
+
+# target to build an object file
+src/Mario.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mario.cpp.o
+.PHONY : src/Mario.cpp.o
+
+src/Mario.i: src/Mario.cpp.i
+.PHONY : src/Mario.i
+
+# target to preprocess a source file
+src/Mario.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mario.cpp.i
+.PHONY : src/Mario.cpp.i
+
+src/Mario.s: src/Mario.cpp.s
+.PHONY : src/Mario.s
+
+# target to generate assembly for a file
+src/Mario.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mario.cpp.s
+.PHONY : src/Mario.cpp.s
+
 src/MarioJump.o: src/MarioJump.cpp.o
 .PHONY : src/MarioJump.o
 
@@ -675,6 +723,30 @@ src/MarioJump.s: src/MarioJump.cpp.s
 src/MarioJump.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/MarioJump.cpp.s
 .PHONY : src/MarioJump.cpp.s
+
+src/Mushroom.o: src/Mushroom.cpp.o
+.PHONY : src/Mushroom.o
+
+# target to build an object file
+src/Mushroom.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mushroom.cpp.o
+.PHONY : src/Mushroom.cpp.o
+
+src/Mushroom.i: src/Mushroom.cpp.i
+.PHONY : src/Mushroom.i
+
+# target to preprocess a source file
+src/Mushroom.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mushroom.cpp.i
+.PHONY : src/Mushroom.cpp.i
+
+src/Mushroom.s: src/Mushroom.cpp.s
+.PHONY : src/Mushroom.s
+
+# target to generate assembly for a file
+src/Mushroom.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/Mushroom.cpp.s
+.PHONY : src/Mushroom.cpp.s
 
 src/PhaseManager.o: src/PhaseManager.cpp.o
 .PHONY : src/PhaseManager.o
@@ -723,6 +795,54 @@ src/QuestionTiles.s: src/QuestionTiles.cpp.s
 src/QuestionTiles.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/QuestionTiles.cpp.s
 .PHONY : src/QuestionTiles.cpp.s
+
+src/TEXTS.o: src/TEXTS.cpp.o
+.PHONY : src/TEXTS.o
+
+# target to build an object file
+src/TEXTS.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/TEXTS.cpp.o
+.PHONY : src/TEXTS.cpp.o
+
+src/TEXTS.i: src/TEXTS.cpp.i
+.PHONY : src/TEXTS.i
+
+# target to preprocess a source file
+src/TEXTS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/TEXTS.cpp.i
+.PHONY : src/TEXTS.cpp.i
+
+src/TEXTS.s: src/TEXTS.cpp.s
+.PHONY : src/TEXTS.s
+
+# target to generate assembly for a file
+src/TEXTS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/TEXTS.cpp.s
+.PHONY : src/TEXTS.cpp.s
+
+src/YellowMush.o: src/YellowMush.cpp.o
+.PHONY : src/YellowMush.o
+
+# target to build an object file
+src/YellowMush.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/YellowMush.cpp.o
+.PHONY : src/YellowMush.cpp.o
+
+src/YellowMush.i: src/YellowMush.cpp.i
+.PHONY : src/YellowMush.i
+
+# target to preprocess a source file
+src/YellowMush.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/YellowMush.cpp.i
+.PHONY : src/YellowMush.cpp.i
+
+src/YellowMush.s: src/YellowMush.cpp.s
+.PHONY : src/YellowMush.s
+
+# target to generate assembly for a file
+src/YellowMush.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SuperMario1.dir/build.make CMakeFiles/SuperMario1.dir/src/YellowMush.cpp.s
+.PHONY : src/YellowMush.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -804,15 +924,30 @@ help:
 	@echo "... src/Character.o"
 	@echo "... src/Character.i"
 	@echo "... src/Character.s"
+	@echo "... src/Koopa.o"
+	@echo "... src/Koopa.i"
+	@echo "... src/Koopa.s"
+	@echo "... src/Mario.o"
+	@echo "... src/Mario.i"
+	@echo "... src/Mario.s"
 	@echo "... src/MarioJump.o"
 	@echo "... src/MarioJump.i"
 	@echo "... src/MarioJump.s"
+	@echo "... src/Mushroom.o"
+	@echo "... src/Mushroom.i"
+	@echo "... src/Mushroom.s"
 	@echo "... src/PhaseManager.o"
 	@echo "... src/PhaseManager.i"
 	@echo "... src/PhaseManager.s"
 	@echo "... src/QuestionTiles.o"
 	@echo "... src/QuestionTiles.i"
 	@echo "... src/QuestionTiles.s"
+	@echo "... src/TEXTS.o"
+	@echo "... src/TEXTS.i"
+	@echo "... src/TEXTS.s"
+	@echo "... src/YellowMush.o"
+	@echo "... src/YellowMush.i"
+	@echo "... src/YellowMush.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

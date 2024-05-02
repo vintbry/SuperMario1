@@ -49,9 +49,12 @@ public:
 
     void SetImage(const std::string& ImagePath);
 
+    void SetImage(const std::vector<std::string>& AnimationPaths);
+
     [[nodiscard]] bool IfAnimationEnds() const;
 
-    bool IsCollideRight(std::vector<std::shared_ptr<Character>> Object ){
+    template<typename T>
+    bool IsCollideRight(std::vector<std::shared_ptr<T>> Object ){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
             bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -67,7 +70,8 @@ public:
         }
         return false;
     }
-    bool IsCollideRight(std::vector<std::shared_ptr<AnimatedCharacter>> Object ){
+
+    virtual bool IsCollideRight(std::vector<std::shared_ptr<Character>> Object ){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
             bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -83,22 +87,10 @@ public:
         }
         return false;
     }
-    bool IsCollideRight(std::shared_ptr<Character> Object ){
-        bool collideX = (GetPosition().x + GetScaledSize().x/2>=Object->GetPosition().x-Object->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=Object->GetPosition().x+Object->GetScaledSize().x/2);
-        bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2);
-        bool collideY2 = (GetPosition().y - GetScaledSize().y/2<Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2;
-
-        bool collideY = collideY1 || collideY2;
-
-        if(collideX && collideY){
-            return true;
-        }
 
 
-        return false;
-    }
-
-    bool IsCollideLeft(std::vector<std::shared_ptr<Character>> Object){
+    template<typename T>
+    bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
             bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -114,7 +106,8 @@ public:
         }
         return false;
     }
-    bool IsCollideLeft(std::vector<std::shared_ptr<AnimatedCharacter>> Object){
+
+    virtual bool IsCollideLeft(std::vector<std::shared_ptr<Character>> Object){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
             bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -130,72 +123,10 @@ public:
         }
         return false;
     }
-    std::tuple<bool,int> IsStepOn(std::vector<std::shared_ptr<AnimatedCharacter>> Objects){
-        for(int i=0;i<Objects.size();i++){
-            auto tiles = Objects[i];
-            bool collideX1 = (GetPosition().x-GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(GetPosition().x-GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-            bool collideX2 = (GetPosition().x+GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-            //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
-            bool collideY = ((GetPosition().y - GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((GetPosition().y - GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-            glm::vec2 landPos = {GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+GetScaledSize().y/2};
-
-            bool collideX = collideX1 || collideX2;
-
-            if((collideX) && (collideY)){
-                return {true,i};
-            }
-        }
-        return {false, -1};
-    }
-
-    std::tuple<bool,int> IsHeading(std::vector<std::shared_ptr<Character>>Objects){
-        for(int i=0;i<Objects.size();i++){
-            //debugging
-            auto tiles = Objects[i];
-            bool collideX1 = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
-            bool collideX2 = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2+5.0f)&&(GetPosition().x + GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-            bool collideY = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-
-            bool collideX = collideX1 || collideX2;
-
-            if(collideX && collideY){
-                return {true,i};
-            }
-
-        }
-        return {false,-1};
-    }
-
-    std::tuple<bool,int> IsHeading(std::vector<std::shared_ptr<QuestionTiles>>Objects){
-        for(int i=0;i<Objects.size();i++){
-            //debugging
-            auto tiles = Objects[i];
-            bool collideX1 = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
-            bool collideX2 = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2+5.0f)&&(GetPosition().x + GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-            bool collideY = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-
-            bool collideX = collideX1 || collideX2;
-
-            if(collideX && collideY){
-                return {true,i};
-            }
-
-        }
-        return {false,-1};
-    }
-
-
-    float direction = -1.0f;
-    bool MarioDie = false;
-    bool MarioStep = false;
-    bool EnemyDie = false;
-    bool MarioHead = false;
-    bool MarioFinish = false;
-    bool MarioEnd = false;
 
     //mushroom, coins
     bool isActive = false;
+    bool alreadyOut = false;
 
 
 

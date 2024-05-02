@@ -61,8 +61,8 @@ void App::Start(){
 
     //BGM
     m_BGMusic = std::make_unique<Util::BGM>(GA_RESOURCE_DIR"/Audio/BGMusic.mp3");
-    m_BGMusic->SetVolume(35);
-    //m_BGMusic->SetVolume(0);
+    //m_BGMusic->SetVolume(35);
+    m_BGMusic->SetVolume(0);
     m_BGMusic->Play();
 
     //Bg
@@ -84,23 +84,20 @@ void App::Start(){
     m_Root.AddChild(m_Mario1);
 
     //Mario run forward
-    std::vector<std::string> MarioRun;
     MarioRun.reserve(5);
     MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
     for(int i = 0; i < 3; i++){
         MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario_move"+ std::to_string(i)+ ".png");
     }
-
     MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
-    m_Mario= std::make_shared<AnimatedCharacter>(MarioRun);
-    m_Mario->SetPosition({-265.0f, -168.0f});
+    m_Mario = std::make_shared<Mario>(MarioRun);
+    m_Mario->SetPosition({-265.0f, -172.0f});
     m_Mario->SetInterval(100);
     m_Mario->SetZIndex(50);
     m_Mario->SetVisible(true);
     m_Root.AddChild(m_Mario);
 
     //Mario run backward
-    std::vector<std::string> MarioRunBack;
     MarioRunBack.reserve(5);
     MarioRunBack.emplace_back(GA_RESOURCE_DIR"/Mario/marioBack.png");
     for(int i=0; i < 3; i++){
@@ -108,19 +105,18 @@ void App::Start(){
     }
     MarioRunBack.emplace_back(GA_RESOURCE_DIR"/Mario/marioBack.png");
 
-    m_MarioBack = std::make_shared<AnimatedCharacter>(MarioRunBack);
+    m_MarioBack = std::make_shared<Mario>(MarioRunBack);
     m_MarioBack->SetInterval(100);
     m_MarioBack->SetZIndex(50);
     m_MarioBack->SetVisible(false);
     m_Root.AddChild(m_MarioBack);
 
     //mario pillar
-    std::vector<std::string> MarioPillar;
     MarioPillar.reserve(2);
     MarioPillar.emplace_back(GA_RESOURCE_DIR"/Mario/mario_end.png");
     MarioPillar.emplace_back(GA_RESOURCE_DIR"/Mario/mario_end1.png");
 
-    m_MarioPillar = std::make_shared<AnimatedCharacter>(MarioPillar);
+    m_MarioPillar = std::make_shared<Mario>(MarioPillar);
     m_MarioPillar->SetInterval(100);
     m_MarioPillar->SetZIndex(50);
     m_MarioPillar->SetVisible(false);
@@ -129,22 +125,19 @@ void App::Start(){
     m_Root.AddChild(m_MarioPillar);
 
     //mushroom
-    std::vector<std::string> Mushroom;
-    Mushroom.reserve(2);
+    Mushroom1.reserve(2);
     for(int i=0;i<2;i++){
-        Mushroom.emplace_back(GA_RESOURCE_DIR"/images/goombas_"+std::to_string(i)+".png");
+        Mushroom1.emplace_back(GA_RESOURCE_DIR"/images/goombas_"+std::to_string(i)+".png");
     }
 
     for(int i=0;i<17;i++){
-        m_Mushroom = std::make_shared<AnimatedCharacter>(Mushroom);
+        m_Mushroom = std::make_shared<Mushroom>(Mushroom1);
         m_Mushroom->SetLooping(true);
         m_Mushroom->SetPlaying();
         m_Mushroom->SetZIndex(5);
         m_Mushroom->SetVisible(true);
         m_MushVector.push_back(m_Mushroom);
 
-        m_MushVector[i]->SetZIndex(5);
-        m_MushVector[i]->SetVisible(true);
     }
     m_MushVector[16]->SetPosition({-400.0f,-168.0f});
 
@@ -173,6 +166,28 @@ void App::Start(){
         m_Root.AddChild(m_MushVector[i]);
     }
 
+    //koopa
+    KoopaPic.reserve(2);
+    for(int i = 0;i<2;i++){
+        KoopaPic.emplace_back(GA_RESOURCE_DIR"/images/koopa_"+std::to_string(i)+".png");
+    }
+    for(int i=0;i<1;i++){
+        m_Koopa = std::make_shared<Koopa>(KoopaPic);
+        m_Koopa->SetInterval(100);
+        m_Koopa->SetZIndex(5);
+        m_Koopa->SetLooping(true);
+        m_Koopa->SetPlaying();
+        m_Koopa->SetVisible(true);
+        m_KoopaVec.push_back(m_Koopa);
+
+    }
+
+    m_KoopaVec[0]->SetPosition({3507.0f,-169.0f});
+    for(int i=0;i<1;i++){
+        m_Root.AddChild(m_KoopaVec[i]);
+    }
+
+
     //Background tiles
     for(int i = 0; i < 4; i++){
         m_Land.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tilesLong"+std::to_string(i)+".png"));
@@ -187,7 +202,7 @@ void App::Start(){
 
     //In Air Tile
     //Question Mark
-    std::vector<std::string> QuestionMark;
+
     QuestionMark.reserve(3);
     for(int i = 0;i < 3; i++){
         QuestionMark.emplace_back(GA_RESOURCE_DIR"/images/question"+std::to_string(i)+".png");
@@ -303,96 +318,52 @@ void App::Start(){
     }
 
     //wood
-    for(int i=0;i<64;i++){
+    for(int i=0;i<26;i++){
         m_Wood.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/wood.png"));
         m_Wood[i]->SetZIndex(4);
         m_Wood[i]->SetVisible(false);
     }
-    m_Wood.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/woodBig1.png"));
-    //can delete some wood
-    //m_Wood[64]->SetZIndex(4);
-    //m_Wood[64]->SetVisible(false);
 
     m_Wood[0]->SetPosition({3955.0f,-172.0f});
     m_Wood[1]->SetPosition({3987.0f,-140.0f});
-    m_Wood[2]->SetPosition({3987.0f,-172.0f});
-    m_Wood[3]->SetPosition({4019.0f,-172.0f});
-    m_Wood[4]->SetPosition({4019.0f,-140.0f});
-    m_Wood[5]->SetPosition({4019.0f,-108.0f});
-    m_Wood[6]->SetPosition({4051.0f,-172.0f});
-    m_Wood[7]->SetPosition({4051.0f,-140.0f});
-    m_Wood[8]->SetPosition({4051.0f,-108.0f});
-    m_Wood[2]->SetPosition({4035.0f,-172.0f});
-    m_Wood[9]->SetPosition({4051.0f,-76.0f});
+    m_Wood[2]->SetPosition({4019.0f,-108.0f});
+    m_Wood[3]->SetPosition({4052.0f,-124.0f});
+    m_Wood[3]->SetImage(GA_RESOURCE_DIR"/images/woodbig3.png");
 
-    m_Wood[10]->SetPosition({4147.0f,-172.0f});
-    m_Wood[11]->SetPosition({4147.0f,-140.0f});
-    m_Wood[12]->SetPosition({4147.0f,-108.0f});
-    m_Wood[13]->SetPosition({4147.0f,-76.0f});
-    m_Wood[14]->SetPosition({4179.0f,-172.0f});
-    m_Wood[15]->SetPosition({4179.0f,-140.0f});
-    m_Wood[16]->SetPosition({4179.0f,-108.0f});
-    m_Wood[17]->SetPosition({4211.0f,-172.0f});
-    m_Wood[18]->SetPosition({4211.0f,-140.0f});
-    m_Wood[19]->SetPosition({4243.0f,-172.0f});
+    m_Wood[4]->SetPosition({4147.0f, -124.0f});
+    m_Wood[4]->SetImage(GA_RESOURCE_DIR"/images/woodbig3.png");
+    m_Wood[5]->SetPosition({4179.0f,-108.0f});
+    m_Wood[6]->SetPosition({4211.0f,-140.0f});
+    m_Wood[7]->SetPosition({4243.0f,-172.0f});
 
-    m_Wood[20]->SetPosition({4435.0f,-172.0f});
-    m_Wood[21]->SetPosition({4467.0f,-172.0f});
-    m_Wood[22]->SetPosition({4467.0f,-140.0f});
-    m_Wood[23]->SetPosition({4499.0f,-172.0f});
-    m_Wood[24]->SetPosition({4499.0f,-140.0f});
-    m_Wood[25]->SetPosition({4499.0f,-108.0f});
-    m_Wood[26]->SetPosition({4531.0f,-172.0f});
-    m_Wood[27]->SetPosition({4531.0f,-140.0f});
-    m_Wood[28]->SetPosition({4531.0f,-108.0f});
-    m_Wood[29]->SetPosition({4531.0f,-76.0f});
-    m_Wood[30]->SetPosition({4563.0f,-172.0f});
-    m_Wood[31]->SetPosition({4563.0f,-140.0f});
-    m_Wood[32]->SetPosition({4563.0f,-108.0f});
-    m_Wood[33]->SetPosition({4563.0f,-76.0f});
+    m_Wood[8]->SetPosition({4435.0f,-172.0f});
+    m_Wood[9]->SetPosition({4467.0f,-140.0f});
+    m_Wood[10]->SetPosition({4499.0f,-108.0f});
+    m_Wood[11]->SetPosition({4531.0f,-76.0f});
+    m_Wood[12]->SetPosition({4563.0f,-124.0f});
+    m_Wood[12]->SetImage(GA_RESOURCE_DIR"/images/woodbig3.png");
 
-    m_Wood[34]->SetPosition({4659.0f,-172.0f});
-    m_Wood[35]->SetPosition({4659.0f,-140.0f});
-    m_Wood[36]->SetPosition({4659.0f,-108.0f});
-    m_Wood[37]->SetPosition({4659.0f,-76.0f});
-    m_Wood[38]->SetPosition({4691.0f,-172.0f});
-    m_Wood[39]->SetPosition({4691.0f,-140.0f});
-    m_Wood[40]->SetPosition({4691.0f,-108.0f});
-    m_Wood[41]->SetPosition({4723.0f,-172.0f});
-    m_Wood[42]->SetPosition({4723.0f,-140.0f});
-    m_Wood[43]->SetPosition({4755.0f,-172.0f});
+    m_Wood[13]->SetPosition({4659.0f,-124.0f});
+    m_Wood[13]->SetImage(GA_RESOURCE_DIR"/images/woodbig3.png");
+    m_Wood[14]->SetPosition({4691.0f,-108.0f});
+    m_Wood[15]->SetPosition({4723.0f,-140.0f});
+    m_Wood[16]->SetPosition({4755.0f,-172.0f});
 
-    m_Wood[44]->SetPosition({5491.0f,-172.0f});
-    m_Wood[45]->SetPosition({5532.0f,-140.0f});
-    m_Wood[46]->SetPosition({5523.0f,-172.0f});
-    m_Wood[47]->SetPosition({5555.0f,-172.0f});
-    m_Wood[48]->SetPosition({5555.0f,-140.0f});
-    m_Wood[49]->SetPosition({5555.0f,-108.0f});
-    m_Wood[50]->SetPosition({5587.0f,-172.0f});
-    m_Wood[51]->SetPosition({5587.0f,-140.0f});
-    m_Wood[52]->SetPosition({5587.0f,-108.0f});
-    m_Wood[53]->SetPosition({5587.0f,-76.0f});
+    m_Wood[17]->SetPosition({5491.0f,-172.0f});
+    m_Wood[18]->SetPosition({5532.0f,-140.0f});
+    m_Wood[19]->SetPosition({5555.0f,-108.0f});
+    m_Wood[20]->SetPosition({5587.0f,-76.0f});
+    m_Wood[21]->SetPosition({5619.0f,-44.0f});
+    m_Wood[22]->SetPosition({5651.0f,-12.0f});
+    m_Wood[23]->SetPosition({5683.0f, 20.0f});
 
-    m_Wood[54]->SetPosition({5651.0f,-12.0f});
+    m_Wood[24]->SetPosition({5731.0f,-60.0f});
+    m_Wood[24]->SetImage(GA_RESOURCE_DIR"/images/woodBig4.png");
 
-    //big
-    m_Wood[64]->SetPosition({5683.0f,-108.0f});
+    m_Wood[25]->SetPosition({6035.0f,-172.0f});
+    m_Wood[25]->SetVisible(true);
 
-    m_Wood[55]->SetPosition({5683.0f,-12.0f});
-    m_Wood[56]->SetPosition({5683.0f,20.0f});
-
-    m_Wood[57]->SetPosition({5715.0f,-12.0f});
-    m_Wood[58]->SetPosition({5715.0f,20.0f});
-    m_Wood[59]->SetPosition({5715.0f,52.0f});
-
-    m_Wood[60]->SetPosition({5747.0f,-12.0f});
-    m_Wood[61]->SetPosition({5747.0f,20.0f});
-    m_Wood[62]->SetPosition({5747.0f,52.0f});
-
-    m_Wood[63]->SetPosition({6035.0f,-172.0f});
-    m_Wood[63]->SetVisible(true);
-
-    for(int i=0;i<65;i++){
+    for(int i=0;i<26;i++){
         m_Root.AddChild(m_Wood[i]);
     }
 
@@ -423,7 +394,6 @@ void App::Start(){
     m_Root.AddChildren(m_PRM->GetChildren());
 
     //Coins
-    std::vector<std::string> Coins;
     Coins.reserve(3);
     for(int i = 0 ; i < 3 ; i++){
         Coins.emplace_back(GA_RESOURCE_DIR"/images/coin_an"+std::to_string(i)+".png");
@@ -435,7 +405,23 @@ void App::Start(){
     m_Coins->SetVisible(false);
     m_Coins->SetLooping(true);
     m_Coins->SetPlaying();
+    m_Coins->SetPosition({-1000.0f,-1000.0f});
     m_Root.AddChild(m_Coins);
+
+    //level up mush
+    m_YellowMush = std::make_shared<YellowMush>(GA_RESOURCE_DIR"/images/mushroom.png");
+    m_YellowMush->SetZIndex(5);
+    m_YellowMush->SetVisible(false);
+    m_YellowMush->SetPosition({-1000.0f,-1000.0f});
+    m_Root.AddChild(m_YellowMush);
+
+    levelUp.reserve(6);
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlup.png");
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlup.png");
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlup.png");
+    levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
 
     m_CurrentState=State::UPDATE;
 

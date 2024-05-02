@@ -17,3 +17,7 @@ void AnimatedCharacter::SetImage(const std::string& ImagePath) {
 
     m_Drawable = std::make_shared<Util::Image>(m_ImagePath);
 }
+
+void AnimatedCharacter::SetImage(const std::vector<std::string>& AnimationPaths) {
+    m_Drawable = std::make_shared<Util::Animation>(AnimationPaths, false, 500, false,0);
+}
