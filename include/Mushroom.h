@@ -19,6 +19,8 @@ class Mushroom : public AnimatedCharacter{
 public:
     explicit Mushroom(const std::vector<std::string>& AnimationPaths);
 
+    //idk why can't be the same with the below one
+    //need more debug
     template<typename T>
     bool IsCollideRight(std::vector<std::shared_ptr<T>> Object ){
         for(int i=0;i<Object.size();i++){
@@ -33,6 +35,24 @@ public:
                 return true;
             }
 
+        }
+        return false;
+    }
+    template<typename T>
+    bool IsCollideRight(std::vector<std::shared_ptr<T>> Object, int index){
+        for(int i=0;i<Object.size();i++){
+            if(i!=index){
+                auto tiles = Object[i];
+                bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+                bool collideY1 = (GetPosition().y + GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+                bool collideY2 = (GetPosition().y - GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+                bool collideY = collideY1 || collideY2;
+
+                if(collideX && collideY){
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -53,7 +73,34 @@ public:
         }
         return false;
     }
+    template<typename T>
+    bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object, int index){
+        for(int i=0;i<Object.size();i++){
+            if(i!=index){
+                auto tiles = Object[i];
+                bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+                bool collideY1 = (GetPosition().y + GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+                bool collideY2 = (GetPosition().y - GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
+                bool collideY = collideY1 || collideY2;
+
+                LOG_DEBUG("collide X n y");
+                LOG_DEBUG(collideX);
+                if(collideX){
+                    LOG_DEBUG(collideY);
+                    LOG_DEBUG(Object[i]->GetPosition().y);
+                    LOG_DEBUG(GetPosition().y);
+                }
+
+
+
+                if(collideX && collideY){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     float direction = -1.0f;
 
     bool EnemyDie = false;

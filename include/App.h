@@ -36,8 +36,6 @@ public:
 
     void End(); // NOLINT(readability-convert-member-functions-to-static)
 
-private:
-    void ValidTask();
 
 private:
     enum class Phase {
@@ -79,6 +77,8 @@ private:
 
     std::shared_ptr<YellowMush> m_YellowMush;
 
+    std::vector<std::shared_ptr<YellowMush>> m_YellowMushVec;
+
     std::vector<std::shared_ptr<Character>> m_DeadQues;
     std::vector<std::shared_ptr<Character>> m_Land;
     std::vector<std::shared_ptr<Character>> m_Brick;
@@ -110,13 +110,16 @@ private:
     std::shared_ptr<PhaseResourcesManager> m_PRM;
 
     std::vector<std::string> MarioRun;
+    std::vector<std::string> MarioRunLvl2;
     std::vector<std::string> MarioRunBack;
+    std::vector<std::string> MarioRunBackLvl2;
     std::vector<std::string> MarioPillar;
     std::vector<std::string> Mushroom1;
     std::vector<std::string> QuestionMark;
     std::vector<std::string> Coins;
     std::vector<std::string> KoopaPic;
     std::vector<std::string> levelUp;
+    std::vector<std::string> levelUpBack;
     std::vector<std::string> MarioBigFront;
     std::vector<std::string> MarioBigBack;
 
@@ -124,6 +127,7 @@ private:
     int index2=0;
     int indexTiles = 0;
     int indexTiles2 = 0;
+    int indexMush = 0;
 
     float slideTime=0;
     float SpeedInAir=0;
@@ -144,6 +148,7 @@ private:
     unsigned long m_MarioStepTime = 0;
     unsigned long m_MarioHeadTime = 0;
     unsigned long m_MarioHeadTime2 = 0;
+    unsigned long m_MarioHeadTime_yelmush = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;

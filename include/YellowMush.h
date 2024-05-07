@@ -37,6 +37,22 @@ public:
         return false;
     }
     template<typename T>
+    bool IsCollideRight(std::shared_ptr<T> Object ){
+            auto tiles = Object;
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+
+        return false;
+    }
+    template<typename T>
     bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
@@ -51,6 +67,23 @@ public:
             }
 
         }
+        return false;
+    }
+    template<typename T>
+    bool IsCollideLeft(std::shared_ptr<T> Object){
+
+            auto tiles = Object;
+            bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+
         return false;
     }
 

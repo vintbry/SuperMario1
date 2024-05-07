@@ -139,24 +139,24 @@ void App::Start(){
         m_MushVector.push_back(m_Mushroom);
 
     }
-    m_MushVector[16]->SetPosition({-400.0f,-168.0f});
+    m_MushVector[16]->SetPosition({-400.0f,-172.0f});
 
-    m_MushVector[0]->SetPosition({355.0f,-168.0f});
-    m_MushVector[1]->SetPosition({933.0f,-168.0f});
-    m_MushVector[2]->SetPosition({1285.0f,-168.0f});
-    m_MushVector[3]->SetPosition({1317.0f,-168.0f});
+    m_MushVector[0]->SetPosition({355.0f,-172.0f});
+    m_MushVector[1]->SetPosition({933.0f,-172.0f});
+    m_MushVector[2]->SetPosition({1285.0f,-172.0f});
+    m_MushVector[3]->SetPosition({1317.0f,-172.0f});
 
-    m_MushVector[4]->SetPosition({2771.0f,-168.0f});
-    m_MushVector[5]->SetPosition({2819.0f,-168.0f});
-    m_MushVector[6]->SetPosition({3315.0f,-168.0f});
-    m_MushVector[7]->SetPosition({3363.0f,-168.0f});
-    m_MushVector[8]->SetPosition({3635.0f,-168.0f});
-    m_MushVector[9]->SetPosition({3683.0f,-168.0f});
-    m_MushVector[10]->SetPosition({3763.0f,-168.0f});
-    m_MushVector[11]->SetPosition({3811.0f,-168.0f});
+    m_MushVector[4]->SetPosition({2771.0f,-172.0f});
+    m_MushVector[5]->SetPosition({2819.0f,-172.0f});
+    m_MushVector[6]->SetPosition({3315.0f,-172.0f});
+    m_MushVector[7]->SetPosition({3363.0f,-172.0f});
+    m_MushVector[8]->SetPosition({3635.0f,-172.0f});
+    m_MushVector[9]->SetPosition({3683.0f,-172.0f});
+    m_MushVector[10]->SetPosition({3763.0f,-172.0f});
+    m_MushVector[11]->SetPosition({3811.0f,-172.0f});
 
-    m_MushVector[12]->SetPosition({5267.0f,-168.0f});
-    m_MushVector[13]->SetPosition({5315.0f,-168.0f});
+    m_MushVector[12]->SetPosition({5267.0f,-172.0f});
+    m_MushVector[13]->SetPosition({5315.0f,-172.0f});
 
     m_MushVector[14]->SetPosition({2208.0f,72.0f});
     m_MushVector[15]->SetPosition({2256.0f,72.0f});
@@ -409,11 +409,20 @@ void App::Start(){
     m_Root.AddChild(m_Coins);
 
     //level up mush
-    m_YellowMush = std::make_shared<YellowMush>(GA_RESOURCE_DIR"/images/mushroom.png");
-    m_YellowMush->SetZIndex(5);
-    m_YellowMush->SetVisible(false);
-    m_YellowMush->SetPosition({-1000.0f,-1000.0f});
-    m_Root.AddChild(m_YellowMush);
+    for(int i=0;i<4;i++){
+        m_YellowMush = std::make_shared<YellowMush>(GA_RESOURCE_DIR"/images/mushroom.png");
+        m_YellowMush->SetZIndex(3);
+        m_YellowMush->SetVisible(false);
+        m_YellowMush->SetPosition({-1000.0f,-1000.0f});
+
+        m_YellowMushVec.push_back(m_YellowMush);
+
+    }
+
+    for(int i=0;i<4;i++){
+        m_Root.AddChild(m_YellowMushVec[i]);
+    }
+
 
     levelUp.reserve(6);
     levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlup.png");
@@ -422,6 +431,29 @@ void App::Start(){
     levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
     levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlup.png");
     levelUp.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
+
+    levelUpBack.reserve(6);
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlupBack.png");
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/marioBack.png");
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlupBack.png");
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_lvlupBack.png");
+    levelUpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
+
+    MarioRunLvl2.reserve(5);
+    MarioRunLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
+    for(int i=0;i<3;i++){
+        MarioRunLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_move"+std::to_string(i)+".png");
+    }
+    MarioRunLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1.png");
+
+    MarioRunBackLvl2.reserve(5);
+    MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
+    for(int i=0;i<3;i++){
+        MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_move"+std::to_string(i)+"Back.png");
+    }
+    MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
+
 
     m_CurrentState=State::UPDATE;
 

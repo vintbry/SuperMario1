@@ -46,10 +46,13 @@ void App::moveBackground(float position) {
     for(const auto & j : m_DeadQues){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
     }
+    for(const auto & j : m_YellowMushVec){
+        j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+    }
     m_Pillar->SetPosition({m_Pillar->GetPosition().x-position,m_Pillar->GetPosition().y});
     m_Flag->SetPosition({m_Flag->GetPosition().x-position,m_Flag->GetPosition().y});
     m_Coins->SetPosition({m_Coins->GetPosition().x-position,m_Coins->GetPosition().y});
-    m_YellowMush->SetPosition({m_YellowMush->GetPosition().x-position,m_YellowMush->GetPosition().y});
+
 }
 
 void App::callMario(){
@@ -69,6 +72,18 @@ void App::callMarioBackward(){
 float App::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
     float x = Object->GetPosition().x;
     float y = -1000.0f;
+
+    for(int i=0;i<m_KoopaVec.size();i++){
+        auto tiles = m_KoopaVec[i];
+        bool collideX1 = (x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool yPos = (Object->GetPosition().y > (tiles->GetPosition().y ));
+
+        if((collideX1 || collideX2) && yPos){
+            y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
+        }
+    }
+
     for(int i=0;i<m_MushVector.size();i++){
         auto tiles = m_MushVector[i];
         bool collideX1 = (x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -134,10 +149,7 @@ float App::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
             y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
         }
     }
-    LOG_DEBUG(y);
     y = y + m_Mario->GetScaledSize().y/2;
-    LOG_DEBUG("return search land");
-    LOG_DEBUG(y);
 
     return y;
 }
@@ -436,7 +448,6 @@ bool App::IsCollideUp(){
         bool collideX = collideX1 || collideX2;
 
         if(collideX && collideY){
-            LOG_DEBUG("msk sini");
             return true;
         }
 
@@ -450,7 +461,6 @@ bool App::IsCollideUp(){
         bool collideX = collideX1 || collideX2;
 
         if(collideX && collideY){
-            LOG_DEBUG("msk sini");
             return true;
         }
 
@@ -464,7 +474,6 @@ bool App::IsCollideUp(){
         bool collideX = collideX1 || collideX2;
 
         if(collideX && collideY){
-            LOG_DEBUG("msk sini");
             return true;
         }
 
@@ -527,14 +536,11 @@ void App::Update(){
 
         h=y0 - ( y_under);
         if(!m_Mario1->m_Jump && !std::get<0>(result) ){
-            LOG_INFO("MASUK FALL");
 
             t += 0.5;
             //jatuh tinggi
             if (m_Mario->GetPosition().y<y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))+15.0f){
                 m_Mario->SetPosition({m_Mario->GetPosition().x, y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))});
-                LOG_INFO("MASUKK FALL2");
-                LOG_INFO(t);
             }
 
             else {
@@ -548,20 +554,26 @@ void App::Update(){
         m_Mario1->SetVisible(true);
 
     }
-    LOG_DEBUG(searchLand(m_Mario));
     //press F to go to next 部分 of map
     if(Util::Input::IsKeyDown(Util::Keycode::F)){
         moveBackground(2400.0f);
 
         m_Mario->SetPosition({m_Mario->GetPosition().x,100.0f});
     }
-    if(Util::Input::IsKeyDown(Util::Keycode::RIGHT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd){
-        m_Mario->SetImage(MarioRun);
+    if(Util::Input::IsKeyDown(Util::Keycode::RIGHT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioRun);
+            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+        }
+        else if(m_Mario->level==1) {
+            m_Mario->SetImage(MarioRunLvl2);
+            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+        }
         m_Mario->SetInterval(100);
         m_Mario->SetPlaying();
-        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+
     }
-    if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd){
+    if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = true;
         m_EnterLeft = false;
         //when mario jump he can also go to the right
@@ -649,14 +661,22 @@ void App::Update(){
         //}
     }
 
-    if(Util::Input::IsKeyDown(Util::Keycode::LEFT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd){
-        m_Mario->SetImage(MarioRunBack);
+    if(Util::Input::IsKeyDown(Util::Keycode::LEFT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioRunBack);
+            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+        }
+        else if(m_Mario->level==1){
+            m_Mario->SetImage(MarioRunBackLvl2);
+            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+        }
+
         callMario();
-        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+
 
     }
 
-    if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd){
+    if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = false;
         m_EnterLeft = true;
         callMario();
@@ -698,7 +718,6 @@ void App::Update(){
     if(Util::Input::IsKeyUp(Util::Keycode::LEFT)){
         leftSlide = true;
         slideTime = 0.0f;
-        LOG_DEBUG("slide");
     }
     /*
     if(leftSlide && !IsCollideLeft(m_Mario)){
@@ -713,6 +732,27 @@ void App::Update(){
         }
     }
      */
+    //set image jump
+    if(Util::Input::IsKeyDown(Util::Keycode::UP)){
+        if(m_EnterRight){
+            //need to check
+            if(m_Mario->level == 0){
+                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+            }
+            else if (m_Mario->level == 1){
+                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+            }
+
+        }
+        else if(m_EnterLeft){
+            if(m_Mario->level == 0){
+                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+            }
+            else if (m_Mario->level == 1){
+                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+            }
+        }
+    }
 
     if(Util::Input::IsKeyUp(Util::Keycode::UP)){
         pressed2 = false;
@@ -788,24 +828,24 @@ void App::Update(){
 
     }
     //enemy moving
-    for(const auto & i : m_MushVector){
+    for(int i=0; i<m_MushVector.size();i++){
         //gravity if fall
-        if(i->GetPosition().x<=370.0f){
-            i->isActive = true;
+        if(m_MushVector[i]->GetPosition().x<=370.0f){
+            m_MushVector[i]->isActive = true;
         }
 
-        if(!std::get<0> (IsOnLand(i)) && i->isActive && !i->EnemyDie){
-            i->SetPosition({i->GetPosition().x-1.0f,i->GetPosition().y-5.0f});
+        if(!std::get<0> (IsOnLand(m_MushVector[i])) && m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x-1.0f,m_MushVector[i]->GetPosition().y-5.0f});
         }
-        else if(i->isActive && !i->EnemyDie){
+        else if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
             //need to adjust with another things
-            if(i->IsCollideLeft(m_Tube) ){
-                i->direction = 1.0f;
+            if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) ){
+                m_MushVector[i]->direction = 1.0f;
             }
-            else if(i->IsCollideRight(m_Tube)){
-                i->direction = -1.0f;
+            else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)){
+                m_MushVector[i]->direction = -1.0f;
             }
-            i->SetPosition({i->GetPosition().x+(2.0f* i->direction ),i->GetPosition().y});
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(2.0f* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
         }
     }
     for(const auto & i : m_KoopaVec){
@@ -815,7 +855,6 @@ void App::Update(){
         }
 
         if(!std::get<0> (IsOnLand(i)) && i->isActive && !i->EnemyDie){
-            LOG_DEBUG("msk koopa");
             i->SetPosition({i->GetPosition().x-1.0f,i->GetPosition().y-5.0f});
         }
         else if(i->isActive && !i->EnemyDie){
@@ -826,27 +865,28 @@ void App::Update(){
                 i->direction = -1.0f;
             }
             if(i->stepTimes==0) {
-                LOG_DEBUG("masuk Koo");
                 i->SetPosition({i->GetPosition().x + (2.0f * i->direction), i->GetPosition().y});
             }
         }
     }
     //yellow mush
-    if(!std::get<0> (IsOnLand(m_YellowMush)) && m_YellowMush->isActive && m_YellowMush->isActive2){
-        m_YellowMush->SetPosition({m_YellowMush->GetPosition().x+1.0f,m_YellowMush->GetPosition().y-5.0f});
-    }
-    else if (m_YellowMush->isActive2){
-        if(m_YellowMush->IsCollideLeft(m_Tube) ){
-            m_YellowMush->SetImage(GA_RESOURCE_DIR"/images/Mushroom.png");
-            m_YellowMush->direction = 1.0f;
+    for (const auto & i :m_YellowMushVec){
+        if(!std::get<0> (IsOnLand(i)) && i->isActive && i->isActive2 && i->GetVisibility()){
+            i->SetPosition({i->GetPosition().x+1.0f,i->GetPosition().y-5.0f});
         }
-        else if(m_YellowMush->IsCollideRight(m_Tube)){
-            LOG_DEBUG("Yellow right");
-            m_YellowMush->SetImage(GA_RESOURCE_DIR"/images/Mushroom_Back.png");
-            m_YellowMush->direction = -1.0f;
+        else if (i->isActive2){
+            if(i->IsCollideLeft(m_Tube) ){
+                i->SetImage(GA_RESOURCE_DIR"/images/Mushroom.png");
+                i->direction = 1.0f;
+            }
+            else if(i->IsCollideRight(m_Tube)){
+                i->SetImage(GA_RESOURCE_DIR"/images/Mushroom_Back.png");
+                i->direction = -1.0f;
+            }
+            i->SetPosition({i->GetPosition().x+(3.0f* i->direction ),i->GetPosition().y});
         }
-        m_YellowMush->SetPosition({m_YellowMush->GetPosition().x+(3.0f* m_YellowMush->direction ),m_YellowMush->GetPosition().y});
     }
+
 
 
     auto stepOnMush = m_Mario->IsStepOn(m_MushVector);
@@ -882,6 +922,11 @@ void App::Update(){
         //popup score need to fix!
         score = score +100;
         m_popup->SetVisible(true);
+        t=0;
+        powerjump =30;
+        y0 = searchLand(m_Mario)-10.0f;
+        m_Mario1->m_Jump = true;
+
         m_popup->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+50.0f});
 
         //m_Mario_stomp_audio->SetVolume(75);
@@ -915,6 +960,7 @@ void App::Update(){
             cnts= 0.0f;
         }
         else{
+            LOG_DEBUG("change mario step to false");
             m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,m_MushVector[index]->GetPosition().y-2000});
             m_Mario->MarioStep = false;
         }
@@ -947,9 +993,14 @@ void App::Update(){
             i->SetPosition({i->GetPosition().x-2.0f,i->GetPosition().y+2.0f});
         }
     }
-
+    /*
+    LOG_DEBUG("Mario collide koopa");
+    LOG_DEBUG(m_Mario->IsCollideRight(m_KoopaVec));
+    LOG_DEBUG(m_Mario->MarioStep);
+     */
     //if mario collide enemy
     if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector) || m_Mario->IsCollideRight(m_KoopaVec) || m_Mario->IsCollideLeft(m_KoopaVec)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
+        LOG_DEBUG("collide enemy");
         //m_Mario_dead_audio->SetVolume(50);
         m_Mario_dead_audio->SetVolume(0);
         m_Mario_dead_audio->Play();
@@ -958,7 +1009,9 @@ void App::Update(){
         m_BGMusic->Pause();
 
     }
+    //if die
     if(m_Mario->MarioDie){
+        LOG_DEBUG("mario masuk die");
         m_popup->SetVisible(false);
         unsigned long now = Util::Time::GetElapsedTimeMs();
         m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
@@ -995,7 +1048,7 @@ void App::Update(){
         m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
     }
-    else if(std::get<0>(headOnQues) && !m_Coins->isActive  ){
+    else if(std::get<0>(headOnQues) && (!m_Coins->isActive) ){
         m_Mario->MarioHeadQues = true;
         m_MarioHeadTime2 = Util::Time::GetElapsedTimeMs();
         indexTiles2 = std::get<1>(headOnQues);
@@ -1014,10 +1067,26 @@ void App::Update(){
         if(m_QuesVector[indexTiles2]->isActive) {
             //for other world should be 調整
             if(indexTiles2 == 1 || indexTiles2 == 4 || indexTiles2 == 5 || indexTiles == 9){
-                m_YellowMush->isActive = true;
-                if(!m_DeadQues[indexTiles2]->GetVisibility()){
+                if(indexTiles2==1){
+                    indexMush = 0;
+                }
+                else if(indexTiles2 == 4 ){
+                    LOG_DEBUG("masuk indexTiles2");
+                    indexMush = 1;
+                }
+                else if(indexTiles2 == 5 ){
+                    indexMush = 2;
+                }
+                else if(indexTiles2 == 9 ){
+                    indexMush = 3;
+                }
+
+                if(!m_DeadQues[indexTiles2]->GetVisibility() && !m_YellowMushVec[indexMush]->isActive){
+                    m_MarioHeadTime_yelmush = Util::Time::GetElapsedTimeMs();
+                    m_YellowMushVec[indexMush]->isActive = true;
                     LOG_DEBUG("Msk brp kl bos");
-                    m_YellowMush->SetPosition(m_QuesVector[indexTiles2]->GetPosition());
+                    LOG_DEBUG(m_QuesVector[indexTiles2]->GetPosition().y);
+                    m_YellowMushVec[indexMush]->SetPosition(m_QuesVector[indexTiles2]->GetPosition());
                 }
 
             }
@@ -1033,33 +1102,54 @@ void App::Update(){
     }
 
     //mushroom for leveling up
-    if(m_YellowMush->isActive){
-        auto now5 = Util::Time::GetElapsedTimeMs();
-        m_YellowMush->SetVisible(true);
-        if(now5-m_MarioHeadTime2<=30){
-            m_YellowMush->SetPosition({m_YellowMush->GetPosition().x,m_YellowMush->GetPosition().y+8.0f});
+    for(const auto & i:m_YellowMushVec){
+        if(i->isActive){
+            auto now5 = Util::Time::GetElapsedTimeMs();
+            i->SetVisible(true);
+            if(now5-m_MarioHeadTime_yelmush<=60){
+                LOG_DEBUG("masuk yellow mush sini");
+                LOG_DEBUG(i->GetPosition().y);
+                i->SetVisible(false);
+                i->SetPosition({i->GetPosition().x,i->GetPosition().y+8.0f});
+            }
+            else if(now5-m_MarioHeadTime_yelmush>60 && now5-m_MarioHeadTime_yelmush<=500){
+                i->SetVisible(true);
+                i->SetPosition({i->GetPosition().x,i->GetPosition().y+2.0f});
+            }
+            else if(now5-m_MarioHeadTime_yelmush>500){
+                i->isActive2 = true;
+
+            }
         }
-        else if(now5-m_MarioHeadTime2>30 && now5-m_MarioHeadTime2<=400){
-            m_YellowMush->SetPosition({m_YellowMush->GetPosition().x,m_YellowMush->GetPosition().y+2.0f});
-        }
-        else if(now5-m_MarioHeadTime2>400){
-            m_YellowMush->isActive2 = true;
+        //leveling up!
+        if(i->isActive2){
+
+            if(i->IsCollideRight(m_Mario) || i->IsCollideLeft(m_Mario)){
+                m_Mario->MarioLevelingUp = true;
+                i->SetPosition({-1000.0f,-1000.0f});
+                m_Mario->level+=1;
+
+                if(m_EnterRight){
+                    m_Mario->SetImage(levelUp);
+                }
+                else if(m_EnterLeft){
+                    m_Mario->SetImage(levelUpBack);
+                }
+                m_Mario->SetPlaying();
+                m_Mario->SetInterval(75);
+
+
+            }
 
         }
     }
 
-    //leveling up
-    if(m_Mario->IsCollideRight(m_YellowMush) || m_Mario->IsCollideLeft(m_YellowMush)){
-        m_YellowMush->SetPosition({-1000.0,-1000.0f});
-        m_Mario->level+=1;
-
-        m_Mario->SetImage(levelUp);
-        m_Mario->SetPlaying();
-        m_Mario->SetInterval(75);
-
-        LOG_DEBUG("masuk levelup");
-        LOG_DEBUG(m_Mario->level);
+    //if mario leveling up
+    if(m_Mario->MarioLevelingUp && !m_Mario->IsPlaying()){
+        LOG_DEBUG("leveling up not");
+        m_Mario->MarioLevelingUp = false;
     }
+
 
     LOG_DEBUG("yellow mush Pos");
     LOG_DEBUG(m_YellowMush->GetPosition().x);
@@ -1124,8 +1214,6 @@ void App::Update(){
 
     //if touch pillar
     if(m_Mario->IsCollideRight(m_Pillar)){
-        LOG_DEBUG("pillar");
-        LOG_DEBUG(m_Pillar->GetPosition().x - m_Pillar->GetScaledSize().x/2);
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
