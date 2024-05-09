@@ -2,7 +2,7 @@
 // Created by Felicia Rulita on 2024/3/12.
 //
 
-#include "App.h"
+#include "FirstWorldOne.h"
 
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
@@ -11,13 +11,13 @@
 #include <cmath>
 #include <algorithm>
 
-glm::vec2 App::jumpFormula(float xvalue, float x0, float y0, float v0, float t) {
+glm::vec2 FirstWorldOne::jumpFormula(float xvalue, float x0, float y0, float v0, float t) {
     float y = y0 + (v0 * t) + (0.5 * 10.0f * t * t);
     float x = x0 + xvalue;
 }
 
-void App::moveBackground(float position) {
-    m_Bg->SetPosition({m_Bg->GetPosition().x-position,m_Bg->GetPosition().y});
+void FirstWorldOne::moveBackground(float position) {
+    m_Bg2->SetPosition({m_Bg2->GetPosition().x-position,m_Bg2->GetPosition().y});
 
     for(const auto & i : m_Land){
         i->SetPosition({i->GetPosition().x-position,i->GetPosition().y});
@@ -55,21 +55,15 @@ void App::moveBackground(float position) {
 
 }
 
-void App::callMario(){
+void FirstWorldOne::callMario(){
     m_Mario->SetVisible(true);
     m_Mario->SetLooping(false);
     m_Mario->SetInterval(100);
     m_Mario->SetPlaying();
 }
 
-void App::callMarioBackward(){
-
-    m_Mario->SetLooping(false);
-    m_Mario->SetPlaying();
-}
-
 //make function for searching is on land from mario's x
-float App::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
+float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
     float x = Object->GetPosition().x;
     float y = -1000.0f;
 
@@ -154,7 +148,7 @@ float App::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
     return y;
 }
 
-std::tuple<bool,glm::vec2 > App::IsOnLand(const std::shared_ptr<AnimatedCharacter>& Object){
+std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Land){
         bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -227,7 +221,7 @@ std::tuple<bool,glm::vec2 > App::IsOnLand(const std::shared_ptr<AnimatedCharacte
     return {false,Object->GetPosition()};
 }
 
-std::tuple<bool,glm::vec2 > App::IsOnLand(const std::shared_ptr<Character>& Object){
+std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<Character>& Object){
     for(const auto& tiles : m_Land){
         bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -300,7 +294,7 @@ std::tuple<bool,glm::vec2 > App::IsOnLand(const std::shared_ptr<Character>& Obje
     return {false,Object->GetPosition()};
 }
 
-bool App::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
+bool FirstWorldOne::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -369,7 +363,7 @@ bool App::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
     return false;
 };
 
-bool App::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
+bool FirstWorldOne::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -438,7 +432,7 @@ bool App::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
     return false;
 };
 
-bool App::IsCollideUp(){
+bool FirstWorldOne::IsCollideUp(){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX1 = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
@@ -481,7 +475,8 @@ bool App::IsCollideUp(){
     return false;
 }
 
-void App::Update(){
+
+void FirstWorldOne::Update(App *app){
     timenow = Util::Time::GetElapsedTimeMs();
 
     if(m_Mario->GetPosition().y<-200.0f){
@@ -622,6 +617,7 @@ void App::Update(){
         slideTime = 0.0f;
         LOG_DEBUG("slide");
          */
+
     }
     if(rightSlide && !IsCollideRight(m_Mario) && !m_Mario->MarioDie && !m_Mario->MarioStep){
         /* //might no need
@@ -657,8 +653,9 @@ void App::Update(){
             }
             slideTime += 1;
         }
-         */
+
         //}
+         */
     }
 
     if(Util::Input::IsKeyDown(Util::Keycode::LEFT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
@@ -731,7 +728,7 @@ void App::Update(){
             slideTime += 1.0f;
         }
     }
-     */
+    */
     //set image jump
     if(Util::Input::IsKeyDown(Util::Keycode::UP)){
         if(m_EnterRight){
@@ -763,7 +760,7 @@ void App::Update(){
     }
 
     cnts= cnt/2.0;
-    //*/
+    //
     if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2){
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
@@ -785,10 +782,7 @@ void App::Update(){
 
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
-        m_CurrentState = State::END;
 
-    }
 
     //if(!m_Mario1->m_HasEnded && m_Mario1->m_Jump ){
     if( m_Mario1->m_Jump ){
@@ -997,7 +991,7 @@ void App::Update(){
     LOG_DEBUG("Mario collide koopa");
     LOG_DEBUG(m_Mario->IsCollideRight(m_KoopaVec));
     LOG_DEBUG(m_Mario->MarioStep);
-     */
+    */
     //if mario collide enemy
     if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector) || m_Mario->IsCollideRight(m_KoopaVec) || m_Mario->IsCollideLeft(m_KoopaVec)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
         LOG_DEBUG("collide enemy");
@@ -1007,31 +1001,6 @@ void App::Update(){
         m_MarioDiesTime = Util::Time::GetElapsedTimeMs();
         m_Mario->MarioDie = true;
         m_BGMusic->Pause();
-
-    }
-    //if die
-    if(m_Mario->MarioDie){
-        LOG_DEBUG("mario masuk die");
-        m_popup->SetVisible(false);
-        unsigned long now = Util::Time::GetElapsedTimeMs();
-        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
-
-        m_Mario1->SetVisible(true);
-        m_Mario->SetVisible(false);
-        if(now-m_MarioDiesTime<=300){
-            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+5.0f});
-            m_Mario1->SetPosition(m_Mario->GetPosition());
-            //m_MarioBack->SetPosition(m_Mario->GetPosition());
-        }
-        else{
-            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
-            m_Mario1->SetPosition(m_Mario->GetPosition());
-
-            if(m_Mario->GetPosition().y<-400.0f){
-                //Restart();
-            }
-
-        }
 
     }
 
@@ -1282,15 +1251,50 @@ void App::Update(){
 
     //mario levelup
 
-    //*/
+    //
     LOG_INFO("Mario POs");
     LOG_INFO(m_Mario->GetPosition().x);
     LOG_INFO(m_Mario->GetPosition().y);
 
+    //exit
+    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
+        SetState(State::END);
+
+    }
+    //restart
+    if(Util::Input::IsKeyPressed(Util::Keycode::R)){
+        Restart(app);
+    }
+
+    //if die
+    else if(m_Mario->MarioDie){
+        LOG_DEBUG("mario masuk die");
+        m_popup->SetVisible(false);
+        unsigned long now = Util::Time::GetElapsedTimeMs();
+        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
+
+        m_Mario1->SetVisible(true);
+        m_Mario->SetVisible(false);
+        if(now-m_MarioDiesTime<=300){
+            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+5.0f});
+            m_Mario1->SetPosition(m_Mario->GetPosition());
+            //m_MarioBack->SetPosition(m_Mario->GetPosition());
+        }
+        else{
+            m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
+            m_Mario1->SetPosition(m_Mario->GetPosition());
+
+            if(m_Mario->GetPosition().y<-400.0f){
+                Restart(app);
+            }
+
+        }
+
+    }
 
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
 
-    m_Root.Update();
+    app->m_Root.Update();
 
 
 }

@@ -3,7 +3,7 @@
 //
 
 #include "AnimatedCharacter.h"
-#include "App.h"
+#include "FirstWorldOne.h"
 #include "Character.h"
 #include "Util/SFX.hpp"
 #include "Util/Logger.hpp"
@@ -11,8 +11,11 @@
 #include "PhaseResourcesManager.h"
 
 
-void App::Start(){
+void FirstWorldOne::Start(App *app){
     LOG_TRACE("Start!");
+    m_Bg = std::make_shared<BackgroundImage>(GA_RESOURCE_DIR"/Background/bg1.png");
+    app->m_Root.AddChild(m_Bg);
+
     m_Mario_dead_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/mario-death.wav");
     m_Mario_jump_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/jump-small.wav");
     m_Mario_coin_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/coin.wav");
@@ -27,37 +30,37 @@ void App::Start(){
     m_title->SetZIndex(100);
     m_title ->SetVisible(true);
     m_title->SetPosition({0.0f,230.0f});
-    m_Root.AddChild(m_title);
+    app->m_Root.AddChild(m_title);
 
     m_score =std::make_shared<TEXTS>( "0") ;
     m_score->SetZIndex(100);
     m_score ->SetVisible(true);
     m_score->SetPosition({-250.0f,200.0f});
-    m_Root.AddChild(m_score);
+    app->m_Root.AddChild(m_score);
 
     m_coin =std::make_shared<TEXTS>( "0") ;
     m_coin->SetZIndex(100);
     m_coin ->SetVisible(true);
     m_coin->SetPosition({-80.0f,200.0f});
-    m_Root.AddChild(m_coin);
+    app->m_Root.AddChild(m_coin);
 
     m_world =std::make_shared<TEXTS>( "1-1") ;
     m_world->SetZIndex(100);
     m_world ->SetVisible(true);
     m_world->SetPosition({110.0f,200.0f});
-    m_Root.AddChild(m_world);
+    app->m_Root.AddChild(m_world);
 
     m_time =std::make_shared<TEXTS>( "0") ;
-    m_time->SetZIndex(100)
-            ;   m_time ->SetVisible(true);
+    m_time->SetZIndex(100);
+    m_time ->SetVisible(true);
     m_time->SetPosition({270.0f,200.0f});
-    m_Root.AddChild(m_time);
+    app->m_Root.AddChild(m_time);
 
     m_popup =std::make_shared<TEXTS>( "100") ;
     m_popup->SetZIndex(100);
     m_popup ->SetVisible(false);
     m_popup->SetPosition({0.0f,0.0f});
-    m_Root.AddChild(m_popup);
+    app->m_Root.AddChild(m_popup);
 
     //BGM
     m_BGMusic = std::make_unique<Util::BGM>(GA_RESOURCE_DIR"/Audio/BGMusic.mp3");
@@ -66,12 +69,12 @@ void App::Start(){
     m_BGMusic->Play();
 
     //Bg
-    m_Bg = std::make_shared<Character>(GA_RESOURCE_DIR"/Background/bg2.png");
-    m_Bg->SetZIndex(2);
-    m_Bg->SetVisible(true);
-    m_Bg->SetPosition({3235.0f,-20.0f});
+    m_Bg2 = std::make_shared<Character>(GA_RESOURCE_DIR"/Background/bg2.png");
+    m_Bg2->SetZIndex(2);
+    m_Bg2->SetVisible(true);
+    m_Bg2->SetPosition({3235.0f,-20.0f});
 
-    m_Root.AddChild(m_Bg);
+    app->m_Root.AddChild(m_Bg2);
 
 
     //Mario Jump
@@ -81,7 +84,7 @@ void App::Start(){
 
    // m_audio_mario_small_jump.LoadMedia(GA_RESOURCE_DIR"/Audio/small_mario_jump.wav");
 
-    m_Root.AddChild(m_Mario1);
+    app->m_Root.AddChild(m_Mario1);
 
     //Mario run forward
     MarioRun.reserve(5);
@@ -95,7 +98,7 @@ void App::Start(){
     m_Mario->SetInterval(100);
     m_Mario->SetZIndex(50);
     m_Mario->SetVisible(true);
-    m_Root.AddChild(m_Mario);
+    app->m_Root.AddChild(m_Mario);
 
     //Mario run backward
     MarioRunBack.reserve(5);
@@ -109,7 +112,7 @@ void App::Start(){
     m_MarioBack->SetInterval(100);
     m_MarioBack->SetZIndex(50);
     m_MarioBack->SetVisible(false);
-    m_Root.AddChild(m_MarioBack);
+    app->m_Root.AddChild(m_MarioBack);
 
     //mario pillar
     MarioPillar.reserve(2);
@@ -122,7 +125,11 @@ void App::Start(){
     m_MarioPillar->SetVisible(false);
     m_MarioPillar->SetLooping(true);
     m_MarioPillar->SetPlaying();
-    m_Root.AddChild(m_MarioPillar);
+    app->m_Root.AddChild(m_MarioPillar);
+
+    //mario shrink
+    MarioShrink.reserve(52);
+
 
     //mushroom
     Mushroom1.reserve(2);
@@ -163,7 +170,7 @@ void App::Start(){
 
 
     for(int i=0;i<17;i++){
-        m_Root.AddChild(m_MushVector[i]);
+        app->m_Root.AddChild(m_MushVector[i]);
     }
 
     //koopa
@@ -184,7 +191,7 @@ void App::Start(){
 
     m_KoopaVec[0]->SetPosition({3507.0f,-169.0f});
     for(int i=0;i<1;i++){
-        m_Root.AddChild(m_KoopaVec[i]);
+        app->m_Root.AddChild(m_KoopaVec[i]);
     }
 
 
@@ -193,7 +200,7 @@ void App::Start(){
         m_Land.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tilesLong"+std::to_string(i)+".png"));
         m_Land[i]->SetZIndex(5);
         m_Land[i]->SetVisible(true);
-        m_Root.AddChild(m_Land[i]);
+        app->m_Root.AddChild(m_Land[i]);
     }
     m_Land[0]->SetPosition({740.0f,-220.0f});
     m_Land[1]->SetPosition({2150.0f,-220.0f});
@@ -240,7 +247,7 @@ void App::Start(){
     m_QuesVector[13]->SetPosition({5139.0f,-82.0f});
 
     for(int i=0;i<14;i++){
-        m_Root.AddChild(m_QuesVector[i]);
+        app->m_Root.AddChild(m_QuesVector[i]);
     }
 
     //dead brick
@@ -248,7 +255,7 @@ void App::Start(){
         m_DeadQues.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/deadQues.png"));
         m_DeadQues[i]->SetZIndex(5);
         m_DeadQues[i]->SetVisible(false);
-        m_Root.AddChild(m_DeadQues[i]);
+        app->m_Root.AddChild(m_DeadQues[i]);
     }
 
     //brick
@@ -256,7 +263,7 @@ void App::Start(){
         m_Brick.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/inAir1.png"));
         m_Brick[i]->SetZIndex(5);
         m_Brick[i]->SetVisible(true);
-        m_Root.AddChild(m_Brick[i]);
+        app->m_Root.AddChild(m_Brick[i]);
     }
     m_Brick[0]->SetPosition({291.0f,-82.0f});
     m_Brick[1]->SetPosition({355.0f,-82.0f});
@@ -294,7 +301,7 @@ void App::Start(){
     m_Brick[30]->SetVisible(false);
 
     for(int i = 0;i<31;i++){
-        m_Root.AddChild(m_Brick[i]);
+        app->m_Root.AddChild(m_Brick[i]);
     }
 
     //Tube
@@ -314,7 +321,7 @@ void App::Start(){
 
 
     for(int i=0;i<6;i++){
-        m_Root.AddChild(m_Tube[i]);
+        app->m_Root.AddChild(m_Tube[i]);
     }
 
     //wood
@@ -364,7 +371,7 @@ void App::Start(){
     m_Wood[25]->SetVisible(true);
 
     for(int i=0;i<26;i++){
-        m_Root.AddChild(m_Wood[i]);
+        app->m_Root.AddChild(m_Wood[i]);
     }
 
     //pillar and flag
@@ -372,13 +379,13 @@ void App::Start(){
     m_Pillar->SetZIndex(4);
     m_Pillar->SetVisible(true);
     m_Pillar->SetPosition({6035.0f,-6.0f});
-    m_Root.AddChild(m_Pillar);
+    app->m_Root.AddChild(m_Pillar);
 
     m_Flag = std::make_shared<Character>(GA_RESOURCE_DIR"/images/flag.png");
     m_Flag->SetZIndex(4);
     m_Flag->SetVisible(true);
     m_Flag->SetPosition({6019.0f,110.0f});
-    m_Root.AddChild(m_Flag);
+    app->m_Root.AddChild(m_Flag);
 
     //castle
     for(int i = 0; i < 2; i++){
@@ -386,12 +393,13 @@ void App::Start(){
         m_Castle[i]->SetZIndex(100);
         m_Castle[i]->SetVisible(true);
         m_Castle[i]->SetPosition({6547.0f,-172.0f + (i*32.0f)});
-        m_Root.AddChild(m_Castle[i]);
+        app->m_Root.AddChild(m_Castle[i]);
     }
 
-
+    /*
     m_PRM = std::make_shared<PhaseResourcesManager>();
-    m_Root.AddChildren(m_PRM->GetChildren());
+    app->m_Root.AddChildren(m_PRM->GetChildren());
+     */
 
     //Coins
     Coins.reserve(3);
@@ -406,7 +414,7 @@ void App::Start(){
     m_Coins->SetLooping(true);
     m_Coins->SetPlaying();
     m_Coins->SetPosition({-1000.0f,-1000.0f});
-    m_Root.AddChild(m_Coins);
+    app->m_Root.AddChild(m_Coins);
 
     //level up mush
     for(int i=0;i<4;i++){
@@ -420,7 +428,7 @@ void App::Start(){
     }
 
     for(int i=0;i<4;i++){
-        m_Root.AddChild(m_YellowMushVec[i]);
+        app->m_Root.AddChild(m_YellowMushVec[i]);
     }
 
 
@@ -455,6 +463,6 @@ void App::Start(){
     MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
 
 
-    m_CurrentState=State::UPDATE;
+    SetState(State::UPDATE);
 
 }

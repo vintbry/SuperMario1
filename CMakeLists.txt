@@ -19,8 +19,6 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/AppStart.cpp
         src/AppUpdate.cpp
         src/AppEnd.cpp
-        include/PhaseResourcesManager.h
-        src/PhaseManager.cpp
         include/MarioJump.h
         src/MarioJump.cpp
         include/QuestionTiles.h
@@ -35,6 +33,15 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/Koopa.cpp
         include/YellowMush.h
         src/YellowMush.cpp
+        src/App.cpp
+        include/MenuPhase.h
+        src/MenuPhase.cpp
+        include/Phase.h
+        src/Phase.cpp
+        include/BeginningPhase.h
+        src/BeginningPhase.cpp
+        include/FirstWorldOne.h
+        src/FirstWorldOne.cpp
 )
 
 if(MSVC)

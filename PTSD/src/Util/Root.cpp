@@ -17,6 +17,10 @@ void Root::RemoveChild(std::shared_ptr<GameObject> child) {
                      m_Children.end());
 }
 
+void Root::RemoveAllChildren() {
+    m_Children.clear();
+}
+
 void Root::AddChildren(
     const std::vector<std::shared_ptr<GameObject>> &children) {
     m_Children.reserve(m_Children.size() + children.size());
