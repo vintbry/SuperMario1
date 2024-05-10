@@ -2,6 +2,7 @@
 // Created by Felicia Rulita on 2024/5/9.
 //
 #include "FirstWorldOne.h"
+#include <iostream>
 
 FirstWorldOne::FirstWorldOne() {
     m_CurrentState = State::START;
@@ -13,6 +14,7 @@ void FirstWorldOne::End(App *app) {
 }
 
 void FirstWorldOne::Restart(App *app) {
+    std::cout<<"msk restart"<<std::endl;
     app->m_Root.RemoveAllChildren();
 
     pressed1 =  false ;
@@ -24,6 +26,8 @@ void FirstWorldOne::Restart(App *app) {
 
     m_BGMusic = nullptr;
 
+    std::cout<<"all correct1"<<std::endl;
+
     m_Mario_jump_audio = nullptr;
     m_Mario_dead_audio = nullptr;
     m_Mario_coin_audio = nullptr;
@@ -33,6 +37,8 @@ void FirstWorldOne::Restart(App *app) {
     m_Mario_flagpole_audio = nullptr;
 
     m_title = nullptr;
+
+    std::cout<<"all correct2"<<std::endl;
 
     m_score = nullptr;
     m_coin = nullptr;
@@ -47,9 +53,7 @@ void FirstWorldOne::Restart(App *app) {
     m_Pillar = nullptr;
     m_Flag = nullptr;
 
-    m_YellowMush = nullptr;
 
-    m_YellowMushVec.clear();
 
     m_DeadQues.clear();
     m_Land.clear();
@@ -57,6 +61,10 @@ void FirstWorldOne::Restart(App *app) {
     m_Tube.clear();
     m_Wood.clear();
     m_Castle.clear();
+
+    std::cout<<"all correct3"<<std::endl;
+
+    m_YellowMushVec.clear();
 
     m_KoopaVec.clear();
 
@@ -72,9 +80,13 @@ void FirstWorldOne::Restart(App *app) {
 
     m_Mushroom = nullptr;
 
+    m_YellowMush = nullptr;
+
     m_Coins = nullptr;
 
     m_Koopa = nullptr;
+
+    std::cout<<"all correct4"<<std::endl;
 
     position = {0.0f,0.0f};
     positionLand = {0.0f,0.0f};
@@ -86,6 +98,7 @@ void FirstWorldOne::Restart(App *app) {
     MarioRunBack.clear();
     MarioRunBackLvl2.clear();
     MarioPillar.clear();
+    MarioShrink.clear();
     Mushroom1.clear();
     QuestionMark.clear();
     Coins.clear();
@@ -94,12 +107,21 @@ void FirstWorldOne::Restart(App *app) {
     levelUpBack.clear();
     MarioBigFront.clear();
     MarioBigBack.clear();
+    MarioJump.clear();
+    MarioJumpBack.clear();
+    MarioJumpLvl2.clear();
+    MarioJumpBackLvl2.clear();
+    YellowMushroom.clear();
+    MarioPillarEnd.clear();
+
 
     index=0;
     index2=0;
     indexTiles = 0;
     indexTiles2 = 0;
     indexMush = 0;
+    countBlinkTime = 0;
+    BlinkTime = 0;
 
     slideTime=0;
     SpeedInAir=0;
@@ -121,6 +143,7 @@ void FirstWorldOne::Restart(App *app) {
     m_MarioHeadTime = 0;
     m_MarioHeadTime2 = 0;
     m_MarioHeadTime_yelmush = 0;
+    m_MarioShrinkTime = 0;
 
     m_EnterDown = false;
     m_EnterRight = true;
@@ -133,6 +156,8 @@ void FirstWorldOne::Restart(App *app) {
     rightSlide = false;
     pressUp = false;
 
+    std::cout<<"all correct5"<<std::endl;
 
     SetState(State::START);
+    std::cout<<"start state"<<std::endl;
 }

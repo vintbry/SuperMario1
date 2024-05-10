@@ -30,7 +30,9 @@ void App::ChangePhase(Phases phase) {
 
 void App::Update(){
     if(m_CurrentPhase){
+        std::cout<<"starting"<<std::endl;
         if(m_CurrentPhase->GetCurrentState() == Phase::State::START ) {
+            std::cout<<"starting"<<std::endl;
             m_CurrentPhase->Start(this);
         }
         else if(m_CurrentPhase->GetCurrentState() == Phase::State::UPDATE){
