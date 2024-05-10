@@ -45,6 +45,8 @@ public:
     }
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
 
+    std::vector<std::string> GetAnimationPath();
+
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
     void SetImage(const std::string& ImagePath);
@@ -134,6 +136,7 @@ private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
 
     std::string m_ImagePath;
+    std::vector<std::string> m_AnimationPath;
 };
 
 #endif //SUPERMARIO1_ANIMATEDCHARACTER_H

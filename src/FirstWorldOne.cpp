@@ -40,7 +40,6 @@ void FirstWorldOne::Restart(App *app) {
     m_time = nullptr;
     m_popup = nullptr;
 
-    m_Mario1 = nullptr;
 
     m_Bg = nullptr;
 
