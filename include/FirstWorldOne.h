@@ -118,6 +118,8 @@ private:
     int indexTiles = 0;
     int indexTiles2 = 0;
     int indexMush = 0;
+    int countBlinkTime = 0;
+    int BlinkTime = 0;
 
     float slideTime=0;
     float SpeedInAir=0;
@@ -138,6 +140,7 @@ private:
     unsigned long m_MarioHeadTime = 0;
     unsigned long m_MarioHeadTime2 = 0;
     unsigned long m_MarioHeadTime_yelmush = 0;
+    unsigned long m_MarioShrinkTime = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;

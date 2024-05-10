@@ -14,9 +14,6 @@ int main(int, char**) {
                 context->SetExit(true);
                 break;
             }
-            if(app.m_CurrentPhase->GetCurrentState() ==  Phase::State::START){
-                std::cout<<"masuk start";
-            }
 
             app.Update();
             context->Update();

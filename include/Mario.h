@@ -166,10 +166,6 @@ public:
         bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2);
         bool collideY2 = (GetPosition().y - GetScaledSize().y/2<Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2;
 
-        LOG_DEBUG("collideright");
-        LOG_DEBUG(GetPosition().x + GetScaledSize().x/2);
-        LOG_DEBUG(Object->GetPosition().x-Object->GetScaledSize().x/2);
-
         bool collideY3 = (Object->GetPosition().y + Object->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2)&&(Object->GetPosition().y+Object->GetScaledSize().y/2>=GetPosition().y+GetScaledSize().y/2);
         bool collideY4 = (Object->GetPosition().y - Object->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (Object->GetPosition().y - Object->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);
 
@@ -183,6 +179,10 @@ public:
         return false;
     }
 
+    void MarioShrink(std::vector<std::string>);
+
+    int MarioBlinking(int time);
+
     bool MarioDie = false;
     bool MarioStep = false;
     bool MarioHeadBrick = false;
@@ -191,6 +191,18 @@ public:
     bool MarioEnd = false;
     bool MarioStepKoopa = false;
     bool MarioLevelingUp = false;
+    bool MarioLevelingDown = false;
+
+    void Update(unsigned long BaseTime);
+
+    void Jump(unsigned long BaseTime){
+        m_Jump=true;
+        Update(BaseTime);
+    }
+
+    bool m_Jump=false;
+    bool m_HasEnded=true;
+
 
     int level = 0;
 

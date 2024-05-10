@@ -129,7 +129,15 @@ void FirstWorldOne::Start(App *app){
 
     //mario shrink
     MarioShrink.reserve(52);
-
+    for(int i=0;i<8;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/MarioShrink1.png");
+    }
+    for(int i=0;i<8;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/MarioShrink2.png");
+    }
+    for(int i=0;i<36;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
+    }
 
     //mushroom
     Mushroom1.reserve(2);
