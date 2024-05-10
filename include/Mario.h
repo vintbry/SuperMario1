@@ -101,7 +101,7 @@ public:
     bool IsCollideRight(std::vector<std::shared_ptr<Character>> Object ){
         for(int i=0;i<Object.size();i++){
             auto tiles = Object[i];
-            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>tiles->GetPosition().x-tiles->GetScaledSize().x/2-2.0f)&&(GetPosition().x+GetScaledSize().x/2<tiles->GetPosition().x+tiles->GetScaledSize().x/2);
             bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
             bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
@@ -109,6 +109,13 @@ public:
             bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);
 
             bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
+
+            LOG_DEBUG("collide tube");
+            LOG_DEBUG(collideX);
+            LOG_DEBUG(collideY1);
+            LOG_DEBUG(collideY2);
+            LOG_DEBUG(collideY3);
+            LOG_DEBUG(collideY4);
 
             if(collideX && collideY){
                 return true;

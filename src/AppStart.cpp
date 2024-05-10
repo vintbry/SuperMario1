@@ -328,7 +328,7 @@ void FirstWorldOne::Start(App *app){
     for(int i=0;i<6;i++){
         m_Tube.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tube.png"));
         m_Tube[i]->SetZIndex(4);
-        m_Tube[i]->SetVisible(true);
+        m_Tube[i]->SetVisible(false);
 
     }
     m_Tube[0]->SetPosition({565.0f,-380.0f});
