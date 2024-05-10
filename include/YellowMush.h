@@ -15,9 +15,9 @@
 #include "AnimatedCharacter.h"
 #include "Character.h"
 
-class YellowMush : public Character{
+class YellowMush : public AnimatedCharacter{
 public:
-    explicit YellowMush(const std::string& ImagePath);
+    explicit YellowMush(const std::vector<std::string>& AnimationPaths);
 
     template<typename T>
     bool IsCollideRight(std::vector<std::shared_ptr<T>> Object ){
@@ -88,6 +88,8 @@ public:
     }
 
     float direction = 1.0f;
+    float y_start_Yellow_Mushroom = 0.0f;
+    float time_Yellow_Mushroom =0.0f;
 
     bool isActive = false;
     bool isActive2 = false;

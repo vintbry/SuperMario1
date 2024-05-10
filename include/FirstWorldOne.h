@@ -18,7 +18,10 @@ class FirstWorldOne final : public Phase{
 public:
     explicit FirstWorldOne();
 
+
     ~FirstWorldOne() = default;
+
+    float gravity (float y0,float powerjump,std::shared_ptr<AnimatedCharacter>);
 
     void Start(App *app) override;
 
@@ -64,9 +67,10 @@ private:
     std::shared_ptr<Character> m_Pillar;
     std::shared_ptr<Character> m_Flag;
 
-    std::shared_ptr<YellowMush> m_YellowMush;
 
-    std::vector<std::shared_ptr<YellowMush>> m_YellowMushVec;
+
+
+
 
     std::vector<std::shared_ptr<Character>> m_DeadQues;
     std::vector<std::shared_ptr<Character>> m_Land;
@@ -74,6 +78,8 @@ private:
     std::vector<std::shared_ptr<Character>> m_Tube;
     std::vector<std::shared_ptr<Character>> m_Wood;
     std::vector<std::shared_ptr<Character>> m_Castle;
+
+    std::vector<std::shared_ptr<YellowMush>> m_YellowMushVec;
 
     std::vector<std::shared_ptr<Koopa>> m_KoopaVec;
 
@@ -88,6 +94,8 @@ private:
     std::shared_ptr<Mario> m_MarioBack;
 
     std::shared_ptr<Mushroom> m_Mushroom;
+
+    std::shared_ptr<YellowMush> m_YellowMush;
 
     std::shared_ptr<AnimatedCharacter> m_Coins;
 
@@ -112,10 +120,14 @@ private:
     std::vector<std::string> levelUpBack;
     std::vector<std::string> MarioBigFront;
     std::vector<std::string> MarioBigBack;
+<<<<<<< HEAD
     std::vector<std::string> MarioJump;
     std::vector<std::string> MarioJumpBack;
     std::vector<std::string> MarioJumpLvl2;
     std::vector<std::string> MarioJumpBackLvl2;
+=======
+    std::vector<std::string> YellowMushroom;
+>>>>>>> origin/main
 
     int index=0;
     int index2=0;
@@ -167,7 +179,6 @@ private:
 
     std::tuple<bool,glm::vec2> IsOnLand(const std::shared_ptr<Character>&);
 
-    glm::vec2 jumpFormula(float xvalue, float x0, float y0, float v0, float t);
 
     bool IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object);
 

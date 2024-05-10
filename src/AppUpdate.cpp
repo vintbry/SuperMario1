@@ -1,9 +1,8 @@
 //
 // Created by Felicia Rulita on 2024/3/12.
-//
 
 #include "FirstWorldOne.h"
-
+#include "Util/GameObject.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
@@ -11,10 +10,22 @@
 #include <cmath>
 #include <algorithm>
 
-glm::vec2 FirstWorldOne::jumpFormula(float xvalue, float x0, float y0, float v0, float t) {
-    float y = y0 + (v0 * t) + (0.5 * 10.0f * t * t);
-    float x = x0 + xvalue;
+float FirstWorldOne::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
+    float height = y_start - searchLand(Object);
+    float y_exact =y_start-((10.0f/2)*((sqrt((2*height)/10.0))*(sqrt((2*height)/10.0))));
+
+    if (Object->GetPosition().y<y_exact+25.0f){
+        return y_exact;
+
+    }
+
+    else {
+        return y_start - ((10.0f / 2) * (time_gravity * time_gravity));
+    }
+
 }
+
+
 
 void FirstWorldOne::moveBackground(float position) {
     m_Bg2->SetPosition({m_Bg2->GetPosition().x-position,m_Bg2->GetPosition().y});
@@ -857,9 +868,17 @@ void FirstWorldOne::Update(App *app){
         }
 
         if(!std::get<0> (IsOnLand(m_MushVector[i])) && m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
-            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x-1.0f,m_MushVector[i]->GetPosition().y-5.0f});
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
+            m_MushVector[i]->time_goombas+=0.3;
         }
         else if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
+            //reset time goombas to 0
+            m_MushVector[i]->time_goombas=0.0f;
+            //reset the y start of the goombas to the y now on land
+            m_MushVector[i]->y_start_goombas = m_MushVector[i]->GetPosition().y;
+            //need to adjust with another things
+            //t_goombas=0.0f;
+
             //need to adjust with another things
             if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) ){
                 m_MushVector[i]->direction = 1.0f;
@@ -894,9 +913,13 @@ void FirstWorldOne::Update(App *app){
     //yellow mush
     for (const auto & i :m_YellowMushVec){
         if(!std::get<0> (IsOnLand(i)) && i->isActive && i->isActive2 && i->GetVisibility()){
-            i->SetPosition({i->GetPosition().x+1.0f,i->GetPosition().y-5.0f});
+            i->SetPosition({i->GetPosition().x+1.0f,gravity(i->y_start_Yellow_Mushroom,i->time_Yellow_Mushroom,i)});
+            i->time_Yellow_Mushroom+=0.3f;
         }
         else if (i->isActive2){
+            i->y_start_Yellow_Mushroom = i->GetPosition().y;
+            i->time_Yellow_Mushroom =0.0f;
+
             if(i->IsCollideLeft(m_Tube) ){
                 i->SetImage(GA_RESOURCE_DIR"/images/Mushroom.png");
                 i->direction = 1.0f;
