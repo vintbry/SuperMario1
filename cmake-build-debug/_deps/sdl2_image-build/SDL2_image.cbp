@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SDL2_image"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\PTSD\;CMake Files\PTSD\cmake\;CMake Files\PTSD\lib\;CMake Files\PTSD\lib\sdl2\;CMake Files\PTSD\lib\sdl2\cmake\;CMake Files\PTSD\lib\sdl2\include\;CMake Files\PTSD\lib\sdl2_image\;CMake Files\PTSD\lib\sdl2_image\cmake\;CMake Files\PTSD\lib\sdl2_ttf\;CMake Files\PTSD\lib\sdl2_ttf\cmake\;CMake Files\PTSD\lib\sdl2_ttf\external\;CMake Files\PTSD\lib\sdl2_ttf\external\freetype\;CMake Files\PTSD\lib\sdl2_mixer\;CMake Files\PTSD\lib\sdl2_mixer\cmake\;CMake Files\PTSD\lib\spdlog\;CMake Files\PTSD\lib\spdlog\cmake\;CMake Files\PTSD\lib\glm\;CMake Files\PTSD\lib\glm\glm\;CMake Files\PTSD\lib\googletest\;CMake Files\PTSD\lib\googletest\googlemock\;CMake Files\PTSD\lib\googletest\googlemock\cmake\;CMake Files\PTSD\lib\googletest\googletest\;CMake Files\PTSD\lib\googletest\googletest\cmake\;CMake Files\PTSD\lib\glew\;CMake Files\PTSD\lib\glew\build\;CMake Files\PTSD\lib\glew\build\cmake\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\_deps\;CMake Files\cmake-build-debug\_deps\sdl2-build\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SDL2_image">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILD_SDL"/>
+					<Add option="-DSDL_BUILD_MAJOR_VERSION=2"/>
+					<Add option="-DSDL_BUILD_MINOR_VERSION=6"/>
+					<Add option="-DSDL_BUILD_MICRO_VERSION=3"/>
+					<Add option="-DUSE_STBIMAGE"/>
+					<Add option="-DLOAD_BMP"/>
+					<Add option="-DLOAD_GIF"/>
+					<Add option="-DLOAD_JPG"/>
+					<Add option="-DSDL_IMAGE_SAVE_JPG=1"/>
+					<Add option="-DLOAD_LBM"/>
+					<Add option="-DLOAD_PCX"/>
+					<Add option="-DLOAD_PNG"/>
+					<Add option="-DSDL_IMAGE_SAVE_PNG=1"/>
+					<Add option="-DLOAD_PNM"/>
+					<Add option="-DLOAD_QOI"/>
+					<Add option="-DLOAD_SVG"/>
+					<Add option="-DLOAD_TGA"/>
+					<Add option="-DLOAD_XCF"/>
+					<Add option="-DLOAD_XPM"/>
+					<Add option="-DLOAD_XV"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SDL2_image/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILD_SDL"/>
+					<Add option="-DSDL_BUILD_MAJOR_VERSION=2"/>
+					<Add option="-DSDL_BUILD_MINOR_VERSION=6"/>
+					<Add option="-DSDL_BUILD_MICRO_VERSION=3"/>
+					<Add option="-DUSE_STBIMAGE"/>
+					<Add option="-DLOAD_BMP"/>
+					<Add option="-DLOAD_GIF"/>
+					<Add option="-DLOAD_JPG"/>
+					<Add option="-DSDL_IMAGE_SAVE_JPG=1"/>
+					<Add option="-DLOAD_LBM"/>
+					<Add option="-DLOAD_PCX"/>
+					<Add option="-DLOAD_PNG"/>
+					<Add option="-DSDL_IMAGE_SAVE_PNG=1"/>
+					<Add option="-DLOAD_PNM"/>
+					<Add option="-DLOAD_QOI"/>
+					<Add option="-DLOAD_SVG"/>
+					<Add option="-DLOAD_TGA"/>
+					<Add option="-DLOAD_XCF"/>
+					<Add option="-DLOAD_XPM"/>
+					<Add option="-DLOAD_XV"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="showanim">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="showanim/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="showimage">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="showimage/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_ImageIO.m">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_WIC.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_avif.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_bmp.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_gif.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_jpg.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_jxl.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_lbm.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_pcx.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_png.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_pnm.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_qoi.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_stb.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_svg.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_tga.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_tif.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_webp.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_xcf.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_xpm.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_xv.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/IMG_xxx.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/showanim.c">
+			<Option target="showanim"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/showimage.c">
+			<Option target="showimage"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/cmake/Dependencies.cmake">
+			<Option virtualFolder="CMake Files\PTSD\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/SDL2.spec.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/sdl2-config.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/sdl2.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/CheckCPUArchitecture.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/macros.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/sdlchecks.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/include/SDL_config.h.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\include\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/include/SDL_revision.h.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\include\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/external/freetype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\external\freetype\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/cmake/ide.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/cmake/utils.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glm\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glm/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glm\glm\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/glew.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\glew\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glew\build\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/SDL_config.h.intermediate">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-build\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

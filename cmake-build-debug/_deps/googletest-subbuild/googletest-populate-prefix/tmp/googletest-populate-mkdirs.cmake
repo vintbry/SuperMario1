@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/googletest"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-build"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-build"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

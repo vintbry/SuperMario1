@@ -22,14 +22,14 @@ function(check_file_hash has_hash hash_is_good)
   set("${has_hash}" TRUE PARENT_SCOPE)
 
   message(STATUS "verifying file...
-       file='/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'")
+       file='/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'")
 
-  file("MD5" "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip" actual_value)
+  file("MD5" "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip" actual_value)
 
   if(NOT "${actual_value}" STREQUAL "0664f3980570c4641128866e6c9f2e29")
     set("${hash_is_good}" FALSE PARENT_SCOPE)
     message(STATUS "MD5 hash of
-    /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip
+    /Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip
   does not match expected value
     expected: '0664f3980570c4641128866e6c9f2e29'
       actual: '${actual_value}'")
@@ -71,7 +71,7 @@ function(sleep_before_download attempt)
   execute_process(COMMAND "${CMAKE_COMMAND}" -E sleep "${sleep_seconds}")
 endfunction()
 
-if("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip" STREQUAL "")
+if("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip" STREQUAL "")
   message(FATAL_ERROR "LOCAL can't be empty")
 endif()
 
@@ -79,32 +79,32 @@ if("https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26
   message(FATAL_ERROR "REMOTE can't be empty")
 endif()
 
-if(EXISTS "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
+if(EXISTS "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
   check_file_hash(has_hash hash_is_good)
   if(has_hash)
     if(hash_is_good)
       message(STATUS "File already exists and hash match (skip download):
-  file='/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
+  file='/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
   MD5='0664f3980570c4641128866e6c9f2e29'"
       )
       return()
     else()
       message(STATUS "File already exists but hash mismatch. Removing...")
-      file(REMOVE "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
+      file(REMOVE "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
     endif()
   else()
     message(STATUS "File already exists but no hash specified (use URL_HASH):
-  file='/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
+  file='/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
 Old file will be removed and new file downloaded from URL."
     )
-    file(REMOVE "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
+    file(REMOVE "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
   endif()
 endif()
 
 set(retry_number 5)
 
 message(STATUS "Downloading...
-   dst='/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
+   dst='/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip'
    timeout='none'
    inactivity timeout='none'"
 )
@@ -126,7 +126,7 @@ foreach(i RANGE ${retry_number})
 
       file(
         DOWNLOAD
-        "${url}" "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip"
+        "${url}" "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip"
         SHOW_PROGRESS
         # no TIMEOUT
         # no INACTIVITY_TIMEOUT
@@ -143,7 +143,7 @@ foreach(i RANGE ${retry_number})
         check_file_hash(has_hash hash_is_good)
         if(has_hash AND NOT hash_is_good)
           message(STATUS "Hash mismatch, removing...")
-          file(REMOVE "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
+          file(REMOVE "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/SDL2-2.26.5.zip")
         else()
           message(STATUS "Downloading... done")
           return()

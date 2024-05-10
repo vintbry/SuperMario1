@@ -3,9 +3,9 @@
 # No other meaning or use of this file is supported.
 
 method=url
-command=/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/download-sdl2_mixer-populate.cmake;COMMAND;/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/verify-sdl2_mixer-populate.cmake;COMMAND;/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/extract-sdl2_mixer-populate.cmake
-source_dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_mixer
-work_dir=/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib
+command=/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/download-sdl2_mixer-populate.cmake;COMMAND;/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/verify-sdl2_mixer-populate.cmake;COMMAND;/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake;-P;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-subbuild/sdl2_mixer-populate-prefix/src/sdl2_mixer-populate-stamp/extract-sdl2_mixer-populate.cmake
+source_dir=/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer
+work_dir=/Users/bryant/SuperMarioBros_10May2024/PTSD/lib
 url(s)=https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.zip
 hash=MD5=fb3e71ef072ff8dd793cec3ed384f9a0
 no_extract=

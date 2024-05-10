@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.5)
 
 # Make file names absolute:
 #
-get_filename_component(filename "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_ttf-subbuild/sdl2_ttf-populate-prefix/src/SDL2_ttf-2.20.2.zip" ABSOLUTE)
-get_filename_component(directory "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/sdl2_ttf" ABSOLUTE)
+get_filename_component(filename "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_ttf-subbuild/sdl2_ttf-populate-prefix/src/SDL2_ttf-2.20.2.zip" ABSOLUTE)
+get_filename_component(directory "/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

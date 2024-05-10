@@ -1,4 +1,4 @@
-# Install script for directory: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/googletest
+# Install script for directory: /Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,12 +34,12 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
 
 endif()
 

@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.5)
 
 # Make file names absolute:
 #
-get_filename_component(filename "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/v1.13.0.zip" ABSOLUTE)
-get_filename_component(directory "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/googletest" ABSOLUTE)
+get_filename_component(filename "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/v1.13.0.zip" ABSOLUTE)
+get_filename_component(directory "/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

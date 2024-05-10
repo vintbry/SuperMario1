@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="glew"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\PTSD\;CMake Files\PTSD\cmake\;CMake Files\PTSD\lib\;CMake Files\PTSD\lib\sdl2\;CMake Files\PTSD\lib\sdl2\cmake\;CMake Files\PTSD\lib\sdl2\include\;CMake Files\PTSD\lib\sdl2_image\;CMake Files\PTSD\lib\sdl2_image\cmake\;CMake Files\PTSD\lib\sdl2_ttf\;CMake Files\PTSD\lib\sdl2_ttf\cmake\;CMake Files\PTSD\lib\sdl2_ttf\external\;CMake Files\PTSD\lib\sdl2_ttf\external\freetype\;CMake Files\PTSD\lib\sdl2_mixer\;CMake Files\PTSD\lib\sdl2_mixer\cmake\;CMake Files\PTSD\lib\spdlog\;CMake Files\PTSD\lib\spdlog\cmake\;CMake Files\PTSD\lib\glm\;CMake Files\PTSD\lib\glm\glm\;CMake Files\PTSD\lib\googletest\;CMake Files\PTSD\lib\googletest\googlemock\;CMake Files\PTSD\lib\googletest\googlemock\cmake\;CMake Files\PTSD\lib\googletest\googletest\;CMake Files\PTSD\lib\googletest\googletest\cmake\;CMake Files\PTSD\lib\glew\;CMake Files\PTSD\lib\glew\build\;CMake Files\PTSD\lib\glew\build\cmake\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\_deps\;CMake Files\cmake-build-debug\_deps\sdl2-build\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/lib/libGLEWd.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_BUILD"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/lib/libGLEWd.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_BUILD"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew_s">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/lib/libGLEWd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew_s"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew_s/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/lib/libGLEWd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew_s/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glewinfo">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin/glewinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glewinfo"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glewinfo/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin/glewinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 glewinfo/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="visualinfo">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin/visualinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 visualinfo"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="visualinfo/fast">
+				<Option output="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin/visualinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/../../include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 visualinfo/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/include/GL/glew.h">
+			<Option target="glew"/>
+			<Option target="glew_s"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/include/GL/glxew.h">
+			<Option target="glew"/>
+			<Option target="glew_s"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/include/GL/wglew.h">
+			<Option target="glew"/>
+			<Option target="glew_s"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/src/glew.c">
+			<Option target="glew"/>
+			<Option target="glew_s"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/src/glewinfo.c">
+			<Option target="glewinfo"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/src/visualinfo.c">
+			<Option target="visualinfo"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/cmake/Dependencies.cmake">
+			<Option virtualFolder="CMake Files\PTSD\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/SDL2.spec.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/sdl2-config.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/sdl2.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/CheckCPUArchitecture.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/macros.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/cmake/sdlchecks.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/include/SDL_config.h.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\include\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2/include/SDL_revision.h.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2\include\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_image/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_image\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_ttf/external/freetype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_ttf\external\freetype\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/CommonFindSDL2.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/FindSDL2main.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/sdl2_mixer/cmake/PrivateSdlFunctions.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\sdl2_mixer\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/cmake/ide.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/spdlog/cmake/utils.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\spdlog\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glm\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glm/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glm\glm\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\PTSD\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/glew.pc.in">
+			<Option virtualFolder="CMake Files\PTSD\lib\glew\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew/build/cmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\PTSD\lib\glew\build\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/SDL_config.h.intermediate">
+			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-build\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

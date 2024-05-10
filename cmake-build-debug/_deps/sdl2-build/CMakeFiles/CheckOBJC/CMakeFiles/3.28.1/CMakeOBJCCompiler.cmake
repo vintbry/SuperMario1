@@ -1,7 +1,7 @@
 set(CMAKE_OBJC_COMPILER "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang")
 set(CMAKE_OBJC_COMPILER_ARG1 "")
 set(CMAKE_OBJC_COMPILER_ID "AppleClang")
-set(CMAKE_OBJC_COMPILER_VERSION "15.0.0.15000309")
+set(CMAKE_OBJC_COMPILER_VERSION "14.0.0.14000029")
 set(CMAKE_OBJC_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_OBJC_COMPILER_WRAPPER "")
 set(CMAKE_OBJC_STANDARD_COMPUTED_DEFAULT "11")
@@ -69,7 +69,7 @@ endif()
 
 
 
-set(CMAKE_OBJC_IMPLICIT_INCLUDE_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include")
+set(CMAKE_OBJC_IMPLICIT_INCLUDE_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include")
 set(CMAKE_OBJC_IMPLICIT_LINK_LIBRARIES "")
-set(CMAKE_OBJC_IMPLICIT_LINK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/lib/swift")
-set(CMAKE_OBJC_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/System/Library/Frameworks")
+set(CMAKE_OBJC_IMPLICIT_LINK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/lib")
+set(CMAKE_OBJC_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks")

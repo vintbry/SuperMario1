@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glm"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-build"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/tmp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glm"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-build"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/tmp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

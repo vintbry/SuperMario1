@@ -1,4 +1,4 @@
-# Install script for directory: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD
+# Install script for directory: /Users/bryant/SuperMarioBros_10May2024/PTSD
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,46 +34,46 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_image-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_image-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_ttf-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_ttf-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/spdlog-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/spdlog-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glm-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glm-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/googletest-build/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/googletest-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/PTSD/lib/glew/build/cmake/cmake_install.cmake")
+  include("/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/PTSD/lib/glew/build/cmake/cmake_install.cmake")
 endif()
 

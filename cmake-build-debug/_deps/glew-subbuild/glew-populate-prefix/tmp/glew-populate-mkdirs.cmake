@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/PTSD/lib/glew"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-build"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/tmp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src"
-  "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/PTSD/lib/glew"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-build"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/tmp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src"
+  "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/glew-subbuild/glew-populate-prefix/src/glew-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

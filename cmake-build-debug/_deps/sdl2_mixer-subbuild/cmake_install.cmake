@@ -1,4 +1,4 @@
-# Install script for directory: /Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild
+# Install script for directory: /Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/feliciarulita/Documents/sem4/oop_game/SuperMario1/cmake-build-debug/_deps/sdl2_mixer-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/bryant/SuperMarioBros_10May2024/cmake-build-debug/_deps/sdl2_mixer-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
