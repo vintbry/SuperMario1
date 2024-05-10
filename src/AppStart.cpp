@@ -78,13 +78,25 @@ void FirstWorldOne::Start(App *app){
 
 
     //Mario Jump
-    m_Mario1 = std::make_shared<MarioJump>(GA_RESOURCE_DIR"/Mario/mario_jump.png");
-    m_Mario1->SetZIndex(50);
-    m_Mario1->SetVisible(false);
+    MarioJump.reserve(2);
+    MarioJump.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+    MarioJump.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jump.png");
 
-   // m_audio_mario_small_jump.LoadMedia(GA_RESOURCE_DIR"/Audio/small_mario_jump.wav");
+    //Mario jump back
+    MarioJumpBack.reserve(2);
+    MarioJumpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+    MarioJumpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
 
-    app->m_Root.AddChild(m_Mario1);
+    MarioJumpLvl2.reserve(2);
+    MarioJumpLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+    MarioJumpLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+
+    MarioJumpBackLvl2.reserve(2);
+    MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+    MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+
+    MarioPillarEnd.reserve(1);
+    MarioPillarEnd.emplace_back(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
 
     //Mario run forward
     MarioRun.reserve(5);

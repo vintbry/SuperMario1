@@ -73,6 +73,28 @@ void FirstWorldOne::callMario(){
     m_Mario->SetPlaying();
 }
 
+void FirstWorldOne::callMarioJump() {
+    if(m_EnterRight){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioJump);
+            LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+        }
+        else if(m_Mario->level==1){
+            m_Mario->SetImage(MarioJumpLvl2);
+        }
+
+    }
+    else if(m_EnterLeft){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioJumpBack);
+        }
+        else if(m_Mario->level==1){
+            m_Mario->SetImage(MarioJumpBackLvl2);
+        }
+    }
+
+}
+
 //make function for searching is on land from mario's x
 float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
     float x = Object->GetPosition().x;
@@ -486,7 +508,6 @@ bool FirstWorldOne::IsCollideUp(){
     return false;
 }
 
-
 void FirstWorldOne::Update(App *app){
     timenow = Util::Time::GetElapsedTimeMs();
 
@@ -524,16 +545,19 @@ void FirstWorldOne::Update(App *app){
         //m_Mario1->SetPosition(position);
 
     }
-    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario->m_Jump && m_Mario1->m_HasEnded && !m_Mario->MarioDie){
+    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario->m_Jump && m_Mario->m_HasEnded && !m_Mario->MarioDie){
+
         position = std::get<1>(IsOnLand(m_Mario));
         //m_Mario1->SetVisible(false);
 
         m_Mario->SetPosition(position);
         //m_Mario1->SetPosition(position);
         m_Mario->m_Jump=false;
+
     }
 
     else if(!m_Mario->MarioDie && !m_Mario->MarioStep){
+        callMarioJump();
         //make mario always fall is not on land
         ///*
 
@@ -575,15 +599,15 @@ void FirstWorldOne::Update(App *app){
             m_Mario->SetImage(MarioRunLvl2);
             //m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
         }
-        m_Mario->SetInterval(100);
-        m_Mario->SetPlaying();
+        //m_Mario->SetInterval(100);
+        //m_Mario->SetPlaying();
 
     }
     if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = true;
         m_EnterLeft = false;
         //when mario jump he can also go to the right
-        m_Mario->SetPlaying();
+
 
 
         if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
@@ -592,6 +616,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->SetVisible(true);
             //mario only can run until the middle
             //else is the elements that move
+            LOG_DEBUG("right and jump");
             if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
                 m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
             }
@@ -601,8 +626,9 @@ void FirstWorldOne::Update(App *app){
         }
             //if not jumping than run
         else{
+            m_Mario->SetPlaying();
             callMario();
-            m_Mario1->SetVisible(false);
+            //m_Mario1->SetVisible(false);
             //mario only can run until the middle
             //else is the elements that move
 
@@ -676,7 +702,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
         }
 
-        callMario();
+        //callMario();
 
 
     }
@@ -684,18 +710,17 @@ void FirstWorldOne::Update(App *app){
     if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = false;
         m_EnterLeft = true;
-        callMario();
+
         //make other invisible
         //m_Mario1->SetVisible(false);
 
         //when mario jump he can also go to the left
         if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
-            m_Mario->SetVisible(false);
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){ // and IsCollide()
-                m_Mario->SetPosition({m_Mario1->GetPosition().x-4.0f, m_Mario1->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x-4.0f, m_Mario->GetPosition().y});
             }
             else{
-                m_Mario->SetPosition(m_Mario1->GetPosition());
+                m_Mario->SetPosition(m_Mario->GetPosition());
             }
 
             //renew position
@@ -703,6 +728,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->SetVisible(true);
         }
         else{ //if not jump
+            callMario();
             m_Mario->SetPlaying();
             m_Mario->SetVisible(true);
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){
@@ -744,19 +770,19 @@ void FirstWorldOne::Update(App *app){
             //need to check
             if(m_Mario->level == 0){
                 LOG_DEBUG("msk level");
-                m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+                m_Mario->SetImage(MarioJump);
             }
             else if (m_Mario->level == 1){
-                m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+                m_Mario->SetImage(MarioJumpLvl2);
             }
 
         }
         else if(m_EnterLeft){
             if(m_Mario->level == 0){
-                m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+                m_Mario->SetImage(MarioJumpBack);
             }
             else if (m_Mario->level == 1){
-                m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+                m_Mario->SetImage(MarioJumpBackLvl2);
             }
         }
     }
@@ -775,6 +801,7 @@ void FirstWorldOne::Update(App *app){
     cnts= cnt/2.0;
     //
     if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2){
+        LOG_DEBUG("msk pressed up");
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
         pressed2= true ;
@@ -1220,7 +1247,7 @@ void FirstWorldOne::Update(App *app){
 
 
     //if touch pillar
-    if(m_Mario->IsCollideRight(m_Pillar)){
+    if(m_Mario->IsCollideRight(m_Pillar) && !m_Mario->MarioFinish){
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
@@ -1250,7 +1277,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->SetVisible(true);
             m_MarioPillar->SetVisible(false);
             m_Mario->SetPosition({m_Mario->GetPosition().x+12.0f,m_Mario->GetPosition().y});
-            m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
+            m_Mario->SetImage(MarioPillarEnd);
 
             //m_Mario->SetPosition(m_Mario1->GetPosition());
             m_Mario->MarioEnd = true;
@@ -1303,7 +1330,6 @@ void FirstWorldOne::Update(App *app){
 
     //if die
     else if(m_Mario->MarioDie){
-        LOG_DEBUG("mario masuk die");
         m_popup->SetVisible(false);
         unsigned long now = Util::Time::GetElapsedTimeMs();
         m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
@@ -1321,9 +1347,32 @@ void FirstWorldOne::Update(App *app){
             if(m_Mario->GetPosition().y<-400.0f){
                 Restart(app);
             }
-
         }
 
+    }
+    LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+    if(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2){
+        LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+    }
+
+    //if mario stepping the land
+    if(std::get<0>(IsOnLand(m_Mario)) &&(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2)){
+        if(m_EnterRight){
+            if(m_Mario->level == 0){
+                m_Mario->SetImage(MarioRun);
+            }
+            else if(m_Mario->level == 1){
+                m_Mario->SetImage(MarioRunLvl2);
+            }
+        }
+        else if(m_EnterLeft){
+            if(m_Mario->level == 0){
+                m_Mario->SetImage(MarioRunBack);
+            }
+            else if(m_Mario->level == 1){
+                m_Mario->SetImage(MarioJumpBackLvl2);
+            }
+        }
     }
 
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
