@@ -10,7 +10,8 @@
 #include "Util/GameObject.hpp"
 #include "Util/Time.hpp"
 
-class Character : public Util::GameObject, public Util::Time {
+
+class Character : public Util::GameObject {
 public:
     explicit Character(const std::string& ImagePath);
 
@@ -32,39 +33,7 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
-    //from Animated Character
-    void Update(unsigned long BaseTime,unsigned int add);
 
-    bool IsJumping() const{
-        return m_Jump;
-    }
-
-    //need to change to the current mario's land position
-    glm::vec2 GetLandPosition(){return {-400.0f, -170.0f};}
-
-    void Jump(unsigned long BaseTime, unsigned int add){
-        m_Jump=true;
-        Update(BaseTime,add);
-    }
-
-    bool m_Jump=false;
-    bool m_HasEnded=true;
-    bool m_maxJump=false;
-
-
-    // TODO: Implement the collision detection
-    [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
-        //(void) other;
-        float x1=GetPosition().x;
-        float x2=other->GetPosition().x;
-        float y1=GetPosition().y;
-        float y2=other->GetPosition().y;
-
-        bool x_overlap=(x1>=x2 && x1<=x2+other->GetScaledSize().x);
-        bool y_overlap=(y1>=y2 && y1<=y2+other->GetScaledSize().y);
-
-        return x_overlap && y_overlap;
-    }
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }

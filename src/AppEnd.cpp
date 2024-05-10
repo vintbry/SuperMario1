@@ -5,6 +5,3 @@
 #include "App.h"
 #include"Util/Logger.hpp"
 
-void App::End() {
-    LOG_TRACE("End");
-}

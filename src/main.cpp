@@ -1,26 +1,24 @@
 #include "App.h"
+#include "MenuPhase.h"
 #include "Core/Context.hpp"
+#include <iostream>
 
 int main(int, char**) {
     auto context = Core::Context::GetInstance();
-    App app;
+    App app(App::Phases::MENU);
 
     if(context){
         while (!context->GetExit()) {
-            switch (app.GetCurrentState()) {
-                case App::State::START:
-                    app.Start();
-                    break;
 
-                case App::State::UPDATE:
-                    app.Update();
-                    break;
-
-                case App::State::END:
-                    app.End();
-                    context->SetExit(true);
-                    break;
+            if(app.m_CurrentPhase->GetCurrentState() ==  Phase::State::EXIT){
+                context->SetExit(true);
+                break;
             }
+            if(app.m_CurrentPhase->GetCurrentState() ==  Phase::State::START){
+                std::cout<<"masuk start";
+            }
+
+            app.Update();
             context->Update();
         }
 

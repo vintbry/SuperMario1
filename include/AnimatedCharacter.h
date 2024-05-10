@@ -12,17 +12,15 @@
 #include "Util/Animation.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
+#include "Character.h"
+#include "QuestionTiles.h"
 
-class AnimatedCharacter : public Util::GameObject {
+class AnimatedCharacter : public Util::GameObject{
 public:
     explicit AnimatedCharacter(const std::vector<std::string>& AnimationPaths);
 
     void Update(unsigned long BaseTime);
-    /*
-    bool IsJumping() const{
-        return m_Jump;
-    }
-    */
+
     [[nodiscard]] bool IsLooping() const {
         return std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->GetLooping();
     }
@@ -33,19 +31,12 @@ public:
     void SetInterval(int milliseconds){
         std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->SetInterval(milliseconds);
     }
-    //only for first trial, later should can jump to another level
-    //of land
-    //glm::vec2 GetLandPosition(){return {-400.0f, -200.5f};}
+
     void SetLooping(bool looping) {
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         temp->SetLooping(looping);
     }
-    /*
-    void Jump(unsigned long BaseTime){
-        m_Jump=true;
-        Update(BaseTime);
-    };
-    */
+
     [[nodiscard]] bool GetVisibility() const { return m_Visible; }
     void SetPlaying(){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
@@ -58,10 +49,86 @@ public:
 
     void SetImage(const std::string& ImagePath);
 
+    void SetImage(const std::vector<std::string>& AnimationPaths);
+
     [[nodiscard]] bool IfAnimationEnds() const;
 
-    //bool m_Jump=false;
-    //bool m_HasEnded=true;
+    template<typename T>
+    bool IsCollideRight(std::vector<std::shared_ptr<T>> Object ){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    virtual bool IsCollideRight(std::vector<std::shared_ptr<Character>> Object ){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+    template<typename T>
+    bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    virtual bool IsCollideLeft(std::vector<std::shared_ptr<Character>> Object){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    //mushroom, coins
+    bool isActive = false;
+    bool alreadyOut = false;
+
+
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
