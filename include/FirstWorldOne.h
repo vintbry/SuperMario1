@@ -120,14 +120,12 @@ private:
     std::vector<std::string> levelUpBack;
     std::vector<std::string> MarioBigFront;
     std::vector<std::string> MarioBigBack;
-<<<<<<< HEAD
     std::vector<std::string> MarioJump;
     std::vector<std::string> MarioJumpBack;
     std::vector<std::string> MarioJumpLvl2;
     std::vector<std::string> MarioJumpBackLvl2;
-=======
     std::vector<std::string> YellowMushroom;
->>>>>>> origin/main
+    std::vector<std::string> MarioPillarEnd;
 
     int index=0;
     int index2=0;

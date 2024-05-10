@@ -1247,7 +1247,7 @@ void FirstWorldOne::Update(App *app){
 
 
     //if touch pillar
-    if(m_Mario->IsCollideRight(m_Pillar)){
+    if(m_Mario->IsCollideRight(m_Pillar) && !m_Mario->MarioFinish){
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
@@ -1277,7 +1277,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->SetVisible(true);
             m_MarioPillar->SetVisible(false);
             m_Mario->SetPosition({m_Mario->GetPosition().x+12.0f,m_Mario->GetPosition().y});
-            m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
+            m_Mario->SetImage(MarioPillarEnd);
 
             //m_Mario->SetPosition(m_Mario1->GetPosition());
             m_Mario->MarioEnd = true;

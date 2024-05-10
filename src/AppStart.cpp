@@ -95,6 +95,9 @@ void FirstWorldOne::Start(App *app){
     MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
     MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
 
+    MarioPillarEnd.reserve(1);
+    MarioPillarEnd.emplace_back(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
+
     //Mario run forward
     MarioRun.reserve(5);
     MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
