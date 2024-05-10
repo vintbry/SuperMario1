@@ -417,13 +417,20 @@ void FirstWorldOne::Start(App *app){
     app->m_Root.AddChild(m_Coins);
 
     //level up mush
+    YellowMushroom.reserve(2);
+    for(int i=0;i<2;i++){
+        YellowMushroom.emplace_back(GA_RESOURCE_DIR"/images/mushroom.png");
+    }
+
     for(int i=0;i<4;i++){
-        m_YellowMush = std::make_shared<YellowMush>(GA_RESOURCE_DIR"/images/mushroom.png");
+        m_YellowMush = std::make_shared<YellowMush>(YellowMushroom);
+        m_YellowMush->SetLooping(true);
+        m_YellowMush->SetPlaying();
         m_YellowMush->SetZIndex(3);
         m_YellowMush->SetVisible(false);
-        m_YellowMush->SetPosition({-1000.0f,-1000.0f});
-
         m_YellowMushVec.push_back(m_YellowMush);
+
+
 
     }
 

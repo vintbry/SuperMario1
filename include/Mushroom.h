@@ -106,6 +106,8 @@ public:
     bool EnemyDie = false;
     bool isActive = false;
     bool isBounced = false;
+    float y_start_goombas = 0.0f;
+    float time_goombas =0.0f;
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
