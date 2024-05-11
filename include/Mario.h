@@ -25,14 +25,17 @@ public:
     std::tuple<bool,int> IsStepOn(std::vector<std::shared_ptr<T>> Objects){
         for(int i=0;i<Objects.size();i++){
             auto tiles = Objects[i];
-            bool collideX1 = (GetPosition().x-GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(GetPosition().x-GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-            bool collideX2 = (GetPosition().x+GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideX1 = (GetPosition().x-GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2-2.0f))&&(GetPosition().x-GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2+2.0f);
+            bool collideX2 = (GetPosition().x+GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2)-2.0f)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2+2.0f);
             //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
-            bool collideY = ((GetPosition().y - GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((GetPosition().y - GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+            bool collideY = ((GetPosition().y - GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 15.0f) && ((GetPosition().y - GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+5.0f);
 
             LOG_DEBUG("step on check");
             LOG_DEBUG(collideX1);
             LOG_DEBUG(collideX2);
+            LOG_DEBUG(collideY);
+            LOG_DEBUG(GetPosition().y - GetScaledSize().y/2);
+            LOG_DEBUG(tiles->GetPosition().y+tiles->GetScaledSize().y/2);
 
 
             glm::vec2 landPos = {GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+GetScaledSize().y/2};
@@ -115,13 +118,6 @@ public:
 
             bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
-            LOG_DEBUG("collide tube");
-            LOG_DEBUG(collideX);
-            LOG_DEBUG(collideY1);
-            LOG_DEBUG(collideY2);
-            LOG_DEBUG(collideY3);
-            LOG_DEBUG(collideY4);
-
             if(collideX && collideY){
                 return true;
             }
@@ -133,11 +129,6 @@ public:
         bool collideX = (GetPosition().x + GetScaledSize().x/2>=Object->GetPosition().x-Object->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=Object->GetPosition().x+Object->GetScaledSize().x/2);
         bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2);
         bool collideY2 = (GetPosition().y - GetScaledSize().y/2<Object->GetPosition().y+Object->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>Object->GetPosition().y-Object->GetScaledSize().y/2;
-
-        LOG_DEBUG("collideright");
-        LOG_DEBUG(GetPosition().x + GetScaledSize().x/2);
-        LOG_DEBUG(Object->GetPosition().x-Object->GetScaledSize().x/2);
-
 
         bool collideY3 = (Object->GetPosition().y + Object->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2)&&(Object->GetPosition().y+Object->GetScaledSize().y/2>=GetPosition().y+GetScaledSize().y/2);
         bool collideY4 = (Object->GetPosition().y - Object->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (Object->GetPosition().y - Object->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);

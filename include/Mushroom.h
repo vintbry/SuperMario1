@@ -84,15 +84,6 @@ public:
 
                 bool collideY = collideY1 || collideY2;
 
-                LOG_DEBUG("collide X n y");
-                LOG_DEBUG(collideX);
-                if(collideX){
-                    LOG_DEBUG(collideY);
-                    LOG_DEBUG(Object[i]->GetPosition().y);
-                    LOG_DEBUG(GetPosition().y);
-                }
-
-
 
                 if(collideX && collideY){
                     return true;
