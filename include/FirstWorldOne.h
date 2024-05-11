@@ -59,7 +59,7 @@ private:
     std::shared_ptr<TEXTS> m_time;
     std::shared_ptr<TEXTS> m_popup;
 
-    std::shared_ptr<MarioJump> m_Mario1;
+    //std::shared_ptr<MarioJump> m_Mario1;
 
     std::shared_ptr<BackgroundImage> m_Bg;
 
@@ -120,13 +120,20 @@ private:
     std::vector<std::string> levelUpBack;
     std::vector<std::string> MarioBigFront;
     std::vector<std::string> MarioBigBack;
+    std::vector<std::string> MarioJump;
+    std::vector<std::string> MarioJumpBack;
+    std::vector<std::string> MarioJumpLvl2;
+    std::vector<std::string> MarioJumpBackLvl2;
     std::vector<std::string> YellowMushroom;
+    std::vector<std::string> MarioPillarEnd;
 
     int index=0;
     int index2=0;
     int indexTiles = 0;
     int indexTiles2 = 0;
     int indexMush = 0;
+    int countBlinkTime = 0;
+    int BlinkTime = 0;
 
     float slideTime=0;
     float SpeedInAir=0;
@@ -147,6 +154,7 @@ private:
     unsigned long m_MarioHeadTime = 0;
     unsigned long m_MarioHeadTime2 = 0;
     unsigned long m_MarioHeadTime_yelmush = 0;
+    unsigned long m_MarioShrinkTime = 0;
 
     bool m_EnterDown = false;
     bool m_EnterRight = true;
@@ -175,6 +183,8 @@ private:
     bool IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object);
 
     bool IsCollideUp();
+
+    void callMarioJump();
 };
 
 #endif //SUPERMARIO1_FIRSTWORLDONE_H

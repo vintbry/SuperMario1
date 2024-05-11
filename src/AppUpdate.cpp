@@ -12,22 +12,17 @@
 
 float FirstWorldOne::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
     float height = y_start - searchLand(Object);
-    LOG_INFO(searchLand(Object));
     float y_exact =y_start-((10.0f/2)*((sqrt((2*height)/10.0))*(sqrt((2*height)/10.0))));
 
     if (Object->GetPosition().y<y_exact+25.0f){
         return y_exact;
-
     }
 
     else {
         return y_start - ((10.0f / 2) * (time_gravity * time_gravity));
     }
-   // return y_start - ((10.0f / 2) * (time_gravity * time_gravity));
 
 }
-
-
 
 void FirstWorldOne::moveBackground(float position) {
     m_Bg2->SetPosition({m_Bg2->GetPosition().x-position,m_Bg2->GetPosition().y});
@@ -73,6 +68,28 @@ void FirstWorldOne::callMario(){
     m_Mario->SetLooping(false);
     m_Mario->SetInterval(100);
     m_Mario->SetPlaying();
+}
+
+void FirstWorldOne::callMarioJump() {
+    if(m_EnterRight){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioJump);
+            LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+        }
+        else if(m_Mario->level==1){
+            m_Mario->SetImage(MarioJumpLvl2);
+        }
+
+    }
+    else if(m_EnterLeft){
+        if(m_Mario->level==0){
+            m_Mario->SetImage(MarioJumpBack);
+        }
+        else if(m_Mario->level==1){
+            m_Mario->SetImage(MarioJumpBackLvl2);
+        }
+    }
+
 }
 
 //make function for searching is on land from mario's x
@@ -234,79 +251,6 @@ std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<Animat
     return {false,Object->GetPosition()};
 }
 
-std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<Character>& Object){
-    for(const auto& tiles : m_Land){
-        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 100.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
-
-        bool collideX = collideX1 || collideX2;
-
-        if((collideX) && (collideY)){
-            return {true,landPos};
-        }
-    }
-    for(const auto& tiles : m_QuesVector){
-        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(m_Mario->GetScaledSize().y/2 + 3.0f));
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
-
-        bool collideX = collideX1 || collideX2;
-
-        if((collideX) && (collideY)){
-            return {true,landPos};
-        }
-    }
-    for(const auto& tiles : m_Brick){
-        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 10.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
-
-        bool collideX = collideX1 || collideX2;
-
-        if((collideX) && (collideY)){
-            return {true,landPos};
-        }
-    }
-    for(const auto& tiles : m_Tube){
-        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        //bool collideY = (m_Mario->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(m_Mario->GetScaledSize().y/2 + 3.0f));
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-        glm::vec2 landPos = {m_Mario->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+m_Mario->GetScaledSize().y/2};
-
-        bool collideX = collideX1 || collideX2;
-
-        if((collideX) && (collideY)){
-            return {true,landPos};
-        }
-    }
-    for(const auto& tiles : m_Wood){
-        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
-
-        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
-
-        bool collideX = collideX1 || collideX2;
-
-        if((collideX) && (collideY)){
-            return {true,landPos};
-        }
-    }
-
-    return {false,Object->GetPosition()};
-}
-
 bool FirstWorldOne::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
         //debugging
@@ -349,7 +293,7 @@ bool FirstWorldOne::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Obj
     }
     for(const auto& tiles : m_Tube){
         //debugging
-        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>tiles->GetPosition().x-tiles->GetScaledSize().x/2-4.0f)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
@@ -418,7 +362,7 @@ bool FirstWorldOne::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Obje
     }
     for(const auto& tiles : m_Tube){
         //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<tiles->GetPosition().x+tiles->GetScaledSize().x/2+4.0f);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
@@ -488,7 +432,6 @@ bool FirstWorldOne::IsCollideUp(){
     return false;
 }
 
-
 void FirstWorldOne::Update(App *app){
     timenow = Util::Time::GetElapsedTimeMs();
 
@@ -508,7 +451,7 @@ void FirstWorldOne::Update(App *app){
 
     auto result = IsOnLand(m_Mario);
 
-    if( std::get<0>(result) && !m_Mario1->m_Jump && !m_Mario->MarioDie){
+    if( std::get<0>(result) && !m_Mario->m_Jump && !m_Mario->MarioDie){
         //if on land then run
         position = std::get<1>(result);
         m_popup->SetVisible(false);
@@ -520,40 +463,41 @@ void FirstWorldOne::Update(App *app){
         cnt=0;
         speed =2;
 
-        m_Mario1->SetVisible(false);
-
         m_Mario->SetPosition(position);
-        m_Mario1->SetPosition(position);
 
     }
-    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario1->m_Jump && m_Mario1->m_HasEnded && !m_Mario->MarioDie){
+    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario->m_Jump && m_Mario->m_HasEnded && !m_Mario->MarioDie){
+
         position = std::get<1>(IsOnLand(m_Mario));
-        m_Mario1->SetVisible(false);
 
         m_Mario->SetPosition(position);
-        m_Mario1->SetPosition(position);
-        m_Mario1->m_Jump=false;
+        m_Mario->m_Jump=false;
+
     }
 
     else if(!m_Mario->MarioDie && !m_Mario->MarioStep){
+        callMarioJump();
         //make mario always fall is not on land
         ///*
 
+        float y_under= searchLand(m_Mario);
+        //float y_under= -172;
 
-        if(!m_Mario1->m_Jump && !std::get<0>(result) ){
+        h=y0 - ( y_under);
+        if(!m_Mario->m_Jump && !std::get<0>(result) ){
 
             t += 0.5;
-            m_Mario->time_mario += 0.5;
-
             //jatuh tinggi
-            m_Mario->SetPosition({m_Mario->GetPosition().x, gravity(y0,t ,m_Mario)});
-            m_Mario1->SetPosition(m_Mario->GetPosition());
+            if (m_Mario->GetPosition().y<y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))+15.0f){
+                m_Mario->SetPosition({m_Mario->GetPosition().x, y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))});
+            }
+
+            else {
+
+                m_Mario->SetPosition({m_Mario->GetPosition().x, y0 - ((10.0f / 2) * (t * t))});
+            }
             m_MarioPillar->SetPosition(m_Mario->GetPosition());
         }
-
-
-        m_Mario->SetVisible(false);
-        m_Mario1->SetVisible(true);
 
     }
     //press F to go to next 部分 of map
@@ -565,40 +509,33 @@ void FirstWorldOne::Update(App *app){
     if(Util::Input::IsKeyDown(Util::Keycode::RIGHT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         if(m_Mario->level==0){
             m_Mario->SetImage(MarioRun);
-            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+
         }
         else if(m_Mario->level==1) {
             m_Mario->SetImage(MarioRunLvl2);
-            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+
         }
-        m_Mario->SetInterval(100);
-        m_Mario->SetPlaying();
 
     }
     if(Util::Input::IsKeyPressed(Util::Keycode::RIGHT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = true;
         m_EnterLeft = false;
         //when mario jump he can also go to the right
-        m_Mario->SetPlaying();
 
 
-        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
-            //change picture from running to jumping
-            m_Mario->SetVisible(false);
-            m_Mario1->SetVisible(true);
+
+        if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
             //mario only can run until the middle
             //else is the elements that move
-            if(m_Mario1->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
-                m_Mario1->SetPosition({m_Mario1->GetPosition().x+8.0f,m_Mario1->GetPosition().y});
+            LOG_DEBUG("right and jump");
+            if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
+                m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
             }
-
-
-            m_Mario->SetPosition(m_Mario1->GetPosition());
         }
-            //if not jumping than run
+        //if not jumping than run
         else{
+            m_Mario->SetPlaying();
             callMario();
-            m_Mario1->SetVisible(false);
             //mario only can run until the middle
             //else is the elements that move
 
@@ -608,8 +545,6 @@ void FirstWorldOne::Update(App *app){
             else{
                 m_Mario->SetPosition(m_Mario->GetPosition());
             }
-            //renew the other's position
-            m_Mario1->SetPosition(m_Mario->GetPosition());
         }
         //if mario more than middle than the background move
         if(m_Mario->GetPosition().x >= 13.0f and !IsCollideRight(m_Mario)){
@@ -631,13 +566,11 @@ void FirstWorldOne::Update(App *app){
         if(m_Mario1->IsJumping()){
             //need to change
             m_Mario->SetPosition({m_Mario->GetPosition().x + 1.0f, m_Mario->GetPosition().y});
-            m_MarioBack->SetPosition(m_Mario->GetPosition());
             m_Mario1->SetPosition(m_Mario->GetPosition());
 
         }
         if(m_Mario1->IsJumping() && !m_Mario1->m_HasEnded && !(Util::Input::IsKeyPressed(Util::Keycode::RIGHT))){
             m_Mario->SetPosition({m_Mario->GetPosition().x + 1.0f, m_Mario->GetPosition().y});
-            m_MarioBack->SetPosition(m_Mario->GetPosition());
             m_Mario1->SetPosition(m_Mario->GetPosition());
         }
          */
@@ -652,7 +585,6 @@ void FirstWorldOne::Update(App *app){
             //m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_st.png");
             if(m_Mario->GetPosition().x < 13.0f) {
                 m_Mario->SetPosition({m_Mario->GetPosition().x + (8.0f - slideTime), m_Mario->GetPosition().y});
-                //m_MarioBack->SetPosition(m_Mario->GetPosition());
                 m_Mario1->SetPosition(m_Mario->GetPosition());
             }
             else{
@@ -668,14 +600,14 @@ void FirstWorldOne::Update(App *app){
     if(Util::Input::IsKeyDown(Util::Keycode::LEFT)&& !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         if(m_Mario->level==0){
             m_Mario->SetImage(MarioRunBack);
-            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+
         }
         else if(m_Mario->level==1){
             m_Mario->SetImage(MarioRunBackLvl2);
-            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+
         }
 
-        callMario();
+
 
 
     }
@@ -683,25 +615,25 @@ void FirstWorldOne::Update(App *app){
     if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = false;
         m_EnterLeft = true;
-        callMario();
+
         //make other invisible
-        m_Mario1->SetVisible(false);
+        //m_Mario1->SetVisible(false);
 
         //when mario jump he can also go to the left
-        if(m_Mario1->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
-            m_Mario->SetVisible(false);
+        if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){ // and IsCollide()
-                m_Mario->SetPosition({m_Mario1->GetPosition().x-4.0f, m_Mario1->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x-4.0f, m_Mario->GetPosition().y});
             }
             else{
-                m_Mario->SetPosition(m_Mario1->GetPosition());
+                m_Mario->SetPosition(m_Mario->GetPosition());
             }
 
             //renew position
-            m_Mario1->SetPosition(m_Mario->GetPosition());
-            m_Mario1->SetVisible(true);
+            //m_Mario1->SetPosition(m_Mario->GetPosition());
+            //m_Mario1->SetVisible(true);
         }
         else{ //if not jump
+            callMario();
             m_Mario->SetPlaying();
             m_Mario->SetVisible(true);
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){
@@ -710,12 +642,7 @@ void FirstWorldOne::Update(App *app){
             else{
                 m_Mario->SetPosition(m_Mario->GetPosition());
             }
-
-            //renew position
-            m_Mario1->SetPosition(m_Mario->GetPosition());
         }
-        //renew position
-        m_Mario->SetPosition(m_Mario1->GetPosition());
 
     }
 
@@ -739,21 +666,23 @@ void FirstWorldOne::Update(App *app){
     //set image jump
     if(Util::Input::IsKeyDown(Util::Keycode::UP)){
         if(m_EnterRight){
+            LOG_DEBUG("msk up");
             //need to check
             if(m_Mario->level == 0){
-                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+                LOG_DEBUG("msk level");
+                m_Mario->SetImage(MarioJump);
             }
             else if (m_Mario->level == 1){
-                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+                m_Mario->SetImage(MarioJumpLvl2);
             }
 
         }
         else if(m_EnterLeft){
             if(m_Mario->level == 0){
-                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+                m_Mario->SetImage(MarioJumpBack);
             }
             else if (m_Mario->level == 1){
-                m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+                m_Mario->SetImage(MarioJumpBackLvl2);
             }
         }
     }
@@ -763,12 +692,16 @@ void FirstWorldOne::Update(App *app){
 
     }
     if(Util::Input::IsKeyPressed(Util::Keycode::UP)){
-        if (m_Mario1->m_Jump && pressed2 )cnt++;
+        if (m_Mario->m_Jump && pressed2 ) {
+            cnt++;
+
+        }
     }
 
     cnts= cnt/2.0;
     //
-    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario1->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2){
+    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2){
+        LOG_DEBUG("msk pressed up");
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
         pressed2= true ;
@@ -777,45 +710,37 @@ void FirstWorldOne::Update(App *app){
         m_Mario_jump_audio->Play();
 
         m_JumpBaseTime=Util::Time::GetElapsedTimeMs();
-        m_Mario1->SetPosition(newPos);
-        //m_MarioBack->SetPosition(newPos);
-        m_Mario1->SetVisible(true);
 
-        m_Mario1->Jump(m_JumpBaseTime);
+        m_Mario->Jump(m_JumpBaseTime);
 
-        m_Mario->SetVisible(false);
-        m_Mario1->m_Jump= true;
-        //m_MarioBack->SetVisible(false);
+        //m_Mario->SetVisible(false);
+        m_Mario->m_Jump= true;
+
 
     }
 
 
-
-    //if(!m_Mario1->m_HasEnded && m_Mario1->m_Jump ){
-    if( m_Mario1->m_Jump ){
+    if( m_Mario->m_Jump ){
         if (cnts>2) cnts=2;
         if (pressed2 && pressed1 && !m_Mario->MarioStep) powerjump = 45.0f+(5.0f*cnts);
 
         t+=0.5f;
 
         if(!IsCollideUp()){
-            max_jump= fmaxf(y0,m_Mario1->GetPosition().y);
-
+            max_jump= fmaxf(y0,m_Mario->GetPosition().y);
 
 
             LOG_INFO("t VALUE");
             LOG_INFO(t);
             if (t<= (powerjump/10.0)  ){
-                m_Mario1->SetPosition({m_Mario1->GetPosition().x, y0+(powerjump*t) -((10.0/2)*(t*t))});
-                //m_MarioBack->SetPosition(m_Mario1->GetPosition());
-                m_Mario->SetPosition(m_Mario1->GetPosition());
+                m_Mario->SetPosition({m_Mario->GetPosition().x, y0+(powerjump*t) -((10.0/2)*(t*t))});
 
             }
 
             if (t>= (powerjump/10.0) ) {
                 y0=max_jump;
                 t=0;
-                m_Mario1->m_Jump = false;
+                m_Mario->m_Jump = false;
 
 
             }
@@ -823,7 +748,7 @@ void FirstWorldOne::Update(App *app){
             //m_Mario1->Jump(m_JumpBaseTime);
         }
         else{
-            m_Mario1->m_Jump = false;
+            m_Mario->m_Jump = false;
             t=1;
             y0 = m_Mario->GetPosition().y-5.0f;
         }
@@ -831,33 +756,29 @@ void FirstWorldOne::Update(App *app){
     }
     //enemy moving
     for(int i=0; i<m_MushVector.size();i++){
+        //debugging
+        if(!std::get<0> (IsOnLand(m_MushVector[14]))){
+            LOG_DEBUG("mush 14 on land");
+            LOG_DEBUG(m_MushVector[14]->GetPosition().y);
+        }
+
         //gravity if fall
         if(m_MushVector[i]->GetPosition().x<=370.0f){
             m_MushVector[i]->isActive = true;
         }
 
-         if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
-            if(!std::get<0> (IsOnLand(m_MushVector[i]))){
-                if (i == 14 || i ==15){
-                    LOG_INFO("search land goombas");
-                    LOG_INFO(i);
-                }
-                m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
+        if(!std::get<0> (IsOnLand(m_MushVector[i])) && m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
+            m_MushVector[i]->time_goombas+=0.3;
 
-                m_MushVector[i]->time_goombas+=0.3;
-                m_MushVector[i]->Speed_X = 1.0f;
-            }
-
-            else if (std::get<0> (IsOnLand(m_MushVector[i]))){
-                //reset time goombas to 0
-                m_MushVector[i]->time_goombas=0.0f;
-                //reset the y start of the goombas to the y now on land
-                m_MushVector[i]->y_start_goombas = m_MushVector[i]->GetPosition().y;
-                //need to adjust with another things
-
-                m_MushVector[i]->Speed_X = 2.0f;
-
-            }
+        }
+        else if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
+            //reset time goombas to 0
+            m_MushVector[i]->time_goombas=0.0f;
+            //reset the y start of the goombas to the y now on land
+            m_MushVector[i]->y_start_goombas = m_MushVector[i]->GetPosition().y;
+            //need to adjust with another things
+            //t_goombas=0.0f;
 
             //need to adjust with another things
             if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) ){
@@ -866,7 +787,7 @@ void FirstWorldOne::Update(App *app){
             else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)){
                 m_MushVector[i]->direction = -1.0f;
             }
-            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(m_MushVector[i]->Speed_X* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(2.0f* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
         }
     }
     for(const auto & i : m_KoopaVec){
@@ -925,7 +846,7 @@ void FirstWorldOne::Update(App *app){
         t=0;
         powerjump =30;
         y0 = searchLand(m_Mario)-10.0f;
-        m_Mario1->m_Jump = true;
+        m_Mario->m_Jump = true;
 
         m_popup->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+50.0f});
 
@@ -939,8 +860,7 @@ void FirstWorldOne::Update(App *app){
         m_MushVector[index]->SetImage(GA_RESOURCE_DIR"/images/goombas_dead.png");
 
         m_MushVector[index]->EnemyDie = true;
-        m_Mario1->SetPosition(m_Mario->GetPosition());
-        //m_MarioBack->SetPosition(m_Mario->GetPosition());
+        //m_Mario1->SetPosition(m_Mario->GetPosition());
 
     }
     if((std::get<0>(stepOnKoo))  && !m_Mario->MarioDie){
@@ -950,7 +870,7 @@ void FirstWorldOne::Update(App *app){
         t=0;
         powerjump =30;
         y0 = searchLand(m_Mario)-10.0f;
-        m_Mario1->m_Jump = true;
+        m_Mario->m_Jump = true;
 
         m_popup->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+50.0f});
 
@@ -968,8 +888,7 @@ void FirstWorldOne::Update(App *app){
         m_KoopaVec[index2]->stepTimes +=1;
 
         //m_KoopaVec[index2]->EnemyDie = true;
-        m_Mario1->SetPosition(m_Mario->GetPosition());
-        //m_MarioBack->SetPosition(m_Mario->GetPosition());
+        //m_Mario1->SetPosition(m_Mario->GetPosition());
 
         if(m_Mario->GetPosition().x <= m_KoopaVec[index2]->GetPosition().x){
             m_KoopaVec[index2]->directionUp = 1.0f;
@@ -985,13 +904,11 @@ void FirstWorldOne::Update(App *app){
             cnts= 0.0f;
         }
         else{
-            LOG_DEBUG("change mario step to false");
             m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,m_MushVector[index]->GetPosition().y-2000});
             m_Mario->MarioStep = false;
         }
 
-        m_Mario1->SetPosition(m_Mario->GetPosition());
-        //m_MarioBack->SetPosition(m_Mario->GetPosition());
+        //m_Mario1->SetPosition(m_Mario->GetPosition());
     }
     //if mario step koopa twice
     if( m_Mario->MarioStepKoopa && m_KoopaVec[index2]->stepTimes==2){
@@ -1018,21 +935,38 @@ void FirstWorldOne::Update(App *app){
             i->SetPosition({i->GetPosition().x-2.0f,i->GetPosition().y+2.0f});
         }
     }
-    /*
-    LOG_DEBUG("Mario collide koopa");
-    LOG_DEBUG(m_Mario->IsCollideRight(m_KoopaVec));
-    LOG_DEBUG(m_Mario->MarioStep);
-    */
-    //if mario collide enemy
-    if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector) || m_Mario->IsCollideRight(m_KoopaVec) || m_Mario->IsCollideLeft(m_KoopaVec)) && !m_Mario->MarioDie && !m_Mario->MarioStep){
+
+    //if mario killed by enemy
+    if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector) || m_Mario->IsCollideRight(m_KoopaVec) || m_Mario->IsCollideLeft(m_KoopaVec)) && !m_Mario->MarioDie && !m_Mario->MarioStep && !m_Mario->MarioLevelingDown){
         LOG_DEBUG("collide enemy");
         //m_Mario_dead_audio->SetVolume(50);
         m_Mario_dead_audio->SetVolume(0);
         m_Mario_dead_audio->Play();
         m_MarioDiesTime = Util::Time::GetElapsedTimeMs();
-        m_Mario->MarioDie = true;
-        m_BGMusic->Pause();
+        m_Mario->level-=1;
+        if(m_Mario->level==-1){
+            m_Mario->MarioDie = true;
+            m_BGMusic->Pause();
+        }
+        else{
+            LOG_DEBUG("msk brp kali leveldown");
+            m_MarioShrinkTime = Util::Time::GetElapsedTimeMs();
+            m_Mario->MarioLevelingDown = true;
+            m_Mario->MarioShrink(MarioShrink);
+            countBlinkTime = 0;
 
+        }
+
+    }
+
+    //if mario levelingdown
+    if(m_Mario->MarioLevelingDown){
+        BlinkTime+=1;
+        countBlinkTime = m_Mario->MarioBlinking(countBlinkTime);
+        if(BlinkTime>=100){
+            m_Mario->MarioLevelingDown = false;
+            BlinkTime = 0;
+        }
     }
 
     //if mario heading tiles
@@ -1125,6 +1059,7 @@ void FirstWorldOne::Update(App *app){
         if(i->isActive2){
 
             if(i->IsCollideRight(m_Mario) || i->IsCollideLeft(m_Mario)){
+                LOG_DEBUG("yellow mush collide mario");
                 m_Mario->MarioLevelingUp = true;
                 i->SetPosition({-1000.0f,-1000.0f});
                 m_Mario->level+=1;
@@ -1213,20 +1148,18 @@ void FirstWorldOne::Update(App *app){
 
 
     //if touch pillar
-    if(m_Mario->IsCollideRight(m_Pillar)){
+    if(m_Mario->IsCollideRight(m_Pillar) && !m_Mario->MarioFinish){
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
-        m_Mario1->SetVisible(false);
-        //m_MarioBack->SetVisible(false);
+        //m_Mario1->SetVisible(false);
         m_MarioPillar->SetPosition(m_Mario->GetPosition());
 
     }
     unsigned long timeEnd;
     if(m_Mario->MarioFinish){
         m_Mario->SetVisible(false);
-        m_Mario1->SetVisible(false);
-        //m_MarioBack->SetVisible(false);
+        //m_Mario1->SetVisible(false);
         if(m_MarioPillar->GetPosition().y>=-135.0f){
             m_MarioPillar->SetPosition({m_Pillar->GetPosition().x-5.0f,m_MarioPillar->GetPosition().y-5.0f});
         }
@@ -1234,29 +1167,28 @@ void FirstWorldOne::Update(App *app){
         m_MarioPillar->SetVisible(true);
 
         m_Mario->SetPosition(m_MarioPillar->GetPosition());
-        m_Mario1->SetPosition(m_MarioPillar->GetPosition());
-        //m_MarioBack->SetPosition(m_MarioPillar->GetPosition());
+        //m_Mario1->SetPosition(m_MarioPillar->GetPosition());
+
 
         if(m_Flag->GetPosition().y>=-135.0f){
             m_Flag->SetPosition({m_Flag->GetPosition().x,m_Flag->GetPosition().y-5.0f});
         }
         else{
             timeEnd = Util::Time::GetElapsedTimeMs();
-            m_Mario1->SetVisible(true);
+            //m_Mario1->SetVisible(true);
             m_MarioPillar->SetVisible(false);
-            m_Mario1->SetPosition({m_Mario1->GetPosition().x+12.0f,m_Mario1->GetPosition().y});
-            m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
+            m_Mario->SetPosition({m_Mario->GetPosition().x+12.0f,m_Mario->GetPosition().y});
+            m_Mario->SetImage(MarioPillarEnd);
 
-            m_Mario->SetPosition(m_Mario1->GetPosition());
-            //m_MarioBack->SetPosition(m_Mario1->GetPosition());
+            //m_Mario->SetPosition(m_Mario1->GetPosition());
             m_Mario->MarioEnd = true;
             m_Mario->MarioFinish = false;
         }
 
     }
     if(m_Mario->MarioEnd){
-        m_Mario1->SetVisible(true);
-        m_Mario->SetVisible(false);
+        //m_Mario1->SetVisible(true);
+        //m_Mario->SetVisible(false);
         m_BGMusic->Pause();
         if(!winSong) {
             //m_Mario_levelFinish_audio->SetVolume(50);
@@ -1266,14 +1198,14 @@ void FirstWorldOne::Update(App *app){
         }
         if(Util::Time::GetElapsedTimeMs()-timeEnd >= 15500 && !isWinLevel){
             m_Mario->SetVisible(true);
-            m_Mario1->SetVisible(false);
+            //m_Mario1->SetVisible(false);
             m_Mario->SetLooping(true);
             m_Mario->SetPlaying();
             moveBackground(6.0f);
         }
         if(m_Castle[0]->GetPosition().x<=m_Mario->GetPosition().x){
             m_Mario->SetVisible(false);
-            m_Mario1->SetVisible(false);
+            //m_Mario1->SetVisible(false);
             isWinLevel = true;
 
         }
@@ -1287,40 +1219,65 @@ void FirstWorldOne::Update(App *app){
     LOG_INFO(m_Mario->GetPosition().x);
     LOG_INFO(m_Mario->GetPosition().y);
 
+
+    LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+    if(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2){
+        LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
+    }
+
+    //if mario stepping the land
+    if(std::get<0>(IsOnLand(m_Mario)) &&(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2)){
+        if(m_EnterRight){
+            if(m_Mario->level == 0){
+                m_Mario->SetImage(MarioRun);
+            }
+            else if(m_Mario->level == 1){
+                m_Mario->SetImage(MarioRunLvl2);
+            }
+        }
+        else if(m_EnterLeft){
+            LOG_DEBUG("step land left");
+            if(m_Mario->level == 0){
+                m_Mario->SetImage(MarioRunBack);
+            }
+            else if(m_Mario->level == 1){
+                LOG_DEBUG("msk left level 1");
+                m_Mario->SetImage(MarioRunBackLvl2);
+            }
+        }
+    }
+    //DO NOT MOVE OR ADD SOMETHING UNDER THESE TWO!!
     //exit
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
         SetState(State::END);
 
     }
-    //restart
-    if(Util::Input::IsKeyPressed(Util::Keycode::R)){
-        Restart(app);
-    }
-
-    //if die
+        //if die
     else if(m_Mario->MarioDie){
-        LOG_DEBUG("mario masuk die");
         m_popup->SetVisible(false);
         unsigned long now = Util::Time::GetElapsedTimeMs();
-        m_Mario1->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
+        m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
 
-        m_Mario1->SetVisible(true);
-        m_Mario->SetVisible(false);
+        //m_Mario1->SetVisible(true);
+        //m_Mario->SetVisible(false);
         if(now-m_MarioDiesTime<=300){
             m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+5.0f});
-            m_Mario1->SetPosition(m_Mario->GetPosition());
-            //m_MarioBack->SetPosition(m_Mario->GetPosition());
+            //m_Mario1->SetPosition(m_Mario->GetPosition());
         }
         else{
             m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
-            m_Mario1->SetPosition(m_Mario->GetPosition());
+            //m_Mario1->SetPosition(m_Mario->GetPosition());
 
             if(m_Mario->GetPosition().y<-400.0f){
                 Restart(app);
             }
-
         }
 
+    }
+
+    //restart
+    if(Util::Input::IsKeyPressed(Util::Keycode::R)){
+        Restart(app);
     }
 
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);

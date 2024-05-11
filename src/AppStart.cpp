@@ -78,13 +78,25 @@ void FirstWorldOne::Start(App *app){
 
 
     //Mario Jump
-    m_Mario1 = std::make_shared<MarioJump>(GA_RESOURCE_DIR"/Mario/mario_jump.png");
-    m_Mario1->SetZIndex(50);
-    m_Mario1->SetVisible(false);
+    MarioJump.reserve(2);
+    MarioJump.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jump.png");
+    MarioJump.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jump.png");
 
-   // m_audio_mario_small_jump.LoadMedia(GA_RESOURCE_DIR"/Audio/small_mario_jump.wav");
+    //Mario jump back
+    MarioJumpBack.reserve(2);
+    MarioJumpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
+    MarioJumpBack.emplace_back(GA_RESOURCE_DIR"/Mario/mario_jumpBack.png");
 
-    app->m_Root.AddChild(m_Mario1);
+    MarioJumpLvl2.reserve(2);
+    MarioJumpLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+    MarioJumpLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jump.png");
+
+    MarioJumpBackLvl2.reserve(2);
+    MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+    MarioJumpBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_jumpBack.png");
+
+    MarioPillarEnd.reserve(1);
+    MarioPillarEnd.emplace_back(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
 
     //Mario run forward
     MarioRun.reserve(5);
@@ -129,7 +141,15 @@ void FirstWorldOne::Start(App *app){
 
     //mario shrink
     MarioShrink.reserve(52);
-
+    for(int i=0;i<8;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/MarioShrink1.png");
+    }
+    for(int i=0;i<8;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/MarioShrink2.png");
+    }
+    for(int i=0;i<36;i++){
+        MarioShrink.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
+    }
 
     //mushroom
     Mushroom1.reserve(2);
@@ -308,7 +328,7 @@ void FirstWorldOne::Start(App *app){
     for(int i=0;i<6;i++){
         m_Tube.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tube.png"));
         m_Tube[i]->SetZIndex(4);
-        m_Tube[i]->SetVisible(true);
+        m_Tube[i]->SetVisible(false);
 
     }
     m_Tube[0]->SetPosition({565.0f,-380.0f});

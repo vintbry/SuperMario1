@@ -5,6 +5,7 @@
 
 AnimatedCharacter::AnimatedCharacter(const std::vector<std::string>& AnimationPaths) {
     m_Drawable = std::make_shared<Util::Animation>(AnimationPaths, false, 500, false, 0);
+    m_AnimationPath = AnimationPaths;
 }
 
 bool AnimatedCharacter::IfAnimationEnds() const {
@@ -19,5 +20,10 @@ void AnimatedCharacter::SetImage(const std::string& ImagePath) {
 }
 
 void AnimatedCharacter::SetImage(const std::vector<std::string>& AnimationPaths) {
+    m_AnimationPath = AnimationPaths;
     m_Drawable = std::make_shared<Util::Animation>(AnimationPaths, false, 500, false,0);
+}
+
+std::vector<std::string> AnimatedCharacter::GetAnimationPath() {
+    return m_AnimationPath;
 }
