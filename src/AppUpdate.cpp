@@ -700,7 +700,7 @@ void FirstWorldOne::Update(App *app){
 
     cnts= cnt/2.0;
     //
-    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2){
+    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2 && std::get<0>(IsOnLand(m_Mario))){
         LOG_DEBUG("msk pressed up");
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
