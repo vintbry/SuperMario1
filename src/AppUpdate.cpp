@@ -173,7 +173,7 @@ float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object)
             y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
         }
     }
-    y = y + m_Mario->GetScaledSize().y/2;
+    y = y + Object->GetScaledSize().y/2;
 
     return y;
 }
@@ -756,6 +756,12 @@ void FirstWorldOne::Update(App *app){
     }
     //enemy moving
     for(int i=0; i<m_MushVector.size();i++){
+        //debugging
+        if(!std::get<0> (IsOnLand(m_MushVector[14]))){
+            LOG_DEBUG("mush 14 on land");
+            LOG_DEBUG(m_MushVector[14]->GetPosition().y);
+        }
+
         //gravity if fall
         if(m_MushVector[i]->GetPosition().x<=370.0f){
             m_MushVector[i]->isActive = true;
@@ -764,6 +770,7 @@ void FirstWorldOne::Update(App *app){
         if(!std::get<0> (IsOnLand(m_MushVector[i])) && m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
             m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
             m_MushVector[i]->time_goombas+=0.3;
+
         }
         else if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
             //reset time goombas to 0
@@ -1052,6 +1059,7 @@ void FirstWorldOne::Update(App *app){
         if(i->isActive2){
 
             if(i->IsCollideRight(m_Mario) || i->IsCollideLeft(m_Mario)){
+                LOG_DEBUG("yellow mush collide mario");
                 m_Mario->MarioLevelingUp = true;
                 i->SetPosition({-1000.0f,-1000.0f});
                 m_Mario->level+=1;
@@ -1228,11 +1236,13 @@ void FirstWorldOne::Update(App *app){
             }
         }
         else if(m_EnterLeft){
+            LOG_DEBUG("step land left");
             if(m_Mario->level == 0){
                 m_Mario->SetImage(MarioRunBack);
             }
             else if(m_Mario->level == 1){
-                m_Mario->SetImage(MarioJumpBackLvl2);
+                LOG_DEBUG("msk left level 1");
+                m_Mario->SetImage(MarioRunBackLvl2);
             }
         }
     }

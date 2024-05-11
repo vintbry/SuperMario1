@@ -26,8 +26,6 @@ void FirstWorldOne::Restart(App *app) {
 
     m_BGMusic = nullptr;
 
-    std::cout<<"all correct1"<<std::endl;
-
     m_Mario_jump_audio = nullptr;
     m_Mario_dead_audio = nullptr;
     m_Mario_coin_audio = nullptr;
@@ -38,14 +36,11 @@ void FirstWorldOne::Restart(App *app) {
 
     m_title = nullptr;
 
-    std::cout<<"all correct2"<<std::endl;
-
     m_score = nullptr;
     m_coin = nullptr;
     m_world = nullptr;
     m_time = nullptr;
     m_popup = nullptr;
-
 
     m_Bg = nullptr;
 
@@ -54,15 +49,12 @@ void FirstWorldOne::Restart(App *app) {
     m_Flag = nullptr;
 
 
-
     m_DeadQues.clear();
     m_Land.clear();
     m_Brick.clear();
     m_Tube.clear();
     m_Wood.clear();
     m_Castle.clear();
-
-    std::cout<<"all correct3"<<std::endl;
 
     m_YellowMushVec.clear();
 
@@ -86,7 +78,6 @@ void FirstWorldOne::Restart(App *app) {
 
     m_Koopa = nullptr;
 
-    std::cout<<"all correct4"<<std::endl;
 
     position = {0.0f,0.0f};
     positionLand = {0.0f,0.0f};
@@ -114,7 +105,6 @@ void FirstWorldOne::Restart(App *app) {
     YellowMushroom.clear();
     MarioPillarEnd.clear();
 
-
     index=0;
     index2=0;
     indexTiles = 0;
@@ -134,7 +124,6 @@ void FirstWorldOne::Restart(App *app) {
     time=1000 ;
     score=0 ;
     coin=0;
-
 
     timenow = 0;
     m_JumpBaseTime = 0;
@@ -156,8 +145,5 @@ void FirstWorldOne::Restart(App *app) {
     rightSlide = false;
     pressUp = false;
 
-    std::cout<<"all correct5"<<std::endl;
-
     SetState(State::START);
-    std::cout<<"start state"<<std::endl;
 }
