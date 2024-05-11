@@ -205,6 +205,7 @@ public:
     bool MarioLevelingUp = false;
     bool MarioLevelingDown = false;
 
+
     void Update(unsigned long BaseTime);
 
     void Jump(unsigned long BaseTime){
@@ -215,6 +216,9 @@ public:
     bool m_Jump=false;
     bool m_HasEnded=true;
 
+
+    float time_mario ;
+    float y_start_mario =0.0f;
 
     int level = 0;
 
