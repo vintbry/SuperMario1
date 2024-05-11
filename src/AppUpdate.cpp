@@ -12,6 +12,7 @@
 
 float FirstWorldOne::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
     float height = y_start - searchLand(Object);
+    LOG_INFO(searchLand(Object));
     float y_exact =y_start-((10.0f/2)*((sqrt((2*height)/10.0))*(sqrt((2*height)/10.0))));
 
     if (Object->GetPosition().y<y_exact+25.0f){
@@ -22,6 +23,7 @@ float FirstWorldOne::gravity(float y_start, float time_gravity, const std::share
     else {
         return y_start - ((10.0f / 2) * (time_gravity * time_gravity));
     }
+   // return y_start - ((10.0f / 2) * (time_gravity * time_gravity));
 
 }
 
@@ -154,7 +156,7 @@ float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object)
             y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
         }
     }
-    y = y + m_Mario->GetScaledSize().y/2;
+    y = y + Object->GetScaledSize().y/2;
 
     return y;
 }
@@ -537,25 +539,19 @@ void FirstWorldOne::Update(App *app){
         //make mario always fall is not on land
         ///*
 
-        float y_under= searchLand(m_Mario);
-        //float y_under= -172;
 
-        h=y0 - ( y_under);
         if(!m_Mario1->m_Jump && !std::get<0>(result) ){
 
             t += 0.5;
+            m_Mario->time_mario += 0.5;
+
             //jatuh tinggi
-            if (m_Mario->GetPosition().y<y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))+15.0f){
-                m_Mario->SetPosition({m_Mario->GetPosition().x, y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))});
-            }
-
-            else {
-
-                m_Mario->SetPosition({m_Mario->GetPosition().x, y0 - ((10.0f / 2) * (t * t))});
-            }
+            m_Mario->SetPosition({m_Mario->GetPosition().x, gravity(y0,t ,m_Mario)});
             m_Mario1->SetPosition(m_Mario->GetPosition());
             m_MarioPillar->SetPosition(m_Mario->GetPosition());
         }
+
+
         m_Mario->SetVisible(false);
         m_Mario1->SetVisible(true);
 
@@ -806,6 +802,7 @@ void FirstWorldOne::Update(App *app){
             max_jump= fmaxf(y0,m_Mario1->GetPosition().y);
 
 
+
             LOG_INFO("t VALUE");
             LOG_INFO(t);
             if (t<= (powerjump/10.0)  ){
@@ -839,17 +836,28 @@ void FirstWorldOne::Update(App *app){
             m_MushVector[i]->isActive = true;
         }
 
-        if(!std::get<0> (IsOnLand(m_MushVector[i])) && m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
-            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
-            m_MushVector[i]->time_goombas+=0.3;
-        }
-        else if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
-            //reset time goombas to 0
-            m_MushVector[i]->time_goombas=0.0f;
-            //reset the y start of the goombas to the y now on land
-            m_MushVector[i]->y_start_goombas = m_MushVector[i]->GetPosition().y;
-            //need to adjust with another things
-            //t_goombas=0.0f;
+         if(m_MushVector[i]->isActive && !m_MushVector[i]->EnemyDie){
+            if(!std::get<0> (IsOnLand(m_MushVector[i]))){
+                if (i == 14 || i ==15){
+                    LOG_INFO("search land goombas");
+                    LOG_INFO(i);
+                }
+                m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x, gravity(m_MushVector[i]->y_start_goombas, m_MushVector[i]->time_goombas, m_MushVector[i])});
+
+                m_MushVector[i]->time_goombas+=0.3;
+                m_MushVector[i]->Speed_X = 1.0f;
+            }
+
+            else if (std::get<0> (IsOnLand(m_MushVector[i]))){
+                //reset time goombas to 0
+                m_MushVector[i]->time_goombas=0.0f;
+                //reset the y start of the goombas to the y now on land
+                m_MushVector[i]->y_start_goombas = m_MushVector[i]->GetPosition().y;
+                //need to adjust with another things
+
+                m_MushVector[i]->Speed_X = 2.0f;
+
+            }
 
             //need to adjust with another things
             if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) ){
@@ -858,7 +866,7 @@ void FirstWorldOne::Update(App *app){
             else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)){
                 m_MushVector[i]->direction = -1.0f;
             }
-            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(2.0f* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
+            m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(m_MushVector[i]->Speed_X* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
         }
     }
     for(const auto & i : m_KoopaVec){

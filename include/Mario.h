@@ -192,6 +192,9 @@ public:
     bool MarioStepKoopa = false;
     bool MarioLevelingUp = false;
 
+    float time_mario ;
+    float y_start_mario =0.0f;
+
     int level = 0;
 
     //mushroom, coins
