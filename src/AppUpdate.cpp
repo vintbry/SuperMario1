@@ -2,7 +2,6 @@
 // Created by Felicia Rulita on 2024/3/12.
 
 #include "FirstWorldOne.h"
-#include "Util/GameObject.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
@@ -10,7 +9,7 @@
 #include <cmath>
 #include <algorithm>
 
-float FirstWorldOne::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
+float Phase::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
     float height = y_start - searchLand(Object);
     float y_exact =y_start-((10.0f/2)*((sqrt((2*height)/10.0))*(sqrt((2*height)/10.0))));
 
@@ -24,7 +23,7 @@ float FirstWorldOne::gravity(float y_start, float time_gravity, const std::share
 
 }
 
-void FirstWorldOne::moveBackground(float position) {
+void Phase::moveBackground(float position) {
     m_Bg2->SetPosition({m_Bg2->GetPosition().x-position,m_Bg2->GetPosition().y});
 
     for(const auto & i : m_Land){
@@ -63,14 +62,14 @@ void FirstWorldOne::moveBackground(float position) {
 
 }
 
-void FirstWorldOne::callMario(){
+void Phase::callMario(){
     m_Mario->SetVisible(true);
     m_Mario->SetLooping(false);
     m_Mario->SetInterval(100);
     m_Mario->SetPlaying();
 }
 
-void FirstWorldOne::callMarioJump() {
+void Phase::callMarioJump() {
     if(m_EnterRight){
         if(m_Mario->level==0){
             m_Mario->SetImage(MarioJump);
@@ -93,7 +92,7 @@ void FirstWorldOne::callMarioJump() {
 }
 
 //make function for searching is on land from mario's x
-float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
+float Phase::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
     float x = Object->GetPosition().x;
     float y = -1000.0f;
 
@@ -178,7 +177,7 @@ float FirstWorldOne::searchLand(const std::shared_ptr<AnimatedCharacter> Object)
     return y;
 }
 
-std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<AnimatedCharacter>& Object){
+std::tuple<bool,glm::vec2 > Phase::IsOnLand(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Land){
         bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -251,7 +250,7 @@ std::tuple<bool,glm::vec2 > FirstWorldOne::IsOnLand(const std::shared_ptr<Animat
     return {false,Object->GetPosition()};
 }
 
-bool FirstWorldOne::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
+bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -320,7 +319,7 @@ bool FirstWorldOne::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Obj
     return false;
 };
 
-bool FirstWorldOne::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
+bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
@@ -389,7 +388,7 @@ bool FirstWorldOne::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Obje
     return false;
 };
 
-bool FirstWorldOne::IsCollideUp(){
+bool Phase::IsCollideUp(){
     for(const auto& tiles : m_Brick){
         //debugging
         bool collideX1 = (m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(m_Mario->GetPosition().x - m_Mario->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2-5.0f);
@@ -432,15 +431,20 @@ bool FirstWorldOne::IsCollideUp(){
     return false;
 }
 
-void FirstWorldOne::Update(App *app){
-    timenow = Util::Time::GetElapsedTimeMs();
+void Phase::Update(App *app){
+    timenow +=1;
+
+    if(!marioStart){
+        m_Mario->SetImage(MarioJump);
+        m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-15.0f});
+    }
 
     if(m_Mario->GetPosition().y<-200.0f){
         m_Mario->MarioDie = true;
     }
 
     if (time >0) {
-        time = 1000 - (static_cast<int>(timenow) / static_cast<int>(100));
+        time = 400 - (static_cast<int>(timenow) / static_cast<int>(10));
     }
     else {
         time =0;
@@ -457,6 +461,8 @@ void FirstWorldOne::Update(App *app){
         m_popup->SetVisible(false);
         m_Mario->SetVisible(true);
 
+        marioStart = true;
+
         pressed1 = false;
         y0 = m_Mario->GetPosition().y;
         t=0;
@@ -467,7 +473,7 @@ void FirstWorldOne::Update(App *app){
 
     }
     else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario->m_Jump && m_Mario->m_HasEnded && !m_Mario->MarioDie){
-
+        marioStart = true;
         position = std::get<1>(IsOnLand(m_Mario));
 
         m_Mario->SetPosition(position);
@@ -475,7 +481,7 @@ void FirstWorldOne::Update(App *app){
 
     }
 
-    else if(!m_Mario->MarioDie && !m_Mario->MarioStep){
+    else if(!m_Mario->MarioDie && !m_Mario->MarioStep && !m_Mario->MarioFinish && marioStart){
         callMarioJump();
         //make mario always fall is not on land
         ///*
@@ -532,7 +538,7 @@ void FirstWorldOne::Update(App *app){
                 m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
             }
         }
-        //if not jumping than run
+            //if not jumping than run
         else{
             m_Mario->SetPlaying();
             callMario();
@@ -606,18 +612,11 @@ void FirstWorldOne::Update(App *app){
             m_Mario->SetImage(MarioRunBackLvl2);
 
         }
-
-
-
-
     }
 
     if(Util::Input::IsKeyPressed(Util::Keycode::LEFT) && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd && !m_Mario->MarioLevelingUp){
         m_EnterRight = false;
         m_EnterLeft = true;
-
-        //make other invisible
-        //m_Mario1->SetVisible(false);
 
         //when mario jump he can also go to the left
         if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
@@ -628,9 +627,6 @@ void FirstWorldOne::Update(App *app){
                 m_Mario->SetPosition(m_Mario->GetPosition());
             }
 
-            //renew position
-            //m_Mario1->SetPosition(m_Mario->GetPosition());
-            //m_Mario1->SetVisible(true);
         }
         else{ //if not jump
             callMario();
@@ -692,15 +688,18 @@ void FirstWorldOne::Update(App *app){
 
     }
     if(Util::Input::IsKeyPressed(Util::Keycode::UP)){
-        if (m_Mario->m_Jump && pressed2 ) {
+        if (m_Mario->m_Jump && pressed2 && pressed1) {
             cnt++;
 
+        }
+        else {
+            cnt =0;
         }
     }
 
     cnts= cnt/2.0;
     //
-    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2 && std::get<0>(IsOnLand(m_Mario)) && !m_Mario->MarioStep){
+    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2 && std::get<0>(IsOnLand(m_Mario)) && !m_Mario->MarioStep && cnt==0){
         LOG_DEBUG("msk pressed up");
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
@@ -708,10 +707,6 @@ void FirstWorldOne::Update(App *app){
         //m_Mario_jump_audio->SetVolume(75);
         m_Mario_jump_audio->SetVolume(0);
         m_Mario_jump_audio->Play();
-
-        m_JumpBaseTime=Util::Time::GetElapsedTimeMs();
-
-        m_Mario->Jump(m_JumpBaseTime);
 
         //m_Mario->SetVisible(false);
         m_Mario->m_Jump= true;
@@ -722,7 +717,7 @@ void FirstWorldOne::Update(App *app){
 
     if( m_Mario->m_Jump ){
         if (cnts>2) cnts=2;
-        if (pressed2 && pressed1 && !m_Mario->MarioStep) powerjump = 45.0f+(5.0f*cnts);
+        if (pressed2 && pressed1 && !m_Mario->MarioStep) m_Mario->PowerJump = 45.0f+(5.0f*cnts);
 
         t+=0.5f;
 
@@ -732,21 +727,19 @@ void FirstWorldOne::Update(App *app){
 
             LOG_INFO("t VALUE");
             LOG_INFO(t);
-            if (t<= (powerjump/10.0)  ){
-                m_Mario->SetPosition({m_Mario->GetPosition().x, y0+(powerjump*t) -((10.0/2)*(t*t))});
+            if (t< (m_Mario->PowerJump/10.0)  ){
+                m_Mario->SetPosition({m_Mario->GetPosition().x, y0+(m_Mario->PowerJump*t) -((10.0/2)*(t*t))});
 
             }
-
-            if (t>= (powerjump/10.0) ) {
-                y0=max_jump;
-                t=0;
+            else if (t>= (m_Mario->PowerJump/10.0) ) {
+                y0 = max_jump;
+                t = 0;
                 m_Mario->m_Jump = false;
-
-
             }
 
-            //m_Mario1->Jump(m_JumpBaseTime);
         }
+
+            //Mario collide with above brick
         else{
             m_Mario->m_Jump = false;
             t=1;
@@ -756,12 +749,6 @@ void FirstWorldOne::Update(App *app){
     }
     //enemy moving
     for(int i=0; i<m_MushVector.size();i++){
-        //debugging
-        if(!std::get<0> (IsOnLand(m_MushVector[14]))){
-            LOG_DEBUG("mush 14 on land");
-            LOG_DEBUG(m_MushVector[14]->GetPosition().y);
-        }
-
         //gravity if fall
         if(m_MushVector[i]->GetPosition().x<=370.0f){
             m_MushVector[i]->isActive = true;
@@ -781,10 +768,10 @@ void FirstWorldOne::Update(App *app){
             //t_goombas=0.0f;
 
             //need to adjust with another things
-            if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) ){
+            if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) || m_MushVector[i]->IsCollideLeft(m_KoopaVec) || m_MushVector[i]->IsCollideLeft(m_Wood) ){
                 m_MushVector[i]->direction = 1.0f;
             }
-            else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)){
+            else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)|| m_MushVector[i]->IsCollideRight(m_KoopaVec) || m_MushVector[i]->IsCollideRight(m_Wood)){
                 m_MushVector[i]->direction = -1.0f;
             }
             m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(2.0f* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
@@ -839,12 +826,12 @@ void FirstWorldOne::Update(App *app){
     auto stepOnKoo = m_Mario->IsStepOn(m_KoopaVec);
 
     //if mario kills enemy
-    if((std::get<0>(stepOnMush)) && !m_Mario->MarioStep && !m_Mario->MarioDie){
+    if((std::get<0>(stepOnMush)) && !m_Mario->MarioStep && !m_Mario->MarioDie && !m_MushVector[std::get<1>(stepOnMush)]->EnemyDie){
         //popup score need to fix!
         score = score +100;
         m_popup->SetVisible(true);
         t=0;
-        powerjump =30;
+        m_Mario->PowerJump =30;
         y0 = searchLand(m_Mario)-10.0f;
         m_Mario->m_Jump = true;
 
@@ -860,7 +847,6 @@ void FirstWorldOne::Update(App *app){
         m_MushVector[index]->SetImage(GA_RESOURCE_DIR"/images/goombas_dead.png");
 
         m_MushVector[index]->EnemyDie = true;
-        //m_Mario1->SetPosition(m_Mario->GetPosition());
 
     }
     if((std::get<0>(stepOnKoo))  && !m_Mario->MarioDie){
@@ -868,7 +854,7 @@ void FirstWorldOne::Update(App *app){
         score = score +100;
         m_popup->SetVisible(true);
         t=0;
-        powerjump =30;
+        m_Mario->PowerJump =30;
         y0 = searchLand(m_Mario)-10.0f;
         m_Mario->m_Jump = true;
 
@@ -887,8 +873,6 @@ void FirstWorldOne::Update(App *app){
         m_KoopaVec[index2]->SetImage(GA_RESOURCE_DIR"/images/koopa_dead.png");
         m_KoopaVec[index2]->stepTimes +=1;
 
-        //m_KoopaVec[index2]->EnemyDie = true;
-        //m_Mario1->SetPosition(m_Mario->GetPosition());
 
         if(m_Mario->GetPosition().x <= m_KoopaVec[index2]->GetPosition().x){
             m_KoopaVec[index2]->directionUp = 1.0f;
@@ -904,11 +888,10 @@ void FirstWorldOne::Update(App *app){
             cnts= 0.0f;
         }
         else{
-            m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,m_MushVector[index]->GetPosition().y-2000});
+            m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,-2000});
             m_Mario->MarioStep = false;
         }
 
-        //m_Mario1->SetPosition(m_Mario->GetPosition());
     }
     //if mario step koopa twice
     if( m_Mario->MarioStepKoopa && m_KoopaVec[index2]->stepTimes==2){
@@ -926,15 +909,18 @@ void FirstWorldOne::Update(App *app){
 
     //if mush killed by koopa
     for(const auto & i : m_MushVector){
-        if(i->IsCollideRight(m_KoopaVec) || i->IsCollideLeft(m_KoopaVec)){
+        if((i->IsCollideRightDead(m_KoopaVec) || i->IsCollideLeftDead(m_KoopaVec))){
             i->SetImage(GA_RESOURCE_DIR"/images/goombas_dead2.png");
             i->isBounced = true;
             i->EnemyDie = true;
         }
         if(i->isBounced){
-            i->SetPosition({i->GetPosition().x-2.0f,i->GetPosition().y+2.0f});
+            i->SetPosition({i->GetPosition().x, i->GetPosition().y- i->time_goombas});
+            i -> time_goombas+=1.0;
         }
     }
+
+
 
     //if mario killed by enemy
     if((m_Mario->IsCollideRight(m_MushVector) || m_Mario->IsCollideLeft(m_MushVector) || m_Mario->IsCollideRight(m_KoopaVec) || m_Mario->IsCollideLeft(m_KoopaVec)) && !m_Mario->MarioDie && !m_Mario->MarioStep && !m_Mario->MarioLevelingDown && !std::get<0>(stepOnMush) && !std::get<0>(stepOnKoo)){
@@ -976,18 +962,41 @@ void FirstWorldOne::Update(App *app){
         m_Mario->MarioHeadBrick = true;
         m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
         indexTiles = std::get<1>(headOnBrick);
-        m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
-        isBrick = true;
-        //m_Mario_bump_audio->SetVolume(75);
-        m_Mario_bump_audio->SetVolume(0);
-        m_Mario_bump_audio->Play();
+        //when mario small or mario level=0 the brick won't break
+        if(m_Mario->level == 0 ){
+            m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
+            isBrick = 1;
+            //m_Mario_bump_audio->SetVolume(75);
+            m_Mario_bump_audio->SetVolume(0);
+            m_Mario_bump_audio->Play();
+        }
+            // when mario big or mario level = 1, so brick will crack
+        else if (m_Mario->level >= 1){
+            // is brick =2 => brick will crack
+            isBrick =2;
+            m_Brick[indexTiles]-> SetVisible(false);
+            // m_Brick[indexTiles]->SetPosition({m_Brick[indexTiles]->GetPosition().x, -20000});
+
+        }
+        //if mush on the top of it
+        for(const auto & i: m_MushVector){
+            LOG_DEBUG("mushvector");
+            LOG_DEBUG(m_MushVector[14]->GetPosition().y-m_MushVector[14]->GetScaledSize().y/2);
+            LOG_DEBUG(m_Brick[indexTiles]->GetPosition().y+m_Brick[indexTiles]->GetScaledSize().y/2);
+            //define x too else it will only take y as the condition
+            if( i->IsStepOn(m_Brick[indexTiles]) && !i->EnemyDie){
+                LOG_DEBUG("step on brick");
+                i->EnemyDie = true;
+                i->isBounced = true;
+            }
+        }
     }
     else if(std::get<0>(headOnQues) && (!m_Coins->isActive) ){
         m_Mario->MarioHeadQues = true;
         m_MarioHeadTime2 = Util::Time::GetElapsedTimeMs();
         indexTiles2 = std::get<1>(headOnQues);
         m_DeadQues[indexTiles2]->SetPosition(m_QuesVector[indexTiles2]->GetPosition());
-        isBrick = false;
+        isBrick = 0;
         //m_Mario_bump_audio->SetVolume(75);
         m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
@@ -1034,7 +1043,6 @@ void FirstWorldOne::Update(App *app){
 
         }
     }
-
     //mushroom for leveling up
     for(const auto & i:m_YellowMushVec){
         if(i->isActive){
@@ -1081,33 +1089,33 @@ void FirstWorldOne::Update(App *app){
 
     //if mario leveling up
     if(m_Mario->MarioLevelingUp && !m_Mario->IsPlaying()){
-        LOG_DEBUG("leveling up not");
         m_Mario->MarioLevelingUp = false;
     }
-
-
-    LOG_DEBUG("yellow mush Pos");
-    LOG_DEBUG(m_YellowMush->GetPosition().x);
-    LOG_DEBUG(m_YellowMush->GetPosition().y);
-    if(isBrick && m_Mario->MarioHeadBrick){
-        unsigned long now2 = Util::Time::GetElapsedTimeMs();
-        glm::vec2 tilePos = m_Brick[indexTiles]->GetPosition();
-        m_Brick[30]->SetVisible(true);
-        m_Brick[indexTiles]->SetVisible(false);
-        if(now2-m_MarioHeadTime<=100){
-            m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y+5.0f});
+    if( m_Mario->MarioHeadBrick){
+        if(isBrick==1){
+            unsigned long now2 = Util::Time::GetElapsedTimeMs();
+            glm::vec2 tilePos = m_Brick[indexTiles]->GetPosition();
+            m_Brick[30]->SetVisible(true);
+            m_Brick[indexTiles]->SetVisible(false);
+            if(now2-m_MarioHeadTime<=100){
+                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y+5.0f});
+            }
+            else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
+                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y-5.0f});
+            }
+            else{
+                m_Brick[indexTiles]->SetVisible(true);
+                m_Brick[30]->SetVisible(false);
+                m_Mario->MarioHeadBrick = false;
+                m_Brick[30]->SetPosition(tilePos);
+            }
         }
-        else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
-            m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y-5.0f});
-        }
-        else{
-            m_Brick[indexTiles]->SetVisible(true);
-            m_Brick[30]->SetVisible(false);
-            m_Mario->MarioHeadBrick = false;
-            m_Brick[30]->SetPosition(tilePos);
+        else if (isBrick==2){
+            if (!m_Mario->m_Jump) m_Brick[indexTiles]->SetPosition({m_Brick[indexTiles]->GetPosition().x, -20000});
+
         }
     }
-    else if(!isBrick && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
+    else if(isBrick==0 && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
         unsigned long now4 = Util::Time::GetElapsedTimeMs();
         glm::vec2 tilePos2 = m_QuesVector[indexTiles2]->GetPosition();
         m_DeadQues[indexTiles2]->SetVisible(true);
@@ -1152,14 +1160,12 @@ void FirstWorldOne::Update(App *app){
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
-        //m_Mario1->SetVisible(false);
-        m_MarioPillar->SetPosition(m_Mario->GetPosition());
+        m_MarioPillar->SetPosition({m_Pillar->GetPosition().x,m_Mario->GetPosition().y});
 
     }
     unsigned long timeEnd;
     if(m_Mario->MarioFinish){
         m_Mario->SetVisible(false);
-        //m_Mario1->SetVisible(false);
         if(m_MarioPillar->GetPosition().y>=-135.0f){
             m_MarioPillar->SetPosition({m_Pillar->GetPosition().x-5.0f,m_MarioPillar->GetPosition().y-5.0f});
         }
@@ -1167,7 +1173,6 @@ void FirstWorldOne::Update(App *app){
         m_MarioPillar->SetVisible(true);
 
         m_Mario->SetPosition(m_MarioPillar->GetPosition());
-        //m_Mario1->SetPosition(m_MarioPillar->GetPosition());
 
 
         if(m_Flag->GetPosition().y>=-135.0f){
@@ -1187,8 +1192,6 @@ void FirstWorldOne::Update(App *app){
 
     }
     if(m_Mario->MarioEnd){
-        //m_Mario1->SetVisible(true);
-        //m_Mario->SetVisible(false);
         m_BGMusic->Pause();
         if(!winSong) {
             //m_Mario_levelFinish_audio->SetVolume(50);
@@ -1198,14 +1201,13 @@ void FirstWorldOne::Update(App *app){
         }
         if(Util::Time::GetElapsedTimeMs()-timeEnd >= 15500 && !isWinLevel){
             m_Mario->SetVisible(true);
-            //m_Mario1->SetVisible(false);
             m_Mario->SetLooping(true);
             m_Mario->SetPlaying();
+            m_Mario->SetInterval(70);
             moveBackground(6.0f);
         }
         if(m_Castle[0]->GetPosition().x<=m_Mario->GetPosition().x){
             m_Mario->SetVisible(false);
-            //m_Mario1->SetVisible(false);
             isWinLevel = true;
 
         }
@@ -1213,17 +1215,9 @@ void FirstWorldOne::Update(App *app){
     }
 
     //mario levelup
-
-    //
     LOG_INFO("Mario POs");
     LOG_INFO(m_Mario->GetPosition().x);
     LOG_INFO(m_Mario->GetPosition().y);
-
-
-    LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
-    if(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2){
-        LOG_DEBUG(m_Mario->GetAnimationPath()[0]);
-    }
 
     //if mario stepping the land
     if(std::get<0>(IsOnLand(m_Mario)) &&(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2)){
@@ -1258,18 +1252,15 @@ void FirstWorldOne::Update(App *app){
         unsigned long now = Util::Time::GetElapsedTimeMs();
         m_Mario->SetImage(GA_RESOURCE_DIR"/Mario/mario_death.png");
 
-        //m_Mario1->SetVisible(true);
-        //m_Mario->SetVisible(false);
         if(now-m_MarioDiesTime<=300){
             m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y+5.0f});
-            //m_Mario1->SetPosition(m_Mario->GetPosition());
         }
         else{
             m_Mario->SetPosition({m_Mario->GetPosition().x,m_Mario->GetPosition().y-5.0f});
-            //m_Mario1->SetPosition(m_Mario->GetPosition());
 
             if(m_Mario->GetPosition().y<-400.0f){
                 Restart(app);
+                SetState(State::START);
             }
         }
 
@@ -1278,11 +1269,21 @@ void FirstWorldOne::Update(App *app){
     //restart
     if(Util::Input::IsKeyPressed(Util::Keycode::R)){
         Restart(app);
+        SetState(State::START);
     }
 
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
 
     app->m_Root.Update();
+
+    //NEXT LEVEL
+    if(isWinLevel){
+        LOG_DEBUG("next level");
+        //blm di restart
+        Restart(app);
+        app->SetPhase(App::Phases::FIRST_WORLD_TWO);
+        app->ChangePhase(App::Phases::FIRST_WORLD_TWO);
+    }
 
 
 }

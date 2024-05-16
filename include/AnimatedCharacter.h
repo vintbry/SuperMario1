@@ -139,6 +139,26 @@ public:
         return false;
     }
 
+    template<typename T>
+    bool IsStepOn(std::shared_ptr<T> Objects){
+
+            auto tiles = Objects;
+            bool collideX1 = (GetPosition().x-GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2-2.0f))&&(GetPosition().x-GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2+2.0f);
+            bool collideX2 = (GetPosition().x+GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2)-2.0f)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2+2.0f);
+            //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
+            bool collideY = ((GetPosition().y - GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 15.0f) && ((GetPosition().y - GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+5.0f);
+
+            glm::vec2 landPos = {GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+GetScaledSize().y/2};
+
+            bool collideX = collideX1 || collideX2;
+
+            if((collideX) && (collideY)){
+                return true;
+            }
+
+        return false;
+    }
+
     //mushroom, coins
     bool isActive = false;
     bool alreadyOut = false;
