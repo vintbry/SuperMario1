@@ -30,14 +30,6 @@ public:
             //bool collideY = (Object->GetPosition().y==tiles->GetPosition().y+tiles->GetScaledSize().y-(Object->GetScaledSize().y/2 + 3.0f));
             bool collideY = ((GetPosition().y - GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 15.0f) && ((GetPosition().y - GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+5.0f);
 
-            LOG_DEBUG("step on check");
-            LOG_DEBUG(collideX1);
-            LOG_DEBUG(collideX2);
-            LOG_DEBUG(collideY);
-            LOG_DEBUG(GetPosition().y - GetScaledSize().y/2);
-            LOG_DEBUG(tiles->GetPosition().y+tiles->GetScaledSize().y/2);
-
-
             glm::vec2 landPos = {GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+GetScaledSize().y/2};
 
             bool collideX = collideX1 || collideX2;
@@ -98,7 +90,7 @@ public:
 
             bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
-            if(collideX && collideY){
+            if(collideX && collideY && !tiles->EnemyDie){
                 return true;
             }
 
@@ -156,7 +148,7 @@ public:
 
             bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
-            if(collideX && collideY){
+            if(collideX && collideY && !tiles->EnemyDie){
                 return true;
             }
 
@@ -210,6 +202,7 @@ public:
 
     float time_mario ;
     float y_start_mario =0.0f;
+    float PowerJump = 0.0f;
 
     int level = 0;
 

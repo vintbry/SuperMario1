@@ -14,6 +14,7 @@
 #include "Util/Time.hpp"
 #include "AnimatedCharacter.h"
 #include "Character.h"
+#include "Koopa.h"
 
 class Mushroom : public AnimatedCharacter{
 public:
@@ -32,6 +33,38 @@ public:
             bool collideY = collideY1 || collideY2;
 
             if(collideX && collideY){
+                return true;
+            }
+
+        }
+        return false;
+    }
+    bool IsCollideRight(std::vector<std::shared_ptr<Koopa>> Object ){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY && !tiles->levelUp){
+                return true;
+            }
+
+        }
+        return false;
+    }
+    bool IsCollideRightDead(std::vector<std::shared_ptr<Koopa>> Object ){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY && tiles->levelUp){
                 return true;
             }
 
@@ -73,6 +106,38 @@ public:
         }
         return false;
     }
+    bool IsCollideLeft(std::vector<std::shared_ptr<Koopa>> Object){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY && !tiles->levelUp){
+                return true;
+            }
+
+        }
+        return false;
+    }
+    bool IsCollideLeftDead(std::vector<std::shared_ptr<Koopa>> Object){
+        for(int i=0;i<Object.size();i++){
+            auto tiles = Object[i];
+            bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+            bool collideY1 = (GetPosition().y + GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+            bool collideY2 = (GetPosition().y - GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+            bool collideY = collideY1 || collideY2;
+
+            if(collideX && collideY && tiles->levelUp){
+                return true;
+            }
+
+        }
+        return false;
+    }
     template<typename T>
     bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object, int index){
         for(int i=0;i<Object.size();i++){
@@ -92,6 +157,8 @@ public:
         }
         return false;
     }
+    unsigned long m_MushroomDieTime = 0;
+
     float direction = -1.0f;
 
     bool EnemyDie = false;

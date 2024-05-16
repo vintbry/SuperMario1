@@ -12,9 +12,9 @@
 
 
 void FirstWorldOne::Start(App *app){
-    LOG_TRACE("Start!");
-    m_Bg = std::make_shared<BackgroundImage>(GA_RESOURCE_DIR"/Background/bg1.png");
-    app->m_Root.AddChild(m_Bg);
+    LOG_TRACE("Start First World!");
+    m_Bg1 = std::make_shared<BackgroundImage>(GA_RESOURCE_DIR"/Background/bg1.png");
+    app->m_Root.AddChild(m_Bg1);
 
     m_Mario_dead_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/mario-death.wav");
     m_Mario_jump_audio = std::make_unique<Util::SFX>(GA_RESOURCE_DIR"/Audio/sound_effects/jump-small.wav");
@@ -488,7 +488,6 @@ void FirstWorldOne::Start(App *app){
         MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_move"+std::to_string(i)+"Back.png");
     }
     MarioRunBackLvl2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1Back.png");
-
 
     SetState(State::UPDATE);
 

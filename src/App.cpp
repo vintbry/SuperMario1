@@ -5,6 +5,7 @@
 #include "MenuPhase.h"
 #include "BeginningPhase.h"
 #include "FirstWorldOne.h"
+#include "FirstWorldTwo.h"
 #include <iostream>
 
 App::App(Phases Phase){
@@ -25,6 +26,10 @@ void App::ChangePhase(Phases phase) {
     else if(phase == Phases::FIRST_WORLD_ONE){
         m_CurrentPhase = std::make_shared<FirstWorldOne>();
     }
+    else if(phase == Phases::FIRST_WORLD_TWO){
+        m_CurrentPhase = std::make_shared<FirstWorldTwo>();
+        std::cout<<"success change to world two"<<std::endl;
+    }
 
 }
 
@@ -40,6 +45,13 @@ void App::Update(){
         }
         else if(m_CurrentPhase->GetCurrentState() == Phase::State::END){
             m_CurrentPhase->End(this);
+        }
+        else if(m_CurrentPhase->GetCurrentState() == Phase::State::STARTLEVEL){
+            m_CurrentPhase->StartLevel(this);
+        }
+        else if(m_CurrentPhase->GetCurrentState() == Phase::State::STARTLEVEL2){
+            std::cout<<"level2"<<std::endl;
+            m_CurrentPhase->StartLevel2(this);
         }
     }
 }

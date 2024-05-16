@@ -16,7 +16,7 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/Character.cpp
         include/App.h
         include/BackgroundImage.h
-        src/AppStart.cpp
+        src/AppStartOne.cpp
         src/AppUpdate.cpp
         src/AppEnd.cpp
         include/MarioJump.h
@@ -42,6 +42,9 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         src/BeginningPhase.cpp
         include/FirstWorldOne.h
         src/FirstWorldOne.cpp
+        include/FirstWorldTwo.h
+        src/FirstWorldTwo.cpp
+        src/AppStartTwo.cpp
 )
 
 if(MSVC)
