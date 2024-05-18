@@ -38,9 +38,13 @@ void Phase::Restart(App *app) {
 
     m_Bg = nullptr;
 
+    m_Bg1 = nullptr;
+
     m_Bg2 = nullptr;
     m_Pillar = nullptr;
     m_Flag = nullptr;
+    m_BrickMove = nullptr;
+    m_TubeBig = nullptr;
 
 
     m_DeadQues.clear();
@@ -70,8 +74,11 @@ void Phase::Restart(App *app) {
 
     m_Coins = nullptr;
 
-    m_Koopa = nullptr;
+    m_Coins2 = nullptr;
 
+    m_Coins2Vec.clear();
+
+    m_Koopa = nullptr;
 
     position = {0.0f,0.0f};
     positionLand = {0.0f,0.0f};
@@ -98,6 +105,7 @@ void Phase::Restart(App *app) {
     MarioJumpBackLvl2.clear();
     YellowMushroom.clear();
     MarioPillarEnd.clear();
+    Coins.clear();
 
     index=0;
     index2=0;
@@ -138,6 +146,7 @@ void Phase::Restart(App *app) {
     leftSlide = false;
     rightSlide = false;
     pressUp = false;
+    marioStart = false;
 
 
 }

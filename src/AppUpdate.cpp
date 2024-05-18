@@ -9,6 +9,42 @@
 #include <cmath>
 #include <algorithm>
 
+void Phase::Rendering(){
+    for(const auto & i:m_MushVector){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    for(const auto & i:m_KoopaVec){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    for(int i=0;i<m_QuesVector.size();i++){
+        if(m_QuesVector[i]->GetPosition().x<400.0f && !m_DeadQues[i]->GetVisibility()){
+            m_QuesVector[i]->SetVisible(true);
+        }
+    }
+    for(const auto & i:m_Brick){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    for(const auto & i:m_Castle){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    for(const auto & i:m_YellowMushVec){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    if(m_Pillar->GetPosition().x<400.0f)m_Pillar->SetVisible(true);
+    if(m_Flag->GetPosition().x<400.0f)m_Flag->SetVisible(true);
+    if(m_Coins->GetPosition().x<400.0f)m_Coins->SetVisible(true);
+}
+
 float Phase::gravity(float y_start, float time_gravity, const std::shared_ptr<AnimatedCharacter> Object){
     float height = y_start - searchLand(Object);
     float y_exact =y_start-((10.0f/2)*((sqrt((2*height)/10.0))*(sqrt((2*height)/10.0))));
@@ -23,17 +59,50 @@ float Phase::gravity(float y_start, float time_gravity, const std::shared_ptr<An
 
 }
 
-void Phase::moveBackground(float position) {
+glm::vec2 Phase::ParabolicMovement (int v0, float angel_cos, float angel_sin,float time,std::shared_ptr<Character> Object){
+    // gravity =10
+    float x ,y, X_Point_start, Y_Point_start;
+    Y_Point_start = Object->GetPosition().y;
+    X_Point_start = Object ->GetPosition().x;
+
+    //Horizontal Distance =>x(t)=v0 * cos(angle)*t
+    x= X_Point_start + (v0* angel_cos*time);
+
+
+    //Vertical Distance => y(t)=(v0 *sin(angel)*time)−(0.5 * Gravity * time^2)
+    y= Y_Point_start + ((v0 * angel_sin*time)-(0.5 * 10 * (time*time)));
+
+    LOG_INFO("SIN COS");
+
+
+    glm::vec2 Position= {x,y};
+    return Position;
+
+}
+
+void Phase::moveBackground(float position,App *app) {
     m_Bg2->SetPosition({m_Bg2->GetPosition().x-position,m_Bg2->GetPosition().y});
+
+    m_BrickMove->SetPosition({m_BrickMove->GetPosition().x-position,m_BrickMove->GetPosition().y});
 
     for(const auto & i : m_Land){
         i->SetPosition({i->GetPosition().x-position,i->GetPosition().y});
     }
     for(const auto & j : m_Tube){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+
+        if(j->GetPosition().x<-400.0f){
+            app->m_Root.RemoveChild(j);
+        }
+
     }
     for(const auto & j : m_Wood){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+
+        if(j->GetPosition().x<-400.0f){
+            app->m_Root.RemoveChild(j);
+        }
+
     }
     for(const auto & j : m_MushVector){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
@@ -43,9 +112,27 @@ void Phase::moveBackground(float position) {
     }
     for(const auto & j : m_QuesVector){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+
+        if(j->GetPosition().x<-400.0f){
+            app->m_Root.RemoveChild(j);
+        }
+
     }
     for(const auto & j : m_Brick){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+
+        if(j->GetPosition().x<-400.0f){
+            app->m_Root.RemoveChild(j);
+        }
+
+    }
+    for(const auto & j : m_Brick_break){
+        for ( const auto & x : j) {
+            x->SetPosition({x->GetPosition().x - position, x->GetPosition().y});
+            if(x->GetPosition().x<-400.0f){
+                app->m_Root.RemoveChild(x);
+            }
+        }
     }
     for(const auto & j : m_Castle){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
@@ -55,6 +142,11 @@ void Phase::moveBackground(float position) {
     }
     for(const auto & j : m_YellowMushVec){
         j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+    }
+    if(m_Coins2!=nullptr){
+        for(const auto &j : m_Coins2Vec){
+            j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+        }
     }
     m_Pillar->SetPosition({m_Pillar->GetPosition().x-position,m_Pillar->GetPosition().y});
     m_Flag->SetPosition({m_Flag->GetPosition().x-position,m_Flag->GetPosition().y});
@@ -252,12 +344,14 @@ std::tuple<bool,glm::vec2 > Phase::IsOnLand(const std::shared_ptr<AnimatedCharac
 
 bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
-        //debugging
         bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -265,12 +359,14 @@ bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_QuesVector){
-        //debugging
         bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -278,12 +374,14 @@ bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Land){
-        //debugging
         bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -291,12 +389,14 @@ bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Tube){
-        //debugging
-        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>tiles->GetPosition().x-tiles->GetScaledSize().x/2-4.0f)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -304,12 +404,14 @@ bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Wood){
-        //debugging
-        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2-2.0f) && Object->GetPosition().y-Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x + Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -321,12 +423,14 @@ bool Phase::IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object){
 
 bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
     for(const auto& tiles : m_Brick){
-        //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -334,12 +438,14 @@ bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_QuesVector){
-        //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -347,12 +453,14 @@ bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Land){
-        //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -360,12 +468,14 @@ bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Tube){
-        //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<tiles->GetPosition().x+tiles->GetScaledSize().x/2+4.0f);
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
         bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
         bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
@@ -373,17 +483,18 @@ bool Phase::IsCollideLeft(const std::shared_ptr<AnimatedCharacter>& Object){
 
     }
     for(const auto& tiles : m_Wood){
-        //debugging
-        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x - Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
-        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
-        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2-2.0f) && Object->GetPosition().y-Object->GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+        bool collideX = (Object->GetPosition().x - Object->GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY1 = (Object->GetPosition().y + Object->GetScaledSize().y/2<(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y+Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+        bool collideY2 = (Object->GetPosition().y - Object->GetScaledSize().y/2<tiles->GetPosition().y+tiles->GetScaledSize().y/2) && Object->GetPosition().y-Object->GetScaledSize().y/2>tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-        bool collideY = collideY1 || collideY2;
+        bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=Object->GetPosition().y+Object->GetScaledSize().y/2);
+        bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= Object->GetPosition().y - Object->GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= Object->GetPosition().y+Object->GetScaledSize().y/2);
+
+        bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
         if(collideX && collideY){
             return true;
         }
-
     }
     return false;
 };
@@ -432,6 +543,8 @@ bool Phase::IsCollideUp(){
 }
 
 void Phase::Update(App *app){
+    Rendering();
+
     timenow +=1;
 
     if(!marioStart){
@@ -472,9 +585,9 @@ void Phase::Update(App *app){
         m_Mario->SetPosition(position);
 
     }
-    else if(std::get<0>(IsOnLand(m_Mario)) && m_Mario->m_Jump && m_Mario->m_HasEnded && !m_Mario->MarioDie){
+    else if(std::get<0>(result) && m_Mario->m_Jump && m_Mario->m_HasEnded && !m_Mario->MarioDie){
         marioStart = true;
-        position = std::get<1>(IsOnLand(m_Mario));
+        position = std::get<1>(result);
 
         m_Mario->SetPosition(position);
         m_Mario->m_Jump=false;
@@ -492,7 +605,7 @@ void Phase::Update(App *app){
         h=y0 - ( y_under);
         if(!m_Mario->m_Jump && !std::get<0>(result) ){
 
-            t += 0.5;
+            t += 0.4;
             //jatuh tinggi
             if (m_Mario->GetPosition().y<y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))+15.0f){
                 m_Mario->SetPosition({m_Mario->GetPosition().x, y0-((10.0f/2)*((sqrt((2*h)/10.0))*(sqrt((2*h)/10.0))))});
@@ -508,7 +621,7 @@ void Phase::Update(App *app){
     }
     //press F to go to next 部分 of map
     if(Util::Input::IsKeyDown(Util::Keycode::F)){
-        moveBackground(2400.0f);
+        moveBackground(2400.0f,app);
 
         m_Mario->SetPosition({m_Mario->GetPosition().x,100.0f});
     }
@@ -530,12 +643,12 @@ void Phase::Update(App *app){
 
 
 
-        if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
+        if(m_Mario->m_Jump or !std::get<0>(result)){
             //mario only can run until the middle
             //else is the elements that move
             LOG_DEBUG("right and jump");
             if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
-                m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x+6.0f,m_Mario->GetPosition().y});
             }
         }
             //if not jumping than run
@@ -546,7 +659,7 @@ void Phase::Update(App *app){
             //else is the elements that move
 
             if(m_Mario->GetPosition().x < 13.0f and !IsCollideRight(m_Mario)){
-                m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x+6.0f,m_Mario->GetPosition().y});
             }
             else{
                 m_Mario->SetPosition(m_Mario->GetPosition());
@@ -554,7 +667,7 @@ void Phase::Update(App *app){
         }
         //if mario more than middle than the background move
         if(m_Mario->GetPosition().x >= 13.0f and !IsCollideRight(m_Mario)){
-            moveBackground(8.0f);
+            moveBackground(6.0f,app);
         }
 
     }
@@ -619,9 +732,9 @@ void Phase::Update(App *app){
         m_EnterLeft = true;
 
         //when mario jump he can also go to the left
-        if(m_Mario->m_Jump or !std::get<0>(IsOnLand(m_Mario))){
+        if(m_Mario->m_Jump or !std::get<0>(result)){
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){ // and IsCollide()
-                m_Mario->SetPosition({m_Mario->GetPosition().x-4.0f, m_Mario->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x-6.0f, m_Mario->GetPosition().y});
             }
             else{
                 m_Mario->SetPosition(m_Mario->GetPosition());
@@ -633,7 +746,7 @@ void Phase::Update(App *app){
             m_Mario->SetPlaying();
             m_Mario->SetVisible(true);
             if(m_Mario->GetPosition().x > -340.0f and !IsCollideLeft(m_Mario)){
-                m_Mario->SetPosition({m_Mario->GetPosition().x-8.0f, m_Mario->GetPosition().y});
+                m_Mario->SetPosition({m_Mario->GetPosition().x-6.0f, m_Mario->GetPosition().y});
             }
             else{
                 m_Mario->SetPosition(m_Mario->GetPosition());
@@ -699,7 +812,7 @@ void Phase::Update(App *app){
 
     cnts= cnt/2.0;
     //
-    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2 && std::get<0>(IsOnLand(m_Mario)) && !m_Mario->MarioStep && cnt==0){
+    if(Util::Input::IsKeyPressed(Util::Keycode::UP) && !m_Mario->m_Jump && !m_Mario->MarioDie && !m_Mario->MarioFinish && !m_Mario->MarioEnd&& !pressed1 && !pressed2 && std::get<0>(result) && !m_Mario->MarioStep && cnt==0){
         LOG_DEBUG("msk pressed up");
         glm::vec2 newPos = m_Mario->GetPosition();
         pressed1 = true;
@@ -707,7 +820,8 @@ void Phase::Update(App *app){
         //m_Mario_jump_audio->SetVolume(75);
         m_Mario_jump_audio->SetVolume(0);
         m_Mario_jump_audio->Play();
-
+        cnt =0;
+        t=0;
         //m_Mario->SetVisible(false);
         m_Mario->m_Jump= true;
 
@@ -719,7 +833,7 @@ void Phase::Update(App *app){
         if (cnts>2) cnts=2;
         if (pressed2 && pressed1 && !m_Mario->MarioStep) m_Mario->PowerJump = 45.0f+(5.0f*cnts);
 
-        t+=0.5f;
+        t+=0.4f;
 
         if(!IsCollideUp()){
             max_jump= fmaxf(y0,m_Mario->GetPosition().y);
@@ -731,7 +845,7 @@ void Phase::Update(App *app){
                 m_Mario->SetPosition({m_Mario->GetPosition().x, y0+(m_Mario->PowerJump*t) -((10.0/2)*(t*t))});
 
             }
-            else if (t>= (m_Mario->PowerJump/10.0) ) {
+            else if (t> (m_Mario->PowerJump/10.0) ) {
                 y0 = max_jump;
                 t = 0;
                 m_Mario->m_Jump = false;
@@ -887,8 +1001,12 @@ void Phase::Update(App *app){
         if(now1-m_MarioStepTime<=300){
             cnts= 0.0f;
         }
+        else if (std::get<0>(result)){
+            cnts= 0.0f;
+        }
         else{
             m_MushVector[index]->SetPosition({m_MushVector[index]->GetPosition().x,-2000});
+            cnts= 0.0f;
             m_Mario->MarioStep = false;
         }
 
@@ -964,7 +1082,7 @@ void Phase::Update(App *app){
         indexTiles = std::get<1>(headOnBrick);
         //when mario small or mario level=0 the brick won't break
         if(m_Mario->level == 0 ){
-            m_Brick[30]->SetPosition(m_Brick[indexTiles]->GetPosition());
+            m_BrickMove->SetPosition(m_Brick[indexTiles]->GetPosition());
             isBrick = 1;
             //m_Mario_bump_audio->SetVolume(75);
             m_Mario_bump_audio->SetVolume(0);
@@ -975,6 +1093,7 @@ void Phase::Update(App *app){
             // is brick =2 => brick will crack
             isBrick =2;
             m_Brick[indexTiles]-> SetVisible(false);
+            for (int i =0 ; i<4; i++) m_Brick_break[indexTiles][i]->SetVisible(true);
             // m_Brick[indexTiles]->SetPosition({m_Brick[indexTiles]->GetPosition().x, -20000});
 
         }
@@ -991,12 +1110,12 @@ void Phase::Update(App *app){
             }
         }
     }
-    else if(std::get<0>(headOnQues) && (!m_Coins->isActive) ){
+    else if(std::get<0>(headOnQues) && (!m_Coins->isActive)){
         m_Mario->MarioHeadQues = true;
         m_MarioHeadTime2 = Util::Time::GetElapsedTimeMs();
         indexTiles2 = std::get<1>(headOnQues);
         m_DeadQues[indexTiles2]->SetPosition(m_QuesVector[indexTiles2]->GetPosition());
-        isBrick = 0;
+        isBrick = 3;
         //m_Mario_bump_audio->SetVolume(75);
         m_Mario_bump_audio->SetVolume(0);
         m_Mario_bump_audio->Play();
@@ -1091,23 +1210,24 @@ void Phase::Update(App *app){
     if(m_Mario->MarioLevelingUp && !m_Mario->IsPlaying()){
         m_Mario->MarioLevelingUp = false;
     }
+    //heading brick and question
     if( m_Mario->MarioHeadBrick){
         if(isBrick==1){
             unsigned long now2 = Util::Time::GetElapsedTimeMs();
             glm::vec2 tilePos = m_Brick[indexTiles]->GetPosition();
-            m_Brick[30]->SetVisible(true);
+            m_BrickMove->SetVisible(true);
             m_Brick[indexTiles]->SetVisible(false);
             if(now2-m_MarioHeadTime<=100){
-                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y+5.0f});
+                m_BrickMove->SetPosition({m_BrickMove->GetPosition().x,m_BrickMove->GetPosition().y+5.0f});
             }
             else if(now2-m_MarioHeadTime<=200 && now2-m_MarioHeadTime>100){
-                m_Brick[30]->SetPosition({m_Brick[30]->GetPosition().x,m_Brick[30]->GetPosition().y-5.0f});
+                m_BrickMove->SetPosition({m_BrickMove->GetPosition().x,m_BrickMove->GetPosition().y-5.0f});
             }
             else{
                 m_Brick[indexTiles]->SetVisible(true);
-                m_Brick[30]->SetVisible(false);
+                m_BrickMove->SetVisible(false);
                 m_Mario->MarioHeadBrick = false;
-                m_Brick[30]->SetPosition(tilePos);
+                m_BrickMove->SetPosition(tilePos);
             }
         }
         else if (isBrick==2){
@@ -1115,7 +1235,7 @@ void Phase::Update(App *app){
 
         }
     }
-    else if(isBrick==0 && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
+    else if(isBrick==3 && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
         unsigned long now4 = Util::Time::GetElapsedTimeMs();
         glm::vec2 tilePos2 = m_QuesVector[indexTiles2]->GetPosition();
         m_DeadQues[indexTiles2]->SetVisible(true);
@@ -1152,6 +1272,35 @@ void Phase::Update(App *app){
             m_Coins->isActive = false;
             m_Coins->SetPosition({-1000.0f,-1000.0f});
         }
+    }
+
+    // Makes the Brick Breaking independently => when m_Mario => (level==1) => collide up
+
+    for (int i=0 ; i<m_Brick_break.size();i++){
+        for (int Brickbat_index =0 ; Brickbat_index< m_Brick_break[i].size()-1;Brickbat_index++) {
+            auto Brickbat_each = m_Brick_break[i][Brickbat_index];
+            auto StartPoint= m_Brick_break[i][4];
+            float Angle_cos, Angle_sin;
+            if (Brickbat_each->GetVisibility()){
+                Brickbat_each->CharacterTimePhysics +=0.4;
+
+                //Control the movement of Left top Brickbat
+                if (Brickbat_index==0) {Angle_cos = -0.087; Angle_sin = 0.99 ;}
+                //Control the movement of Left bottom Brickbat
+                else if (Brickbat_index==1) {Angle_cos = -0.17; Angle_sin = 0.98 ;}
+                //Control the movement of Right top Brickbat
+                else if (Brickbat_index==2){ Angle_cos = 0.087; Angle_sin = 0.99 ;}
+                //Control the movement of Right bottom Brickbat
+                else if (Brickbat_index==3) {Angle_cos = 0.17; Angle_sin = 0.98 ;}
+
+                Brickbat_each->SetPosition(ParabolicMovement(30,Angle_cos,Angle_sin,Brickbat_each->CharacterTimePhysics,StartPoint));
+                //Brickbat_each->SetPosition({Brickbat_each->GetPosition().x+AngelDegree,Brickbat_each->GetPosition().y- Brickbat_each->CharacterTimePhysics});
+
+                // to remove the brickbat when y on coordinate less than -300
+                if (Brickbat_each->GetPosition().y <= -300) Brickbat_each->SetVisible(false);
+            }
+        }
+
     }
 
 
@@ -1204,7 +1353,7 @@ void Phase::Update(App *app){
             m_Mario->SetLooping(true);
             m_Mario->SetPlaying();
             m_Mario->SetInterval(70);
-            moveBackground(6.0f);
+            moveBackground(6.0f,app);
         }
         if(m_Castle[0]->GetPosition().x<=m_Mario->GetPosition().x){
             m_Mario->SetVisible(false);
@@ -1220,7 +1369,7 @@ void Phase::Update(App *app){
     LOG_INFO(m_Mario->GetPosition().y);
 
     //if mario stepping the land
-    if(std::get<0>(IsOnLand(m_Mario)) &&(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2)){
+    if(std::get<0>(result) &&(m_Mario->GetAnimationPath() == MarioJump || m_Mario->GetAnimationPath() == MarioJumpBack ||m_Mario->GetAnimationPath() == MarioJumpLvl2 || m_Mario->GetAnimationPath() == MarioJumpBackLvl2)){
         if(m_EnterRight){
             if(m_Mario->level == 0){
                 m_Mario->SetImage(MarioRun);

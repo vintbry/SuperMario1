@@ -46,7 +46,6 @@ public:
     std::shared_ptr<Phase> m_CurrentPhase = std::shared_ptr<Phase>();
 
 
-private:
     Phases m_Phase = Phases::MENU;
 
 };

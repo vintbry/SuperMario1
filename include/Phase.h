@@ -68,13 +68,13 @@ public:
     std::shared_ptr<TEXTS> m_time;
     std::shared_ptr<TEXTS> m_popup;
 
-    //std::shared_ptr<MarioJump> m_Mario1;
-
     std::shared_ptr<BackgroundImage> m_Bg1;
 
     std::shared_ptr<Character> m_Bg2;
     std::shared_ptr<Character> m_Pillar;
     std::shared_ptr<Character> m_Flag;
+    std::shared_ptr<Character> m_BrickMove;
+    std::shared_ptr<Character> m_TubeBig;
 
     std::vector<std::shared_ptr<Character>> m_DeadQues;
     std::vector<std::shared_ptr<Character>> m_Land;
@@ -82,6 +82,7 @@ public:
     std::vector<std::shared_ptr<Character>> m_Tube;
     std::vector<std::shared_ptr<Character>> m_Wood;
     std::vector<std::shared_ptr<Character>> m_Castle;
+    std::vector<std::vector<std::shared_ptr<Character>>> m_Brick_break;
 
     std::vector<std::shared_ptr<YellowMush>> m_YellowMushVec;
 
@@ -102,6 +103,10 @@ public:
     std::shared_ptr<YellowMush> m_YellowMush;
 
     std::shared_ptr<AnimatedCharacter> m_Coins;
+
+    std::shared_ptr<AnimatedCharacter> m_Coins2;
+
+    std::vector<std::shared_ptr<AnimatedCharacter>> m_Coins2Vec;
 
     std::shared_ptr<Koopa> m_Koopa;
 
@@ -130,6 +135,7 @@ public:
     std::vector<std::string> MarioJumpBackLvl2;
     std::vector<std::string> YellowMushroom;
     std::vector<std::string> MarioPillarEnd;
+    std::vector<std::string> CoinsLvl2;
 
     int index=0;
     int index2=0;
@@ -172,7 +178,9 @@ public:
     bool pressUp = false;
     bool marioStart = false;
 
-    void moveBackground(float position);
+    void Rendering();
+
+    void moveBackground(float position, App *app);
 
     void callMario();
 
@@ -190,6 +198,8 @@ public:
     bool IsCollideUp();
 
     void callMarioJump();
+
+    glm::vec2 ParabolicMovement (int v0,float angle_cos, float angel_sin,float time,std::shared_ptr<Character>);
 
 
 };
