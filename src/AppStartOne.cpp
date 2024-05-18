@@ -162,7 +162,7 @@ void FirstWorldOne::Start(App *app){
         m_Mushroom->SetLooping(true);
         m_Mushroom->SetPlaying();
         m_Mushroom->SetZIndex(5);
-        m_Mushroom->SetVisible(true);
+        m_Mushroom->SetVisible(false);
         m_MushVector.push_back(m_Mushroom);
 
     }
@@ -204,7 +204,7 @@ void FirstWorldOne::Start(App *app){
         m_Koopa->SetZIndex(5);
         m_Koopa->SetLooping(true);
         m_Koopa->SetPlaying();
-        m_Koopa->SetVisible(true);
+        m_Koopa->SetVisible(false);
         m_KoopaVec.push_back(m_Koopa);
 
     }
@@ -240,7 +240,7 @@ void FirstWorldOne::Start(App *app){
         m_Question->SetLooping(true);
         m_Question->SetPlaying();
         m_Question->SetZIndex(5);
-        m_Question->SetVisible(true);
+        m_Question->SetVisible(false);
         m_QuesVector.push_back(m_Question);
 
         m_QuesVector[i]->SetZIndex(5);
@@ -279,10 +279,10 @@ void FirstWorldOne::Start(App *app){
     }
 
     //brick
-    for(int i = 0;i<31;i++){
+    for(int i = 0;i<30;i++){
         m_Brick.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/inAir1.png"));
         m_Brick[i]->SetZIndex(5);
-        m_Brick[i]->SetVisible(true);
+        m_Brick[i]->SetVisible(false);
         app->m_Root.AddChild(m_Brick[i]);
     }
     m_Brick[0]->SetPosition({291.0f,-82.0f});
@@ -318,10 +318,66 @@ void FirstWorldOne::Start(App *app){
     m_Brick[28]->SetPosition({5107.0f,-82.0f});
     m_Brick[29]->SetPosition({5171.0f,-82.0f});
 
-    m_Brick[30]->SetVisible(false);
 
+
+    m_BrickMove = std::make_shared<Character>(GA_RESOURCE_DIR"/images/inAir1.png");
+    m_BrickMove->SetZIndex(5);
+    m_BrickMove->SetPosition({-1000.0f,-1000.0f});
+    m_BrickMove->SetVisible(true);
+    app->m_Root.AddChild(m_BrickMove);
+
+    //brick_break
+    m_Brick_break.resize(31);
+    for (int i = 0; i < 31; ++i) {
+        m_Brick_break[i].resize(5);
+    }
     for(int i = 0;i<31;i++){
-        app->m_Root.AddChild(m_Brick[i]);
+
+        for (int x =0 ; x<5 ;x++) {
+            const auto BrickBreak = std::make_shared<Character>(GA_RESOURCE_DIR"/images/block_debris0.png");
+            BrickBreak->SetZIndex(100);
+            BrickBreak->SetVisible(false);
+            app->m_Root.AddChild(BrickBreak);
+            m_Brick_break[i][x] = BrickBreak;
+
+        }
+    }
+    for (int i =0 ; i<5 ; i++) {
+        LOG_DEBUG("for2");
+        m_Brick_break[0][i]->SetPosition({291.0f, -82.0f});
+        m_Brick_break[1][i]->SetPosition({355.0f, -82.0f});
+        m_Brick_break[2][i]->SetPosition({419.0f, -82.0f});
+        m_Brick_break[3][i]->SetPosition({2112.0f, -82.0f});
+        m_Brick_break[4][i]->SetPosition({2176.0f, -82.0f});
+        m_Brick_break[5][i]->SetPosition({2208.0f, 40.0f});
+        m_Brick_break[6][i]->SetPosition({2240.0f, 40.0f});
+        m_Brick_break[7][i]->SetPosition({2272.0f, 40.0f});
+        m_Brick_break[8][i]->SetPosition({2304.0f, 40.0f});
+        m_Brick_break[9][i]->SetPosition({2336.0f, 40.0f});
+        m_Brick_break[10][i]->SetPosition({2368.0f, 40.0f});
+        m_Brick_break[11][i]->SetPosition({2400.0f, 40.0f});
+        m_Brick_break[12][i]->SetPosition({2432.0f, 40.0f});
+        m_Brick_break[13][i]->SetPosition({2464.0f, 40.0f});
+
+        m_Brick_break[14][i]->SetPosition({2579.0f, 40.0f});
+        m_Brick_break[15][i]->SetPosition({2611.0f, 40.0f});
+        m_Brick_break[16][i]->SetPosition({2643.0f, 40.0f});
+        m_Brick_break[17][i]->SetPosition({2675.0f, -82.0f});
+        m_Brick_break[18][i]->SetPosition({2867.0f, -82.0f});
+        m_Brick_break[19][i]->SetPosition({2899.0f, -82.0f});
+
+        m_Brick_break[20][i]->SetPosition({3443.0f, -82.0f});
+        m_Brick_break[21][i]->SetPosition({3539.0f, 40.0f});
+        m_Brick_break[22][i]->SetPosition({3571.0f, 40.0f});
+        m_Brick_break[23][i]->SetPosition({3763.0f, 40.0f});
+        m_Brick_break[24][i]->SetPosition({3859.0f, 40.0f});
+        m_Brick_break[25][i]->SetPosition({3795.0f, -82.0f});
+        m_Brick_break[26][i]->SetPosition({3827.0f, -82.0f});
+        m_Brick_break[27][i]->SetPosition({5075.0f, -82.0f});
+        m_Brick_break[28][i]->SetPosition({5107.0f, -82.0f});
+        m_Brick_break[29][i]->SetPosition({5171.0f, -82.0f});
+
+        m_Brick_break[30][i]->SetVisible(false);
     }
 
     //Tube
@@ -397,13 +453,13 @@ void FirstWorldOne::Start(App *app){
     //pillar and flag
     m_Pillar = std::make_shared<Character>(GA_RESOURCE_DIR"/images/flag_pillar.png");
     m_Pillar->SetZIndex(4);
-    m_Pillar->SetVisible(true);
+    m_Pillar->SetVisible(false);
     m_Pillar->SetPosition({6035.0f,-6.0f});
     app->m_Root.AddChild(m_Pillar);
 
     m_Flag = std::make_shared<Character>(GA_RESOURCE_DIR"/images/flag.png");
     m_Flag->SetZIndex(4);
-    m_Flag->SetVisible(true);
+    m_Flag->SetVisible(false);
     m_Flag->SetPosition({6019.0f,110.0f});
     app->m_Root.AddChild(m_Flag);
 
@@ -411,7 +467,7 @@ void FirstWorldOne::Start(App *app){
     for(int i = 0; i < 2; i++){
         m_Castle.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/blackCastle.png"));
         m_Castle[i]->SetZIndex(100);
-        m_Castle[i]->SetVisible(true);
+        m_Castle[i]->SetVisible(false);
         m_Castle[i]->SetPosition({6547.0f,-172.0f + (i*32.0f)});
         app->m_Root.AddChild(m_Castle[i]);
     }
@@ -448,6 +504,7 @@ void FirstWorldOne::Start(App *app){
         m_YellowMush->SetPlaying();
         m_YellowMush->SetZIndex(3);
         m_YellowMush->SetVisible(false);
+        m_YellowMush->SetPosition({-1000.0f,-1000.0f});
         m_YellowMushVec.push_back(m_YellowMush);
 
 
