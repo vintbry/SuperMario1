@@ -48,6 +48,9 @@ public:
     [[nodiscard]] bool IfAnimationEnds() const;
 
     bool isActive = true;
+    bool isMushInside = false;
+    int indexMush;
+
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
 
