@@ -305,6 +305,8 @@ void FirstWorldTwo::StartLevel2(App *app) {
     }
     //set position
     m_QuesVector[0]->SetPosition({-29.0f,-82.0f});
+    m_QuesVector[0]->isMushInside = true;
+    m_QuesVector[0]->indexMush = 0;
     m_QuesVector[1]->SetPosition({3.0f,-82.0f});
     m_QuesVector[2]->SetPosition({35.0f,-82.0f});
     m_QuesVector[3]->SetPosition({67.0f,-82.0f});
@@ -321,137 +323,186 @@ void FirstWorldTwo::StartLevel2(App *app) {
     }
 
     //brick
-    for(int i = 0;i<142;i++){
+    for(int i = 0;i<267;i++){
         m_Brick.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/tilesWorld2_1.png"));
         m_Brick[i]->SetZIndex(5);
         m_Brick[i]->SetVisible(false);
         app->m_Root.AddChild(m_Brick[i]);
     }
-    m_Brick[0]->SetPosition({575.0f,-44.0f});
+    m_Brick[0]->SetPosition({575.0f,-42.0f});
 
-    m_Brick[1]->SetPosition({895.0f,-76.0f});
-    m_Brick[2]->SetPosition({895.0f,-44.0f});
-    m_Brick[3]->SetPosition({895.0f,-12.0f});
+    m_Brick[1]->SetPosition({895.0f,-74.0f});
+    m_Brick[2]->SetPosition({895.0f,-42.0f});
+    m_Brick[3]->SetPosition({895.0f,-10.0f});
 
-    m_Brick[4]->SetPosition({927.0f,-76.0f}); //927
+    m_Brick[4]->SetPosition({927.0f,-74.0f}); //927
 
-    m_Brick[5]->SetPosition({959.0f,-76.0f}); //959
-    m_Brick[6]->SetPosition({959.0f,-44.0f});
-    m_Brick[7]->SetPosition({959.0f,-12.0f});
+    m_Brick[5]->SetPosition({959.0f,-74.0f}); //959
+    m_Brick[6]->SetPosition({959.0f,-42.0f});
+    m_Brick[7]->SetPosition({959.0f,-10.0f});
 
-    m_Brick[8]->SetPosition({991.0f,-12.0f});
-    m_Brick[9]->SetPosition({1023.0f,-12.0f});
+    m_Brick[8]->SetPosition({991.0f,-10.0f});
+    m_Brick[9]->SetPosition({1023.0f,-10.0f});
 
-    m_Brick[10]->SetPosition({1055.0f,-12.0f});
-    m_Brick[11]->SetPosition({1055.0f,-44.0f});
-    m_Brick[12]->SetPosition({1055.0f,-76.0f});
+    m_Brick[10]->SetPosition({1055.0f,-10.0f});
+    m_Brick[11]->SetPosition({1055.0f,-42.0f});
+    m_Brick[12]->SetPosition({1055.0f,-74.0f});
 
-    m_Brick[13]->SetPosition({1087.0f,-76.0f});
+    m_Brick[13]->SetPosition({1087.0f,-74.0f});
 
-    m_Brick[14]->SetPosition({1119.0f,-76.0f});
-    m_Brick[15]->SetPosition({1119.0f,-44.0f});
-    m_Brick[16]->SetPosition({1119.0f,-12.0f});
+    m_Brick[14]->SetPosition({1119.0f,-74.0f});
+    m_Brick[15]->SetPosition({1119.0f,-42.0f});
+    m_Brick[16]->SetPosition({1119.0f,-10.0f});
 
-    m_Brick[17]->SetPosition({1311.0f,-76.0f});
-    m_Brick[18]->SetPosition({1311.0f,-44.0f});
-    m_Brick[19]->SetPosition({1311.0f,-12.0f});
-    m_Brick[20]->SetPosition({1311.0f,20.0f});
-    m_Brick[21]->SetPosition({1311.0f,52.0f});
+    m_Brick[17]->SetPosition({1311.0f,-74.0f});
+    m_Brick[18]->SetPosition({1311.0f,-42.0f});
+    m_Brick[19]->SetPosition({1311.0f,-10.0f});
+    m_Brick[20]->SetPosition({1311.0f,22.0f});
+    m_Brick[21]->SetPosition({1311.0f,54.0f});
 
-    m_Brick[22]->SetPosition({1343.0f,-76.0f});
-    m_Brick[23]->SetPosition({1343.0f,-44.0f});
-    m_Brick[24]->SetPosition({1343.0f,-12.0f});
-    m_Brick[25]->SetPosition({1343.0f,20.0f});
-    m_Brick[26]->SetPosition({1343.0f,52.0f});
+    m_Brick[22]->SetPosition({1343.0f,-74.0f});
+    m_Brick[23]->SetPosition({1343.0f,-42.0f});
+    m_Brick[24]->SetPosition({1343.0f,-10.0f});
+    m_Brick[25]->SetPosition({1343.0f,22.0f});
+    m_Brick[26]->SetPosition({1343.0f,54.0f});
 
-    m_Brick[27]->SetPosition({1375.0f,-76.0f});
-    m_Brick[28]->SetPosition({1375.0f,-108.0f});
-    m_Brick[29]->SetPosition({1375.0f,-140.0f});
+    m_Brick[27]->SetPosition({1375.0f,-74.0f});
+    m_Brick[28]->SetPosition({1375.0f,-106.0f});
+    m_Brick[29]->SetPosition({1375.0f,-138.0f});
 
-    m_Brick[30]->SetPosition({1407.0f,-76.0f});
-    m_Brick[31]->SetPosition({1407.0f,-108.0f});
-    m_Brick[32]->SetPosition({1407.0f,-140.0f});
+    m_Brick[30]->SetPosition({1407.0f,-74.0f});
+    m_Brick[31]->SetPosition({1407.0f,-106.0f});
+    m_Brick[32]->SetPosition({1407.0f,-138.0f});
 
-    m_Brick[33]->SetPosition({1535.0f,-76.0f});
-    m_Brick[34]->SetPosition({1567.0f,-76.0f});
-    m_Brick[35]->SetPosition({1599.0f,-76.0f});
-    m_Brick[36]->SetPosition({1631.0f,-76.0f});
+    m_Brick[33]->SetPosition({1535.0f,-74.0f});
+    m_Brick[34]->SetPosition({1567.0f,-74.0f});
+    m_Brick[35]->SetPosition({1599.0f,-74.0f});
+    m_Brick[36]->SetPosition({1631.0f,-74.0f});
 
-    m_Brick[37]->SetPosition({1663.0f,-76.0f});
-    m_Brick[38]->SetPosition({1663.0f,-44.0f});
-    m_Brick[39]->SetPosition({1663.0f,-12.0f});
-    m_Brick[40]->SetPosition({1663.0f,20.0f});
-    m_Brick[41]->SetPosition({1663.0f,52.0f});
+    m_Brick[37]->SetPosition({1663.0f,-74.0f});
+    m_Brick[38]->SetPosition({1663.0f,-42.0f});
+    m_Brick[39]->SetPosition({1663.0f,-10.0f});
+    m_Brick[40]->SetPosition({1663.0f,22.0f});
+    m_Brick[41]->SetPosition({1663.0f,54.0f});
 
-    m_Brick[42]->SetPosition({1695.0f,-76.0f});
-    m_Brick[43]->SetPosition({1695.0f,-44.0f});
-    m_Brick[44]->SetPosition({1695.0f,-12.0f});
-    m_Brick[45]->SetPosition({1695.0f,20.0f});
-    m_Brick[46]->SetPosition({1695.0f,52.0f});
+    m_Brick[42]->SetPosition({1695.0f,-74.0f});
+    m_Brick[43]->SetPosition({1695.0f,-42.0f});
+    m_Brick[44]->SetPosition({1695.0f,-10.0f});
+    m_Brick[45]->SetPosition({1695.0f,22.0f});
+    m_Brick[46]->SetPosition({1695.0f,54.0f});
 
-    m_Brick[47]->SetPosition({1823.0f,-76.0f});
-    m_Brick[48]->SetPosition({1823.0f,-44.0f});
-    m_Brick[49]->SetPosition({1823.0f,-12.0f});
-    m_Brick[50]->SetPosition({1823.0f,20.0f});
-    m_Brick[51]->SetPosition({1823.0f,52.0f});
+    m_Brick[47]->SetPosition({1823.0f,-74.0f});
+    m_Brick[48]->SetPosition({1823.0f,-42.0f});
+    m_Brick[49]->SetPosition({1823.0f,-10.0f});
+    m_Brick[50]->SetPosition({1823.0f,22.0f});
+    m_Brick[51]->SetPosition({1823.0f,54.0f});
 
-    m_Brick[52]->SetPosition({1855.0f,-76.0f});
-    m_Brick[53]->SetPosition({1887.0f,-76.0f});
-    m_Brick[54]->SetPosition({1887.0f,-44.0f});
+    m_Brick[52]->SetPosition({1855.0f,-74.0f});
+    m_Brick[53]->SetPosition({1887.0f,-74.0f});
+    m_Brick[54]->SetPosition({1887.0f,-42.0f});
 
-    m_Brick[55]->SetPosition({1983.0f,-76.0f});
-    m_Brick[56]->SetPosition({1983.0f,-44.0f});
-    m_Brick[57]->SetPosition({1983.0f,-12.0f});
-    m_Brick[58]->SetPosition({1983.0f,20.0f});
-    m_Brick[59]->SetPosition({1983.0f,52.0f});
+    m_Brick[55]->SetPosition({1983.0f,-74.0f});
+    m_Brick[56]->SetPosition({1983.0f,-42.0f});
+    m_Brick[57]->SetPosition({1983.0f,-10.0f});
+    m_Brick[58]->SetPosition({1983.0f,22.0f});
+    m_Brick[59]->SetPosition({1983.0f,54.0f});
 
-    m_Brick[60]->SetPosition({2015.0f,-76.0f});
-    m_Brick[61]->SetPosition({2015.0f,-44.0f});
-    m_Brick[62]->SetPosition({2015.0f,-12.0f});
-    m_Brick[63]->SetPosition({2015.0f,20.0f});
-    m_Brick[64]->SetPosition({2015.0f,52.0f});
+    m_Brick[60]->SetPosition({2015.0f,-74.0f});
+    m_Brick[61]->SetPosition({2015.0f,-42.0f});
+    m_Brick[62]->SetPosition({2015.0f,-10.0f});
+    m_Brick[63]->SetPosition({2015.0f,22.0f});
+    m_Brick[64]->SetPosition({2015.0f,54.0f});
 
-    m_Brick[65]->SetPosition({2111.0f,-76.0f});
-    m_Brick[66]->SetPosition({2143.0f,-76.0f});
-    m_Brick[67]->SetPosition({2175.0f,-76.0f});
+    m_Brick[65]->SetPosition({2111.0f,-74.0f});
+    m_Brick[66]->SetPosition({2143.0f,-74.0f});
+    m_Brick[67]->SetPosition({2175.0f,-74.0f});
 
-    m_Brick[68]->SetPosition({2355.0f,-76.0f});
-    m_Brick[69]->SetPosition({2355.0f,-44.0f});
+    m_Brick[68]->SetPosition({2355.0f,-74.0f});
+    m_Brick[69]->SetPosition({2355.0f,-42.0f});
 
-    m_Brick[70]->SetPosition({2387.0f,-76.0f});
-    m_Brick[71]->SetPosition({2387.0f,-44.0f});
+    m_Brick[70]->SetPosition({2387.0f,-74.0f});
+    m_Brick[71]->SetPosition({2387.0f,-42.0f});
 
-    m_Brick[72]->SetPosition({2419.0f,-76.0f});
-    m_Brick[73]->SetPosition({2419.0f,-44.0f});
+    m_Brick[72]->SetPosition({2419.0f,-74.0f});
+    m_Brick[73]->SetPosition({2419.0f,-42.0f});
 
-    m_Brick[74]->SetPosition({2451.0f,-76.0f});
-    m_Brick[75]->SetPosition({2451.0f,-44.0f});
+    m_Brick[74]->SetPosition({2451.0f,-74.0f});
+    m_Brick[75]->SetPosition({2451.0f,-42.0f});
 
-    m_Brick[76]->SetPosition({2483.0f,-76.0f});
-    m_Brick[77]->SetPosition({2483.0f,-44.0f});
+    m_Brick[76]->SetPosition({2483.0f,-74.0f});
+    m_Brick[77]->SetPosition({2483.0f,-42.0f});
 
-    m_Brick[78]->SetPosition({2515.0f,-76.0f});
-    m_Brick[79]->SetPosition({2515.0f,-44.0f});
+    m_Brick[78]->SetPosition({2515.0f,-74.0f});
+    m_Brick[79]->SetPosition({2515.0f,-42.0f});
 
-    m_Brick[80]->SetPosition({3581.0f,-172.0f});
-    m_Brick[81]->SetPosition({3581.0f,-140.0f});
-    m_Brick[82]->SetPosition({3581.0f,-108.0f});
+    m_Brick[80]->SetPosition({3581.0f,-170.0f});
+    m_Brick[81]->SetPosition({3581.0f,-138.0f});
+    m_Brick[82]->SetPosition({3581.0f,-106.0f});
 
-    m_Brick[83]->SetPosition({3613.0f,-172.0f});
-    m_Brick[84]->SetPosition({3613.0f,-140.0f});
-    m_Brick[85]->SetPosition({3613.0f,-108.0f});
+    m_Brick[83]->SetPosition({3613.0f,-170.0f});
+    m_Brick[84]->SetPosition({3613.0f,-138.0f});
+    m_Brick[85]->SetPosition({3613.0f,-106.0f});
 
-    m_Brick[86]->SetPosition({4356.0f,-108.0f});
-    m_Brick[87]->SetPosition({4388.0f,-108.0f});
-    m_Brick[88]->SetPosition({4420.0f,-108.0f});
-    m_Brick[89]->SetPosition({4452.0f,-108.0f});
-    m_Brick[90]->SetPosition({4484.0f,-108.0f});
-    m_Brick[91]->SetPosition({4516.0f,-108.0f});
+    m_Brick[86]->SetPosition({4356.0f,-106.0f});
+    m_Brick[87]->SetPosition({4388.0f,-106.0f});
+    m_Brick[88]->SetPosition({4420.0f,-106.0f});
+    m_Brick[89]->SetPosition({4452.0f,-106.0f});
+    m_Brick[90]->SetPosition({4484.0f,-106.0f});
+    m_Brick[91]->SetPosition({4516.0f,-106.0f});
+
+    //connecting the upper brick
+    for(int i=0;i<5;i++){
+        m_Brick[92+i]->SetPosition({1375.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[97+i]->SetPosition({1407.0f,86.0f+(32.0f*i)});
+    }
+
+    for(int i=0;i<5;i++){
+        m_Brick[102+i]->SetPosition({1535.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[107+i]->SetPosition({1567.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[112+i]->SetPosition({1599.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[117+i]->SetPosition({1631.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[122+i]->SetPosition({1663.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[127+i]->SetPosition({1695.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[132+i]->SetPosition({1791.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[137+i]->SetPosition({1823.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[142+i]->SetPosition({1855.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[147+i]->SetPosition({1887.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[152+i]->SetPosition({2111.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[157+i]->SetPosition({2143.0f,86.0f+(32.0f*i)});
+    }
+    for(int i=0;i<5;i++){
+        m_Brick[162+i]->SetPosition({2175.0f,86.0f+(32.0f*i)});
+    }
 
     //upper brick
-    for(int i=0;i<50;i++){
-        m_Brick[92+i]->SetPosition({-153.0f+(32.0f*i),234.0f});
+    for(int i=0;i<100;i++){
+        m_Brick[167+i]->SetPosition({-160.0f+(32.0f*i),246.0f});
     }
+
 
 
 

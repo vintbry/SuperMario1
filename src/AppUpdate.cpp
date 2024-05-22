@@ -11,7 +11,7 @@
 
 void Phase::Rendering(){
     for(const auto & i:m_MushVector){
-        if(i->GetPosition().x<400.0f){
+        if(i->GetPosition().x<400.0f && !i->EnemyDie){
             i->SetVisible(true);
         }
     }
@@ -1073,10 +1073,12 @@ void Phase::Update(App *app){
         }
     }
 
+
     //if mario heading tiles
     auto headOnBrick = m_Mario->IsHeading(m_Brick);
     auto headOnQues = m_Mario->IsHeading(m_QuesVector);
     if(std::get<0>(headOnBrick)){
+        LOG_DEBUG("msk head on brick");
         m_Mario->MarioHeadBrick = true;
         m_MarioHeadTime = Util::Time::GetElapsedTimeMs();
         indexTiles = std::get<1>(headOnBrick);
@@ -1094,7 +1096,7 @@ void Phase::Update(App *app){
             isBrick =2;
             m_Brick[indexTiles]-> SetVisible(false);
             for (int i =0 ; i<4; i++) m_Brick_break[indexTiles][i]->SetVisible(true);
-            // m_Brick[indexTiles]->SetPosition({m_Brick[indexTiles]->GetPosition().x, -20000});
+            // m_Brick[indexTiles]->SetPosition({m_Brick[indexTiles]->GetPosition().x, -2000});
 
         }
         //if mush on the top of it
@@ -1111,7 +1113,11 @@ void Phase::Update(App *app){
         }
     }
     else if(std::get<0>(headOnQues) && (!m_Coins->isActive)){
+        LOG_DEBUG("msk head ques");
         m_Mario->MarioHeadQues = true;
+        if(m_Mario->level==1){
+            LOG_INFO("mario big is heading ques");
+        }
         m_MarioHeadTime2 = Util::Time::GetElapsedTimeMs();
         indexTiles2 = std::get<1>(headOnQues);
         m_DeadQues[indexTiles2]->SetPosition(m_QuesVector[indexTiles2]->GetPosition());
@@ -1128,20 +1134,8 @@ void Phase::Update(App *app){
         //need to initiate which ques come out coins or other!
         if(m_QuesVector[indexTiles2]->isActive) {
             //for other world should be 調整
-            if(indexTiles2 == 1 || indexTiles2 == 4 || indexTiles2 == 5 || indexTiles == 9){
-                if(indexTiles2==1){
-                    indexMush = 0;
-                }
-                else if(indexTiles2 == 4 ){
-                    LOG_DEBUG("masuk indexTiles2");
-                    indexMush = 1;
-                }
-                else if(indexTiles2 == 5 ){
-                    indexMush = 2;
-                }
-                else if(indexTiles2 == 9 ){
-                    indexMush = 3;
-                }
+            if(m_QuesVector[indexTiles2]->isMushInside){
+                indexMush = m_QuesVector[indexTiles2]->indexMush;
 
                 if(!m_DeadQues[indexTiles2]->GetVisibility() && !m_YellowMushVec[indexMush]->isActive){
                     m_MarioHeadTime_yelmush = Util::Time::GetElapsedTimeMs();
@@ -1210,8 +1204,15 @@ void Phase::Update(App *app){
     if(m_Mario->MarioLevelingUp && !m_Mario->IsPlaying()){
         m_Mario->MarioLevelingUp = false;
     }
+    //debugging
+
+    if(isBrick==3){
+        LOG_DEBUG("isbrick==3");
+        LOG_DEBUG(m_QuesVector[indexTiles2]->isActive);
+        LOG_DEBUG(m_Mario->MarioHeadQues);
+    }
     //heading brick and question
-    if( m_Mario->MarioHeadBrick){
+    if( (isBrick==1 || isBrick ==2 )&&(m_Mario->MarioHeadBrick)){
         if(isBrick==1){
             unsigned long now2 = Util::Time::GetElapsedTimeMs();
             glm::vec2 tilePos = m_Brick[indexTiles]->GetPosition();
@@ -1235,7 +1236,12 @@ void Phase::Update(App *app){
 
         }
     }
-    else if(isBrick==3 && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
+    else if((isBrick==3) && m_QuesVector[indexTiles2]->isActive && m_Mario->MarioHeadQues){
+        LOG_DEBUG("Mario brick 3");
+        LOG_DEBUG(m_Mario->level);
+        if(m_Mario->level>=1){
+            LOG_DEBUG("mario big head ques2");
+        }
         unsigned long now4 = Util::Time::GetElapsedTimeMs();
         glm::vec2 tilePos2 = m_QuesVector[indexTiles2]->GetPosition();
         m_DeadQues[indexTiles2]->SetVisible(true);
@@ -1303,7 +1309,6 @@ void Phase::Update(App *app){
 
     }
 
-
     //if touch pillar
     if(m_Mario->IsCollideRight(m_Pillar) && !m_Mario->MarioFinish){
         m_Mario->MarioFinish = true;
@@ -1314,13 +1319,12 @@ void Phase::Update(App *app){
     }
     unsigned long timeEnd;
     if(m_Mario->MarioFinish){
-        m_Mario->SetVisible(false);
         if(m_MarioPillar->GetPosition().y>=-135.0f){
             m_MarioPillar->SetPosition({m_Pillar->GetPosition().x-5.0f,m_MarioPillar->GetPosition().y-5.0f});
         }
 
         m_MarioPillar->SetVisible(true);
-
+        m_Mario->SetVisible(false);
         m_Mario->SetPosition(m_MarioPillar->GetPosition());
 
 
@@ -1331,7 +1335,7 @@ void Phase::Update(App *app){
             timeEnd = Util::Time::GetElapsedTimeMs();
             //m_Mario1->SetVisible(true);
             m_MarioPillar->SetVisible(false);
-            m_Mario->SetPosition({m_Mario->GetPosition().x+12.0f,m_Mario->GetPosition().y});
+            m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
             m_Mario->SetImage(MarioPillarEnd);
 
             //m_Mario->SetPosition(m_Mario1->GetPosition());
@@ -1426,7 +1430,7 @@ void Phase::Update(App *app){
     app->m_Root.Update();
 
     //NEXT LEVEL
-    if(isWinLevel){
+    if(isWinLevel || Util::Input::IsKeyPressed(Util::Keycode::N)){
         LOG_DEBUG("next level");
         //blm di restart
         Restart(app);

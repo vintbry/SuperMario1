@@ -251,16 +251,24 @@ void FirstWorldOne::Start(App *app){
     //set position
     m_QuesVector[0]->SetPosition({163.0f,-82.0f});
     m_QuesVector[1]->SetPosition({323.0f,-82.0f});
+    m_QuesVector[1]->isMushInside = true;
+    m_QuesVector[1]->indexMush = 0;
     m_QuesVector[2]->SetPosition({355.0f,40.0f});
     m_QuesVector[3]->SetPosition({387.0f,-82.0f});
     m_QuesVector[4]->SetPosition({1696.0f,-52.0f});
+    m_QuesVector[4]->isMushInside = true;
+    m_QuesVector[4]->indexMush = 1;
 
     m_QuesVector[5]->SetPosition({2144.0f,-82.0f});
+    m_QuesVector[5]->isMushInside = true;
+    m_QuesVector[5]->indexMush = 2;
 
     m_QuesVector[6]->SetPosition({2675.0f,40.0f});
     m_QuesVector[7]->SetPosition({3059.0f,-82.0f});
     m_QuesVector[8]->SetPosition({3155.0f,-82.0f});
     m_QuesVector[9]->SetPosition({3155.0f,40.0f});
+    m_QuesVector[9]->isMushInside = true;
+    m_QuesVector[9]->indexMush = 3;
     m_QuesVector[10]->SetPosition({3251.0f,-82.0f});
     m_QuesVector[11]->SetPosition({3795.0f,40.0f});
     m_QuesVector[12]->SetPosition({3827.0f,40.0f});
