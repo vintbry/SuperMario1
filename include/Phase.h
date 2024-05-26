@@ -78,11 +78,15 @@ public:
 
     std::vector<std::shared_ptr<Character>> m_DeadQues;
     std::vector<std::shared_ptr<Character>> m_Land;
-    std::vector<std::shared_ptr<Character>> m_Brick;
     std::vector<std::shared_ptr<Character>> m_Tube;
     std::vector<std::shared_ptr<Character>> m_Wood;
     std::vector<std::shared_ptr<Character>> m_Castle;
-    std::vector<std::vector<std::shared_ptr<Character>>> m_Brick_break;
+    std::vector<std::shared_ptr<Character>> m_MovingPlatform;
+    std::vector<std::shared_ptr<Character>> m_MovingPlatform2;
+
+    std::vector<std::shared_ptr<Brick>> m_Brick;
+
+    std::vector<std::vector<std::shared_ptr<Brick>>> m_Brick_break;
 
     std::vector<std::shared_ptr<YellowMush>> m_YellowMushVec;
 
@@ -120,6 +124,7 @@ public:
     std::vector<std::string> MarioRunBack;
     std::vector<std::string> MarioRunBackLvl2;
     std::vector<std::string> MarioPillar;
+    std::vector<std::string> MarioPillar2;
     std::vector<std::string> MarioShrink;
     std::vector<std::string> Mushroom1;
     std::vector<std::string> QuestionMark;
@@ -135,7 +140,9 @@ public:
     std::vector<std::string> MarioJumpBackLvl2;
     std::vector<std::string> YellowMushroom;
     std::vector<std::string> MarioPillarEnd;
+    std::vector<std::string> MarioPillarEnd2;
     std::vector<std::string> CoinsLvl2;
+    std::vector<std::string> KoopaBack;
 
     int index=0;
     int index2=0;
@@ -189,7 +196,6 @@ public:
     std::tuple<bool,glm::vec2> IsOnLand(const std::shared_ptr<AnimatedCharacter>&);
 
     std::tuple<bool,glm::vec2> IsOnLand(const std::shared_ptr<Character>&);
-
 
     bool IsCollideRight(const std::shared_ptr<AnimatedCharacter>& Object);
 

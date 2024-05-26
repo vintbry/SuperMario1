@@ -40,6 +40,16 @@ void Phase::Rendering(){
             i->SetVisible(true);
         }
     }
+    for(const auto & i : m_MovingPlatform){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
+    for(const auto & i : m_MovingPlatform2){
+        if(i->GetPosition().x<400.0f){
+            i->SetVisible(true);
+        }
+    }
     if(m_Pillar->GetPosition().x<400.0f)m_Pillar->SetVisible(true);
     if(m_Flag->GetPosition().x<400.0f)m_Flag->SetVisible(true);
     if(m_Coins->GetPosition().x<400.0f)m_Coins->SetVisible(true);
@@ -126,11 +136,12 @@ void Phase::moveBackground(float position,App *app) {
         }
 
     }
-    for(const auto & j : m_Brick_break){
-        for ( const auto & x : j) {
-            x->SetPosition({x->GetPosition().x - position, x->GetPosition().y});
-            if(x->GetPosition().x<-400.0f){
-                app->m_Root.RemoveChild(x);
+    for(const auto & j: m_Brick_break){
+        for(const auto & k : j){
+            k->SetPosition({k->GetPosition().x-position,k->GetPosition().y});
+
+            if(k->GetPosition().x<-400.0f){
+                app->m_Root.RemoveChild(k);
             }
         }
     }
@@ -145,6 +156,14 @@ void Phase::moveBackground(float position,App *app) {
     }
     if(m_Coins2!=nullptr){
         for(const auto &j : m_Coins2Vec){
+            j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+        }
+    }
+    if(app->m_Phase==App::Phases::FIRST_WORLD_TWO){
+        for(const auto &j : m_MovingPlatform){
+            j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
+        }
+        for(const auto &j : m_MovingPlatform2){
             j->SetPosition({j->GetPosition().x-position,j->GetPosition().y});
         }
     }
@@ -264,6 +283,26 @@ float Phase::searchLand(const std::shared_ptr<AnimatedCharacter> Object){
             y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
         }
     }
+    for(int i=0;i<m_MovingPlatform.size();i++){
+        auto tiles = m_MovingPlatform[i];
+        bool collideX1 = (x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool yPos = (Object->GetPosition().y > (tiles->GetPosition().y));
+
+        if((collideX1 || collideX2) && yPos){
+            y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2)));
+        }
+    }
+    for(int i=0;i<m_MovingPlatform2.size();i++){
+        auto tiles = m_MovingPlatform2[i];
+        bool collideX1 = (x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool yPos = (Object->GetPosition().y > (tiles->GetPosition().y));
+
+        if((collideX1 || collideX2) && yPos){
+            y = std::max(y,(tiles->GetPosition().y + (tiles->GetScaledSize().y/2) + 3.0f));
+        }
+    }
     y = y + Object->GetScaledSize().y/2;
 
     return y;
@@ -331,6 +370,32 @@ std::tuple<bool,glm::vec2 > Phase::IsOnLand(const std::shared_ptr<AnimatedCharac
         bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
 
         glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
+
+        if((collideX) && (collideY)){
+            return {true,landPos};
+        }
+    }
+    for(const auto& tiles : m_MovingPlatform){
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2};
+
+        bool collideX = collideX1 || collideX2;
+
+        if((collideX) && (collideY)){
+            return {true,landPos};
+        }
+    }
+    for(const auto& tiles : m_MovingPlatform2){
+        bool collideX1 = (Object->GetPosition().x-Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x-Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideX2 = (Object->GetPosition().x+Object->GetScaledSize().x/2>=tiles->GetPosition().x-((tiles->GetScaledSize().x)/2))&&(Object->GetPosition().x+Object->GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+        bool collideY = ((Object->GetPosition().y - Object->GetScaledSize().y/2)>=tiles->GetPosition().y+tiles->GetScaledSize().y/2 - 20.0f) && ((Object->GetPosition().y - Object->GetScaledSize().y/2)<=tiles->GetPosition().y+tiles->GetScaledSize().y/2+3.0f);
+
+        glm::vec2 landPos = {Object->GetPosition().x,tiles->GetPosition().y+tiles->GetScaledSize().y/2+Object->GetScaledSize().y/2+3.0f};
 
         bool collideX = collideX1 || collideX2;
 
@@ -882,7 +947,7 @@ void Phase::Update(App *app){
             //t_goombas=0.0f;
 
             //need to adjust with another things
-            if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) || m_MushVector[i]->IsCollideLeft(m_KoopaVec) || m_MushVector[i]->IsCollideLeft(m_Wood) ){
+            if(m_MushVector[i]->IsCollideLeft(m_Tube) || m_MushVector[i]->IsCollideLeft(m_MushVector, i) || m_MushVector[i]->IsCollideLeft(m_KoopaVec) || m_MushVector[i]->IsCollideLeft(m_Wood)){
                 m_MushVector[i]->direction = 1.0f;
             }
             else if(m_MushVector[i]->IsCollideRight(m_Tube) || m_MushVector[i]->IsCollideRight(m_MushVector,i)|| m_MushVector[i]->IsCollideRight(m_KoopaVec) || m_MushVector[i]->IsCollideRight(m_Wood)){
@@ -891,24 +956,41 @@ void Phase::Update(App *app){
             m_MushVector[i]->SetPosition({m_MushVector[i]->GetPosition().x+(2.0f* m_MushVector[i]->direction ),m_MushVector[i]->GetPosition().y});
         }
     }
-    for(const auto & i : m_KoopaVec){
+    for(int i=0;i<m_KoopaVec.size();i++){
         //gravity if fall
-        if(i->GetPosition().x<=370.0f){
-            i->isActive = true;
+        if(m_KoopaVec[i]->GetPosition().x<=370.0f){
+            m_KoopaVec[i]->isActive = true;
         }
 
-        if(!std::get<0> (IsOnLand(i)) && i->isActive && !i->EnemyDie){
-            i->SetPosition({i->GetPosition().x-1.0f,i->GetPosition().y-5.0f});
+        if(!std::get<0> (IsOnLand(m_KoopaVec[i])) && m_KoopaVec[i]->isActive && !m_KoopaVec[i]->EnemyDie){
+            m_KoopaVec[i]->SetPosition({m_KoopaVec[i]->GetPosition().x-1.0f,m_KoopaVec[i]->GetPosition().y-5.0f});
         }
-        else if(i->isActive && !i->EnemyDie){
-            if(i->IsCollideLeft(m_Tube)){
-                i->direction = 1.0f;
+        else if(m_KoopaVec[i]->isActive && !m_KoopaVec[i]->EnemyDie){
+            if(m_KoopaVec[i]->IsCollideLeft(m_Tube) || m_KoopaVec[i]->IsCollideLeft(m_Brick) || m_KoopaVec[i]->IsCollideLeft(m_Wood) || m_KoopaVec[i]->IsCollideLeft(m_KoopaVec,i)){ // add if collide with koopa
+                LOG_DEBUG("Koopa collide left");
+                //set the koopa's image
+                if(!m_KoopaVec[i]->levelUp){
+                    m_KoopaVec[i]->SetImage(KoopaBack);
+                    m_KoopaVec[i]->SetInterval(100);
+                    m_KoopaVec[i]->SetLooping(true);
+                    m_KoopaVec[i]->SetPlaying();
+                }
+
+                m_KoopaVec[i]->direction = 1.0f;
+                m_KoopaVec[i]->SetPosition({m_KoopaVec[i]->GetPosition().x + (2.0f * m_KoopaVec[i]->direction), m_KoopaVec[i]->GetPosition().y});
             }
-            else if(i->IsCollideRight(m_Tube)){
-                i->direction = -1.0f;
+            else if(m_KoopaVec[i]->IsCollideRight(m_Tube) || m_KoopaVec[i]->IsCollideRight(m_Brick) || m_KoopaVec[i]->IsCollideRight(m_Wood) || m_KoopaVec[i]->IsCollideRight(m_KoopaVec,i)){
+                if(!m_KoopaVec[i]->levelUp){
+                    m_KoopaVec[i]->SetImage(KoopaPic);
+                    m_KoopaVec[i]->SetInterval(100);
+                    m_KoopaVec[i]->SetLooping(true);
+                    m_KoopaVec[i]->SetPlaying();
+                }
+                m_KoopaVec[i]->direction = -1.0f;
+                m_KoopaVec[i]->SetPosition({m_KoopaVec[i]->GetPosition().x + (2.0f * m_KoopaVec[i]->direction), m_KoopaVec[i]->GetPosition().y});
             }
-            if(i->stepTimes==0) {
-                i->SetPosition({i->GetPosition().x + (2.0f * i->direction), i->GetPosition().y});
+            if(m_KoopaVec[i]->stepTimes==0) {
+                m_KoopaVec[i]->SetPosition({m_KoopaVec[i]->GetPosition().x + (2.0f * m_KoopaVec[i]->direction), m_KoopaVec[i]->GetPosition().y});
             }
         }
     }
@@ -922,11 +1004,11 @@ void Phase::Update(App *app){
             i->y_start_Yellow_Mushroom = i->GetPosition().y;
             i->time_Yellow_Mushroom =0.0f;
 
-            if(i->IsCollideLeft(m_Tube) ){
+            if(i->IsCollideLeft(m_Tube) || i->IsCollideLeft(m_Wood)){
                 i->SetImage(GA_RESOURCE_DIR"/images/Mushroom.png");
                 i->direction = 1.0f;
             }
-            else if(i->IsCollideRight(m_Tube)){
+            else if(i->IsCollideRight(m_Tube) || i->IsCollideRight(m_Wood)){
                 i->SetImage(GA_RESOURCE_DIR"/images/Mushroom_Back.png");
                 i->direction = -1.0f;
             }
@@ -1101,9 +1183,6 @@ void Phase::Update(App *app){
         }
         //if mush on the top of it
         for(const auto & i: m_MushVector){
-            LOG_DEBUG("mushvector");
-            LOG_DEBUG(m_MushVector[14]->GetPosition().y-m_MushVector[14]->GetScaledSize().y/2);
-            LOG_DEBUG(m_Brick[indexTiles]->GetPosition().y+m_Brick[indexTiles]->GetScaledSize().y/2);
             //define x too else it will only take y as the condition
             if( i->IsStepOn(m_Brick[indexTiles]) && !i->EnemyDie){
                 LOG_DEBUG("step on brick");
@@ -1314,6 +1393,16 @@ void Phase::Update(App *app){
         m_Mario->MarioFinish = true;
         //change mario animated image
         m_Mario->SetVisible(false);
+        if(m_Mario->level==0){
+            m_MarioPillar->SetImage(MarioPillar);
+        }
+        else if(m_Mario->level>=1){
+            m_MarioPillar->SetImage(MarioPillar2);
+            m_MarioPillar->SetInterval(30);
+        }
+        m_MarioPillar->SetInterval(100);
+        m_MarioPillar->SetLooping(true);
+        m_MarioPillar->SetPlaying();
         m_MarioPillar->SetPosition({m_Pillar->GetPosition().x,m_Mario->GetPosition().y});
 
     }
@@ -1336,7 +1425,13 @@ void Phase::Update(App *app){
             //m_Mario1->SetVisible(true);
             m_MarioPillar->SetVisible(false);
             m_Mario->SetPosition({m_Mario->GetPosition().x+8.0f,m_Mario->GetPosition().y});
-            m_Mario->SetImage(MarioPillarEnd);
+            if(m_Mario->level==0){
+                m_Mario->SetImage(MarioPillarEnd);
+            }
+            else if(m_Mario->level>=1){
+                m_Mario->SetImage(MarioPillarEnd2);
+            }
+
 
             //m_Mario->SetPosition(m_Mario1->GetPosition());
             m_Mario->MarioEnd = true;
@@ -1393,6 +1488,32 @@ void Phase::Update(App *app){
             }
         }
     }
+    //there's coins in second world
+    if(app->m_Phase==App::Phases::FIRST_WORLD_TWO){
+        for(const auto & i : m_Coins2Vec){
+            if(i->IsCollideRight(m_Mario) || i->IsCollideLeft(m_Mario)){
+                //add sfx
+                app->m_Root.RemoveChild(i);
+                score = score + 100;
+            }
+        }
+    }
+
+    //moving platform thingy
+    for(const auto & i:m_MovingPlatform){
+        i->SetPosition({i->GetPosition().x,i->GetPosition().y-3.0f});
+        if(i->GetPosition().y < -600.0f){
+            i->SetPosition({i->GetPosition().x , 600.0f});
+        }
+    }
+
+    for(const auto & i:m_MovingPlatform2){
+        i->SetPosition({i->GetPosition().x,i->GetPosition().y+3.0f});
+        if(i->GetPosition().y > 600.0f){
+            i->SetPosition({i->GetPosition().x , -600.0f});
+        }
+    }
+
     //DO NOT MOVE OR ADD SOMETHING UNDER THESE TWO!!
     //exit
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {

@@ -45,6 +45,8 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES}
         include/FirstWorldTwo.h
         src/FirstWorldTwo.cpp
         src/AppStartTwo.cpp
+        include/Bricks.h
+        src/Bricks.cpp
 )
 
 if(MSVC)

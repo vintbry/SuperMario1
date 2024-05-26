@@ -53,6 +53,53 @@ public:
         }
         return false;
     }
+
+    template<typename T>
+    bool IsCollideRight(std::vector<std::shared_ptr<T>> Object, int index){
+        for(int i=0;i<Object.size();i++){
+            if(i!=index){
+                auto tiles = Object[i];
+                bool collideX = (GetPosition().x + GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x+GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+                bool collideY1 = (GetPosition().y + GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+                bool collideY2 = (GetPosition().y - GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+                bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=GetPosition().y+GetScaledSize().y/2);
+                bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);
+
+                bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
+
+                if(collideX && collideY){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    template<typename T>
+    bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object, int index){
+        for(int i=0;i<Object.size();i++){
+            if(i!=index){
+                auto tiles = Object[i];
+                bool collideX = (GetPosition().x - GetScaledSize().x/2>=tiles->GetPosition().x-tiles->GetScaledSize().x/2)&&(GetPosition().x - GetScaledSize().x/2<=tiles->GetPosition().x+tiles->GetScaledSize().x/2);
+                bool collideY1 = (GetPosition().y + GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
+                bool collideY2 = (GetPosition().y - GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
+
+                bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=GetPosition().y+GetScaledSize().y/2);
+                bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);
+
+                bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
+
+
+
+                if(collideX && collideY){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     int stepTimes = 0;
 
     float direction = -1.0f;

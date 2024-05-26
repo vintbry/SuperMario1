@@ -77,6 +77,7 @@ public:
         }
         return false;
     }
+    //so enemy can collide each other
     template<typename T>
     bool IsCollideRight(std::vector<std::shared_ptr<T>> Object, int index){
         for(int i=0;i<Object.size();i++){
@@ -86,7 +87,10 @@ public:
                 bool collideY1 = (GetPosition().y + GetScaledSize().y/2<=(tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y+GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2);
                 bool collideY2 = (GetPosition().y - GetScaledSize().y/2<=tiles->GetPosition().y+tiles->GetScaledSize().y/2) && GetPosition().y-GetScaledSize().y/2>=tiles->GetPosition().y-tiles->GetScaledSize().y/2;
 
-                bool collideY = collideY1 || collideY2;
+                bool collideY3 = (tiles->GetPosition().y + tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2)&&(tiles->GetPosition().y+tiles->GetScaledSize().y/2>=GetPosition().y+GetScaledSize().y/2);
+                bool collideY4 = (tiles->GetPosition().y - tiles->GetScaledSize().y/2 >= GetPosition().y - GetScaledSize().y/2)&& (tiles->GetPosition().y - tiles->GetScaledSize().y/2 <= GetPosition().y+GetScaledSize().y/2);
+
+                bool collideY = collideY1 || collideY2 || collideY3 || collideY4;
 
                 if(collideX && collideY){
                     return true;
@@ -95,6 +99,7 @@ public:
         }
         return false;
     }
+
     template<typename T>
     bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object){
         for(int i=0;i<Object.size();i++){
@@ -152,6 +157,7 @@ public:
         }
         return false;
     }
+    //so enemy can collide each other
     template<typename T>
     bool IsCollideLeft(std::vector<std::shared_ptr<T>> Object, int index){
         for(int i=0;i<Object.size();i++){
