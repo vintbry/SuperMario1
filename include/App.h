@@ -19,6 +19,7 @@
 #include "Mushroom.h"
 #include "Koopa.h"
 #include "YellowMush.h"
+#include "Bricks.h"
 
 class Phase;
 

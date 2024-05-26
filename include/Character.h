@@ -33,8 +33,7 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
-    // CharacterTimePhysics => hold the value of the time we used in physics => esplecially fall, jump, etc.
-    float CharacterTimePhysics = 0.0f;
+
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }

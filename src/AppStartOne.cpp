@@ -98,6 +98,9 @@ void FirstWorldOne::Start(App *app){
     MarioPillarEnd.reserve(1);
     MarioPillarEnd.emplace_back(GA_RESOURCE_DIR"/Mario/mario_endBack.png");
 
+    MarioPillarEnd2.reserve(1);
+    MarioPillarEnd2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_endBack.png");
+
     //Mario run forward
     MarioRun.reserve(5);
     MarioRun.emplace_back(GA_RESOURCE_DIR"/Mario/mario.png");
@@ -132,12 +135,13 @@ void FirstWorldOne::Start(App *app){
     MarioPillar.emplace_back(GA_RESOURCE_DIR"/Mario/mario_end1.png");
 
     m_MarioPillar = std::make_shared<Mario>(MarioPillar);
-    m_MarioPillar->SetInterval(100);
-    m_MarioPillar->SetZIndex(50);
+    m_MarioPillar->SetZIndex(10);
     m_MarioPillar->SetVisible(false);
-    m_MarioPillar->SetLooping(true);
-    m_MarioPillar->SetPlaying();
     app->m_Root.AddChild(m_MarioPillar);
+
+    MarioPillar2.reserve(2);
+    MarioPillar2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_end1.png");
+    MarioPillar2.emplace_back(GA_RESOURCE_DIR"/Mario/mario1_end.png");
 
     //mario shrink
     MarioShrink.reserve(52);
@@ -206,14 +210,15 @@ void FirstWorldOne::Start(App *app){
         m_Koopa->SetPlaying();
         m_Koopa->SetVisible(false);
         m_KoopaVec.push_back(m_Koopa);
+        app->m_Root.AddChild(m_KoopaVec[i]);
 
     }
 
     m_KoopaVec[0]->SetPosition({3507.0f,-169.0f});
-    for(int i=0;i<1;i++){
-        app->m_Root.AddChild(m_KoopaVec[i]);
-    }
 
+    KoopaBack.reserve(2);
+    KoopaBack.emplace_back(GA_RESOURCE_DIR"/images/koopa_0Back.png");
+    KoopaBack.emplace_back(GA_RESOURCE_DIR"/images/koopa_1Back.png");
 
     //Background tiles
     for(int i = 0; i < 4; i++){
@@ -288,7 +293,7 @@ void FirstWorldOne::Start(App *app){
 
     //brick
     for(int i = 0;i<30;i++){
-        m_Brick.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/inAir1.png"));
+        m_Brick.push_back(std::make_shared<Brick>(GA_RESOURCE_DIR"/images/inAir1.png"));
         m_Brick[i]->SetZIndex(5);
         m_Brick[i]->SetVisible(false);
         app->m_Root.AddChild(m_Brick[i]);
@@ -328,7 +333,7 @@ void FirstWorldOne::Start(App *app){
 
 
 
-    m_BrickMove = std::make_shared<Character>(GA_RESOURCE_DIR"/images/inAir1.png");
+    m_BrickMove = std::make_shared<Brick>(GA_RESOURCE_DIR"/images/inAir1.png");
     m_BrickMove->SetZIndex(5);
     m_BrickMove->SetPosition({-1000.0f,-1000.0f});
     m_BrickMove->SetVisible(true);
@@ -342,7 +347,7 @@ void FirstWorldOne::Start(App *app){
     for(int i = 0;i<31;i++){
 
         for (int x =0 ; x<5 ;x++) {
-            const auto BrickBreak = std::make_shared<Character>(GA_RESOURCE_DIR"/images/block_debris0.png");
+            const auto BrickBreak = std::make_shared<Brick>(GA_RESOURCE_DIR"/images/block_debris0.png");
             BrickBreak->SetZIndex(100);
             BrickBreak->SetVisible(false);
             app->m_Root.AddChild(BrickBreak);
@@ -384,8 +389,6 @@ void FirstWorldOne::Start(App *app){
         m_Brick_break[27][i]->SetPosition({5075.0f, -82.0f});
         m_Brick_break[28][i]->SetPosition({5107.0f, -82.0f});
         m_Brick_break[29][i]->SetPosition({5171.0f, -82.0f});
-
-        m_Brick_break[30][i]->SetVisible(false);
     }
 
     //Tube
