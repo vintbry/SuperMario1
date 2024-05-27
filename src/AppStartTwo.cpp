@@ -278,7 +278,7 @@ void FirstWorldTwo::StartLevel2(App *app) {
     KoopaBack.emplace_back(GA_RESOURCE_DIR"/images/koopa_1Back.png");
 
     //Background tiles
-    for(int i = 1; i <= 5; i++){
+    for(int i = 1; i <= 6; i++){
         m_Land.push_back(std::make_shared<Character>(GA_RESOURCE_DIR"/images/landLongWorld2_"+std::to_string(i)+".png"));
         m_Land[i-1]->SetZIndex(5);
         m_Land[i-1]->SetVisible(true);
@@ -289,6 +289,7 @@ void FirstWorldTwo::StartLevel2(App *app) {
     m_Land[2]->SetPosition({3597.0f,-220.0f});
     m_Land[3]->SetPosition({3885.0f,-220.0f});
     m_Land[4]->SetPosition({4468.0f,-220.0f});
+    m_Land[5]->SetPosition({5044.0f,-220.0f});
 
     //In Air Tile
     //Question Mark
@@ -511,6 +512,8 @@ void FirstWorldTwo::StartLevel2(App *app) {
     for(int i=0;i<133;i++){
         m_Brick[122+i]->SetPosition({-160.0f+(32.0f*i),150.0f});
     }
+
+    //m_Brick[255]->SetPosition({5044.0f,})
 
     //brick_break
     //should be adjusted
